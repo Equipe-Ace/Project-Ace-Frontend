@@ -1,0 +1,20 @@
+.procurarCliente{
+    background-color: blue;
+    margin: auto;
+    width: 50%;
+    position: relative;
+    top: 284px;
+}
+
+.inputPegarCliente {
+    border-radius: 10px;
+    width: 492px;
+    height: 52px;
+}
+
+
+.botaoGerenciarTitulos {
+    border-radius: 10px;
+    width: 259px;
+    height: 49px;
+}

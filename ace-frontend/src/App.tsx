@@ -1,9 +1,11 @@
+import { ControleTitulos } from "./pages/financeiroControleTitulos";
 
 function App() {
   return (
     <div className="App">
-        <h1>Hello</h1>
+        <ControleTitulos/>
     </div>
+    
   )
 }
 
