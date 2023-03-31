@@ -1,6 +1,9 @@
 import React from 'react';
 import './styles.css'
 import BotaoAvancar from '../botaoAvan';
+import { useNavigate} from 'react-router-dom';
+
+// const history = useNavigate();
 
 
 const FormCadCom3: React.FC = () => {
@@ -16,7 +19,7 @@ const FormCadCom3: React.FC = () => {
                 </div>
             </div>
             
-           <div className='botaoA'> <BotaoAvancar /> </div> 
+           <div className='botaoA' > <BotaoAvancar /> </div> 
         </>
     );
 }

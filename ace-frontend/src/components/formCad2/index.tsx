@@ -1,7 +1,12 @@
 import React, {useState} from 'react';
 import './styles.css'
-import BotaoAvancar from '../botaoAvan';
 import { Link } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
+
+
+
+
+
 
 const FormCadCom2: React.FC = () => {    const [DadosUsuario, setDadosUsuario] = useState({
     nome:'',
@@ -41,9 +46,16 @@ const handleSubimit = (e: { preventDefault: () => void; })=>{
     }).then(() =>{
         console.log(CadastroUsuario.nome);
     })
+        history('/cadastroCLI2')
+
     
 }
-    return (
+
+const history = useNavigate();
+
+
+
+return (
         <>
          <h1> Cadastro de Cliente</h1>
             <div className="bg" >

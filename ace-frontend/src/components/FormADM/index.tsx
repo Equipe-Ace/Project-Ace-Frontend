@@ -31,9 +31,11 @@ const FormADM: React.FC = () =>{
                     <span>senha</span>
                 </div>
                 <OpcDrop />
-                <Link to="/ControleTitulosADM">
-                    <BotaoAvancar />
-                </Link>
+                
+            <div className="containerbuttonAVC">
+                <button className="btn btn1"> Avançar ▸</button>
+            </div>
+
             </div>
             
         </>
