@@ -48,55 +48,59 @@ const handleSubimit = (e: { preventDefault: () => void; })=>{
          <h1> Cadastro de Cliente</h1>
             <div className="bg" >
                 <div className="coluna">
-                    <div className="inputBox">
+                    <div className="inputBoxCADCLI">
                         <input type="text" name='nome' onChange={handleChange}/>
                         <span>Nome</span>
                     </div>
-                    <div className="inputBox">
+                    <div className="inputBoxCADCLI">
                         <input type="text" name='telefone' onChange={handleChange}/>
                         <span>telefone</span>
                     </div>
-                    <div className="inputBox">
+                    <div className="inputBoxCADCLI">
                         <input type="text" name='cpf' onChange={handleChange}/>
                         <span>CPF</span>
                     </div>
-                    <div className="inputBox">
+                    <div className="inputBoxCADCLI">
                         <input type="text" name='cep' onChange={handleChange}/>
                         <span>CEP</span>
                     </div>
-                    <div className="inputBox">
+                    <div className="inputBoxCADCLI">
                         <input type="text" name='rua' onChange={handleChange}/>
                         <span>Rua</span>
                     </div>
                 </div>
                 <div className='coluna2'>
-                    <div className="inputBox">
+                    <div className="inputBoxCADCLI">
                         <input type="text" name='bairro' onChange={handleChange}/>
                         <span>Bairro</span>
                     </div>
-                    <div className="inputBox">
+                    <div className="inputBoxCADCLI">
                         <input type="text" name='numero' onChange={handleChange}/>
                         <span>numero</span>
                     </div>
-                    <div className="inputBox">
+                    <div className="inputBoxCADCLI">
                         <input type="text" name='complemento' onChange={handleChange}/>
                         <span>Complemento</span>
                     </div>
-                    <div className="inputBox">
+                    <div className="inputBoxCADCLI">
                         <input type="text" name='cidade' onChange={handleChange}/>
                         <span>Cidade</span>
                     </div>
-                    <div className="inputBox">
+                    <div className="inputBoxCADCLI">
                         <input type="text" name='uf' onChange={handleChange}/>
                         <span>Estado</span>
                     </div>
                 </div>
             </div>
-           <div className='botaoA'><Link to="/ControleTitulosADM2">
+           <div className='botaoA' onClick={handleSubimit }>
+           {/* <Link to="/cadastroCLI2"> 
+                <BotaoAvancar />
+            </Link> */}
                 <div className="containerbuttonAVC">
                     <button className="btn btn1" onClick={handleSubimit}> Cadastrar ▸</button>
-                </div></Link>
-            </div>
+                    </div>
+                </div>
+            
         </>
     );
 }

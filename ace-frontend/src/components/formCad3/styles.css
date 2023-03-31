@@ -28,13 +28,13 @@ h1 {
     display: inline-block;
 }
 
-.inputBox{
+.inputBoxCADCLI2{
    position: relative;
    width: 250px; 
    border-radius: 13px;
 }
 
-.inputBox input {
+.inputBoxCADCLI2 input {
     width: 100%;
     margin-top: 20px;
     padding: 12px;
@@ -46,7 +46,7 @@ h1 {
     transition: 0.5s;
 }
 
-.inputBox span{
+.inputBoxCADCLI2 span{
     font-family: sans-serif;
     position: absolute;
     left: 0;
@@ -59,8 +59,8 @@ h1 {
     transition: 0.5s;
 }
 
-.inputBox input:valid ~ span,
-.inputBox input:focus ~ span
+.inputBoxCADCLI2 input:valid ~ span,
+.inputBoxCADCLI2 input:focus ~ span
 {
     color: #000;
     transform: translateX(10px) translateY(-7px);
@@ -72,15 +72,15 @@ h1 {
     letter-spacing: 0.2em;
 }
 
-/* .inputBox:nth-child(2) input:valid ~ span,
-.inputBox:nth-child(2) input:focus ~ span
+/* .inputBoxCADCLI2:nth-child(2) input:valid ~ span,
+.inputBoxCADCLI2:nth-child(2) input:focus ~ span
 {
     background: #00dfc4;;
     color: #530082;
     border-radius: 2px;
 } */
-.inputBox input:valid,
-.inputBox input:focus
+.inputBoxCADCLI2 input:valid,
+.inputBoxCADCLI2 input:focus
 {
     border: 1px solid #000
 }

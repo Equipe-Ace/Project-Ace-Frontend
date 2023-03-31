@@ -82,9 +82,7 @@ const TitReceberADM: React.FC = () => {
                                 <td>{item.nome}</td>
                                 <td>{item.cpf}</td>
                                 <td> 
-                                <option key={id} value={item.id}>
                                     
-                                </option>
                                     {/* <Link to="/ControleTitulosADM2">  */}
                                         {/* <div className="containerbuttonAVC">
                                             <button className="btn btn1" onClick={()=>[SetTheId({id})]}> Editar ▸ </button>

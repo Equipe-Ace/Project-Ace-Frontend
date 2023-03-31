@@ -9,12 +9,13 @@ const FormCadCom3: React.FC = () => {
          <h1> Cadastro de Cliente</h1>
             <div className="bg" >
                 <div className="coluna">
-                    <div className="inputBox">
+                    <div className="inputBoxCADCLI">
                         <input type="text" placeholder='R$: 00,00'/>
                         <span>valor serviço:</span>
                     </div>
                 </div>
             </div>
+            
            <div className='botaoA'> <BotaoAvancar /> </div> 
         </>
     );

@@ -8,7 +8,7 @@ import CtrFIN from "./pages/ctrFIN";
 import CtrFIN2 from "./pages/ctrFIN2";
 import CtrFIN3 from "./pages/ctrFIN3";
 import CadCLI from "./pages/cadCLI";
-
+import CadCLI2 from "./pages/cadCLI2"
 
 
 
@@ -31,6 +31,7 @@ const AppRoutes = () => {
 
                 {/* CLIENTE */}
                 <Route path="/cadastroCLI" element={<CadCLI />} />
+                <Route path="/cadastroCLI2" element={<CadCLI2 />} />
             </Routes>
         </Router>
     );
