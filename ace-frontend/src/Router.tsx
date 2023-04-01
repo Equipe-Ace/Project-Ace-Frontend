@@ -26,8 +26,8 @@ const AppRoutes = () => {
 
                 {/* FINANCEIRO */}
                 <Route path="/ControleTitulosFIN" element={<CtrFIN />} />
-                <Route path="/ControleTitulosFIN2" element={<CtrFIN2 />} />
-                <Route path="/ControleTitulosFIN3" element={<CtrFIN3 />} />
+                <Route path="/ControleTitulosFIN2/:idCliente" element={<CtrFIN2 />} />
+                <Route path="/ControleTitulosFIN3/:idCliente" element={<CtrFIN3 />} />
 
                 {/* CLIENTE */}
                 <Route path="/cadastroCLI" element={<CadCLI />} />

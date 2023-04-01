@@ -1,14 +1,16 @@
 import React, {useState} from 'react';
 import './styles.css'
-import { Link } from 'react-router-dom';
-import { useNavigate} from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+//import { useHistory } from "react-router-dom";
 
 
 
 
 
 
-const FormCadCom2: React.FC = () => {    const [DadosUsuario, setDadosUsuario] = useState({
+const FormCadCom2: React.FC = () => {    /*const [DadosUsuario, setDadosUsuario] = useState({
     nome:'',
     telefone:'',
     cpf:'',
@@ -20,13 +22,41 @@ const FormCadCom2: React.FC = () => {    const [DadosUsuario, setDadosUsuario] =
     cidade:'',
     uf:'',
 });
+*/
 
+const [nome, setNome] = useState("")
+const [telefone, setTelefone] = useState("")
+const [cpf, setCpf] = useState("")
+const [cep, setCep] = useState("")
+const [rua, setRua] = useState("")
+const [bairro, setBairro] = useState("")
+const [numero, setNumero] = useState("")
+const [complemento, setComplemento] = useState("")
+const [cidade, setCidade] = useState("")
+const [uf, setUf] = useState("")
 
+const userCadastrado = {
+    nome: nome,
+    cpf: cpf,
+    telefone: telefone,
+    endereco: {
+        cep:cep, 
+        rua: rua,
+        bairro:bairro,
+        cidade: cidade,
+        numero: numero,
+        complemento: complemento,
+        uf:uf
+    },
+    servico: {
+     preco: 2000,
+     parcelas: [{}]
+    }
+ }
 
+//const CadastroUsuario = {"nome":DadosUsuario.nome,"telefone":DadosUsuario.telefone,"cpf":DadosUsuario.cpf,"endereco":{"cep":DadosUsuario.cep,"rua":DadosUsuario.rua,"bairro":DadosUsuario.bairro,"numero":DadosUsuario.numero,"complemento":DadosUsuario.complemento,"cidade":DadosUsuario.cidade,"uf":DadosUsuario.uf},"servicos":[{"parcelas":[{"numeroParcelas":null,"dataVencimento":null,"dataPagamento":null,"dataCredito":null,"valorParcela":50.0,"valorPago":null}],"preco":500.0}]}
 
-const CadastroUsuario = {"nome":DadosUsuario.nome,"telefone":DadosUsuario.telefone,"cpf":DadosUsuario.cpf,"endereco":{"cep":DadosUsuario.cep,"rua":DadosUsuario.rua,"bairro":DadosUsuario.bairro,"numero":DadosUsuario.numero,"complemento":DadosUsuario.complemento,"cidade":DadosUsuario.cidade,"uf":DadosUsuario.uf},"servicos":[{"parcelas":[{"numeroParcelas":null,"dataVencimento":null,"dataPagamento":null,"dataCredito":null,"valorParcela":50.0,"valorPago":null}],"preco":500.0}]}
-
-const handleChange =(e: { target: { name: any; value: any; }; })=>{
+/*const handleChange =(e: { target: { name: any; value: any; }; })=>{
     const name = e.target.name;
     const value = e.target.value;
     setDadosUsuario((prev)=> {
@@ -34,77 +64,71 @@ const handleChange =(e: { target: { name: any; value: any; }; })=>{
     })
     console.log(DadosUsuario)
 };
+*/
 
-
+const urlPost = "http://localhost:8080/Cliente/inserir"
 const handleSubimit = (e: { preventDefault: () => void; })=>{
     e.preventDefault();
     
-    fetch('http://localhost:8080/Cliente/inserir',{
-        method: 'POST',
-        headers: { "Content-Type":"application/json"},
-        body: JSON.stringify(CadastroUsuario)
-    }).then(() =>{
-        console.log(CadastroUsuario.nome);
-    })
-        history('/cadastroCLI2')
+    axios.post(urlPost, userCadastrado).then((response) => {
+        console.log(response) 
+        alert("Usuário cadastrado com sucesso!")})
+        .catch(error => console.log(error))
+        navigate("/ControleTitulosFIN")
+    }
 
-    
-}
-
-const history = useNavigate();
-
-
-
+    const navigate = useNavigate();
+   
 return (
         <>
          <h1> Cadastro de Cliente</h1>
             <div className="bg" >
                 <div className="coluna">
                     <div className="inputBoxCADCLI">
-                        <input type="text" name='nome' onChange={handleChange}/>
+                        <input type="text" name='nome' onChange={(e) => setNome(e.target.value)}/>
                         <span>Nome</span>
                     </div>
                     <div className="inputBoxCADCLI">
-                        <input type="text" name='telefone' onChange={handleChange}/>
+                        <input type="text" name='telefone' onChange={(e) => setTelefone(e.target.value)}/>
                         <span>telefone</span>
                     </div>
                     <div className="inputBoxCADCLI">
-                        <input type="text" name='cpf' onChange={handleChange}/>
+                        <input type="text" name='cpf' onChange={(e) => setCpf(e.target.value)}/>
                         <span>CPF</span>
                     </div>
                     <div className="inputBoxCADCLI">
-                        <input type="text" name='cep' onChange={handleChange}/>
+                        <input type="text" name='cep' onChange={(e) => setCep(e.target.value)}/>
                         <span>CEP</span>
                     </div>
                     <div className="inputBoxCADCLI">
-                        <input type="text" name='rua' onChange={handleChange}/>
+                        <input type="text" name='rua' onChange={(e) => setRua(e.target.value)}/>
                         <span>Rua</span>
                     </div>
                 </div>
                 <div className='coluna2'>
                     <div className="inputBoxCADCLI">
-                        <input type="text" name='bairro' onChange={handleChange}/>
+                        <input type="text" name='bairro' onChange={(e) => setBairro(e.target.value)}/>
                         <span>Bairro</span>
                     </div>
                     <div className="inputBoxCADCLI">
-                        <input type="text" name='numero' onChange={handleChange}/>
+                        <input type="text" name='numero' onChange={(e) => setNumero(e.target.value)}/>
                         <span>numero</span>
                     </div>
                     <div className="inputBoxCADCLI">
-                        <input type="text" name='complemento' onChange={handleChange}/>
+                        <input type="text" name='complemento' onChange={(e) => setComplemento(e.target.value)}/>
                         <span>Complemento</span>
                     </div>
                     <div className="inputBoxCADCLI">
-                        <input type="text" name='cidade' onChange={handleChange}/>
+                        <input type="text" name='cidade' onChange={(e) => setCidade(e.target.value)}/>
                         <span>Cidade</span>
                     </div>
                     <div className="inputBoxCADCLI">
-                        <input type="text" name='uf' onChange={handleChange}/>
+                        <input type="text" name='uf' onChange={(e) => setUf(e.target.value)}/>
                         <span>Estado</span>
                     </div>
                 </div>
             </div>
-           <div className='botaoA' onClick={handleSubimit }>
+           <div className='botaoA'>
            {/* <Link to="/cadastroCLI2"> 
                 <BotaoAvancar />
             </Link> */}

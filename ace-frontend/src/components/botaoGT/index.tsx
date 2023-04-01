@@ -1,12 +1,23 @@
 import React from 'react';
+
 import './styles.css'
 
 
-const BotaoAvancar: React.FC = () =>{
+
+
+interface ButtonProps {
+    
+    onClick?: () => void;
+    
+}
+
+const BotaoAvancar: React.FC = ({
+    onClick 
+}: ButtonProps) =>{
     return(
         <>
             <div className="containerbuttonAVC">
-                <button className="btn btn1"> AGerenciar Títulos ▸</button>
+                <button className="btn btn1" onClick={onClick}> AGerenciar Títulos ▸</button>
             </div>
         </>
     );
