@@ -42,7 +42,7 @@ const TitReceber3= ({
 
     function handleFunction(e:React.MouseEvent<HTMLButtonElement>) {
         e.preventDefault()
-        api.put("/Cliente/atualizarParcela", parcelaAtualizada)
+        api.put("/Parcela/atualizarParcela", parcelaAtualizada)
         .then(response => {
             const resposta = response.data
             console.log(resposta)
