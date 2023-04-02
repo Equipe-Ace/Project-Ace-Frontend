@@ -20,9 +20,9 @@ const AppRoutes = () => {
                 {/* ADM */}
                 <Route path="/" element={<LoginADM />} />
                 <Route path="/cadastroADM" element={<CadADM />} />
-                <Route path="/ControleTitulosADM" element={<CtrADM />} />
+                {/* <Route path="/ControleTitulosADM" element={<CtrADM />} />
                 <Route path="/ControleTitulosADM2" element={<CtrADM2 />} />
-                <Route path="/ControleTitulosADM3" element={<CtrADM3 />} />
+                <Route path="/ControleTitulosADM3" element={<CtrADM3 />} /> */}
 
                 {/* FINANCEIRO */}
                 <Route path="/ControleTitulosFIN" element={<CtrFIN />} />

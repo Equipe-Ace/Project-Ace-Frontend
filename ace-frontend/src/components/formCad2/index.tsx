@@ -30,10 +30,11 @@ const [cpf, setCpf] = useState("")
 const [cep, setCep] = useState("")
 const [rua, setRua] = useState("")
 const [bairro, setBairro] = useState("")
-const [numero, setNumero] = useState("")
+const [numero, setNumero] = useState(0)
 const [complemento, setComplemento] = useState("")
 const [cidade, setCidade] = useState("")
 const [uf, setUf] = useState("")
+const [preco, setPreco] = useState(0)
 
 const userCadastrado = {
     nome: nome,
@@ -49,7 +50,7 @@ const userCadastrado = {
         uf:uf
     },
     servico: {
-     preco: 2000,
+     preco: preco,
      parcelas: [{}]
     }
  }
@@ -72,9 +73,10 @@ const handleSubimit = (e: { preventDefault: () => void; })=>{
     
     axios.post(urlPost, userCadastrado).then((response) => {
         console.log(response) 
-        alert("Usuário cadastrado com sucesso!")})
+        alert("Usuário cadastrado com sucesso!")
+        navigate("/ControleTitulosFIN")})
         .catch(error => console.log(error))
-        navigate("/ControleTitulosFIN")
+        
     }
 
     const navigate = useNavigate();
@@ -111,7 +113,7 @@ return (
                         <span>Bairro</span>
                     </div>
                     <div className="inputBoxCADCLI">
-                        <input type="text" name='numero' onChange={(e) => setNumero(e.target.value)}/>
+                        <input type="number" name='numero' onChange={(e) => setNumero(parseInt(e.target.value))}/>
                         <span>numero</span>
                     </div>
                     <div className="inputBoxCADCLI">
@@ -127,8 +129,16 @@ return (
                         <span>Estado</span>
                     </div>
                 </div>
+                
+            </div>
+            <div className="coluna3">
+                <div className="inputBoxCADCLI">
+                    <input type="number" placeholder='R$: 00,00' onChange={(e) => setPreco(parseInt(e.target.value, 10))}/>
+                    <span>valor serviço:</span>
+                 </div>
             </div>
            <div className='botaoA'>
+            
            {/* <Link to="/cadastroCLI2"> 
                 <BotaoAvancar />
             </Link> */}
