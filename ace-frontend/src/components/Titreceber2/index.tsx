@@ -9,7 +9,7 @@ interface ParcelaInfo{
      parcela: {
         idCliente: number,
 	    numeroParcela?: number,
-	    dataVencimento?: String,
+	    dataVencimento?: Date,
 	    dataPagamento?: Date,
 	    dataCredito?: Date,
 	    valorParcela: number,
@@ -38,10 +38,10 @@ const TitReceber2 = ({
                 
                 <div className="inputBoxTRAFIN2">
                     <input type="text" placeholder='parcela - 0 ' value={parcela.numeroParcela + "°"}/>
-                    <span>Próxima Parcela</span>
+                    <span>Próxima Parcela a Vencer</span>
                 </div>
                 <div className="inputBoxTRAFIN2">
-                    <input type="text" value={parcela.dataVencimento?.toString()}/>
+                    <input type="date" value={parcela.dataVencimento?.toString()}/>
                     <span>Data de Vencimento</span>
                 </div>
                 <div className="inputBoxTRAFIN2">
