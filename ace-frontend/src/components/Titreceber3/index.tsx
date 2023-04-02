@@ -4,6 +4,7 @@ import BotaoAvancar from '../botaoAvan';
 import { FaSearch } from 'react-icons/fa';
 import BotaoPAG from '../botaoPAG';
 import { api } from '../../service/api';
+import { useNavigate } from 'react-router-dom';
 
 
 interface ParcelaInfo{
@@ -39,6 +40,7 @@ const TitReceber3= ({
         valorParcela : parcela.valorParcela,
         valorPago : valorPagoParcela
     }
+    const navigate = useNavigate()
 
     function handleFunction(e:React.MouseEvent<HTMLButtonElement>) {
         e.preventDefault()
@@ -51,6 +53,7 @@ const TitReceber3= ({
             }else{
                 alert("Parcela não encontrada")
             }
+            navigate(`/ControleTitulosFIN2/${parcela.idCliente}`)
         }).catch(error => console.log(error))    
     }
 

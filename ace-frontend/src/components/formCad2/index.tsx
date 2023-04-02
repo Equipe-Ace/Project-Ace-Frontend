@@ -30,10 +30,11 @@ const [cpf, setCpf] = useState("")
 const [cep, setCep] = useState("")
 const [rua, setRua] = useState("")
 const [bairro, setBairro] = useState("")
-const [numero, setNumero] = useState("")
+const [numero, setNumero] = useState(0)
 const [complemento, setComplemento] = useState("")
 const [cidade, setCidade] = useState("")
 const [uf, setUf] = useState("")
+const [preco, setPreco] = useState(0)
 
 const userCadastrado = {
     nome: nome,
@@ -49,7 +50,7 @@ const userCadastrado = {
         uf:uf
     },
     servico: {
-     preco: 2000,
+     preco: preco,
      parcelas: [{}]
     }
  }
@@ -111,7 +112,7 @@ return (
                         <span>Bairro</span>
                     </div>
                     <div className="inputBoxCADCLI">
-                        <input type="text" name='numero' onChange={(e) => setNumero(e.target.value)}/>
+                        <input type="number" name='numero' onChange={(e) => setNumero(parseInt(e.target.value))}/>
                         <span>numero</span>
                     </div>
                     <div className="inputBoxCADCLI">
@@ -131,7 +132,7 @@ return (
             </div>
             <div className="coluna3">
                 <div className="inputBoxCADCLI">
-                    <input type="text" placeholder='R$: 00,00'/>
+                    <input type="number" placeholder='R$: 00,00' onChange={(e) => setPreco(parseInt(e.target.value, 10))}/>
                     <span>valor serviço:</span>
                  </div>
             </div>
