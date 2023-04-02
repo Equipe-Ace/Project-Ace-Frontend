@@ -1,0 +1,86 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h1 {
+    display: flex;
+    font-family: sans-serif;
+    font-size: 2.5em;
+    color: #530082;
+    margin: 15px;
+    justify-content: center;
+}
+.botaoA{
+    display: flex;
+    justify-content: center;
+}
+
+.AC{
+    display: flex;
+    justify-content: center;
+    margin: 50px;
+    gap: 40px;
+}
+
+ .coluna .coluna2 {
+    display: inline-block;
+}
+
+.inputBoxCADCLI{
+   position: relative;
+   width: 250px; 
+   border-radius: 13px;
+}
+
+.inputBoxCADCLI input {
+    width: 100%;
+    margin-top: 20px;
+    padding: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    border-radius: 13px;
+    outline: none;
+    color: #000;
+    font-size: 1.3em;
+    transition: 0.5s;
+}
+
+.inputBoxCADCLI span{
+    font-family: sans-serif;
+    position: absolute;
+    left: 0;
+    margin-top: 20px;
+    padding: 12px;
+    pointer-events: none;
+    font-size: 1em;
+    color: rgba(0, 0, 0, 0.25);
+    text-transform: uppercase;
+    transition: 0.5s;
+}
+
+.inputBoxCADCLI input:valid ~ span,
+.inputBoxCADCLI input:focus ~ span
+{
+    color: #000;
+    transform: translateX(10px) translateY(-7px);
+    font-size:0.90em;
+    padding: 0 20px;
+    background: #fdfbfb ;
+    border-left: 1px solid #000;
+    border-right: 1px solid #000;
+    letter-spacing: 0.2em;
+}
+
+/* .inputBoxCADCLI:nth-child(2) input:valid ~ span,
+.inputBoxCADCLI:nth-child(2) input:focus ~ span
+{
+    background: #00dfc4;;
+    color: #530082;
+    border-radius: 2px;
+} */
+.inputBoxCADCLI input:valid,
+.inputBoxCADCLI input:focus
+{
+    border: 1px solid #000
+}
