@@ -127,8 +127,16 @@ return (
                         <span>Estado</span>
                     </div>
                 </div>
+                
+            </div>
+            <div className="coluna3">
+                <div className="inputBoxCADCLI">
+                    <input type="text" placeholder='R$: 00,00'/>
+                    <span>valor serviço:</span>
+                 </div>
             </div>
            <div className='botaoA'>
+            
            {/* <Link to="/cadastroCLI2"> 
                 <BotaoAvancar />
             </Link> */}
