@@ -17,7 +17,7 @@ h1 {
     justify-content: center;
 }
 
-.AC{
+.bg{
     display: flex;
     justify-content: center;
     margin: 50px;
@@ -26,6 +26,7 @@ h1 {
 
  .coluna .coluna2 {
     display: inline-block;
+
 }
 
 .coluna3  {
@@ -39,7 +40,7 @@ h1 {
 
 .inputBoxCADCLI{
    position: relative;
-   width: 250px; 
+   width: 420px; 
    border-radius: 13px;
    
 }
@@ -47,13 +48,12 @@ h1 {
 .inputBoxCADCLI input {
     width: 100%;
     margin-top: 20px;
-    padding: 12px;
+    padding: 10px;
     border: 1px solid rgba(0, 0, 0, 0.25);
-    border-radius: 13px;
+    border-radius: 12px;
     outline: none;
     color: #000;
-    font-size: 1.3em;
-    transition: 0.5s;
+    font-size: 1em;
 }
 
 .inputBoxCADCLI span{

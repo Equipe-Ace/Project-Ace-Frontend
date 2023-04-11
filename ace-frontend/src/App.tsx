@@ -11,7 +11,6 @@ import CtrFIN from './pages/ctrFIN';
 import CtrFIN2 from './pages/ctrFIN2';
 import CtrFIN3 from './pages/ctrFIN3';
 import AppRoutes from './Router';
-import CadCLI2 from './pages/cadCLI2';
 
 
 
@@ -22,7 +21,6 @@ function App() {
       {/* <LoginADM /> */}
       {/* <CadADM /> */}
       {/* <CadCLI/> */}
-      {/* <CadCLI2/> */}
       {/* <CtrFIN/> */}
       {/* <CtrFIN2 /> */}
       {/* <CtrFIN3 /> */}

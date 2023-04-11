@@ -8,6 +8,7 @@ interface SidebarProps {
   active: boolean;
   close: () => void;
 }
+
 const Sidebar: React.FC<SidebarProps> = ({ active, close }) => {
   return (
     <div className="sidebar">

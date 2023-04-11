@@ -1,14 +1,9 @@
 import React, {useState} from 'react';
 import './styles.css'
-import { Link, Navigate } from 'react-router-dom';
+// import { Link, Navigate } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-//import { useHistory } from "react-router-dom";
-
-
-
-
-
+import { useForm } from 'react-hook-form';
 
 const FormCadCom2: React.FC = () => {    /*const [DadosUsuario, setDadosUsuario] = useState({
     nome:'',
@@ -23,6 +18,8 @@ const FormCadCom2: React.FC = () => {    /*const [DadosUsuario, setDadosUsuario]
     uf:'',
 });
 */
+
+const { setValue, register, setFocus } = useForm();
 
 const [nome, setNome] = useState("")
 const [telefone, setTelefone] = useState("")
@@ -80,6 +77,20 @@ const handleSubimit = (e: { preventDefault: () => void; })=>{
     }
 
     const navigate = useNavigate();
+
+    const checkCEP = (value: React.ChangeEvent<HTMLInputElement>) => {
+      const cep = value.target.value.replace(/\D/g, "");
+      fetch(`http://viacep.com.br/ws/${cep}/json/`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data)
+        setValue("rua", data.logradouro);
+        setValue("uf", data.uf);
+        setValue("bairro", data.bairro);
+        setValue("cidade", data.localidade);
+        setFocus("number");
+    });
+};
    
 return (
         <>
@@ -99,34 +110,35 @@ return (
                         <span>CPF</span>
                     </div>
                     <div className="inputBoxCADCLI">
-                        <input type="text" name='cep' onChange={(e) => setCep(e.target.value)}/>
+                        <input type="text" name='cep' onBlur={checkCEP} onChange={(e) => setCep(e.target.value)}/>
+                        {/* onBlur={checkCEP} */}
                         <span>CEP</span>
                     </div>
                     <div className="inputBoxCADCLI">
-                        <input type="text" name='rua' onChange={(e) => setRua(e.target.value)}/>
-                        <span>Rua</span>
+                        <input type="text" {...register('rua')} name='rua' onChange={(e) => setRua(e.target.value)} />
+                        <span>Logradouro</span>
                     </div>
                 </div>
                 <div className='coluna2'>
                     <div className="inputBoxCADCLI">
-                        <input type="text" name='bairro' onChange={(e) => setBairro(e.target.value)}/>
+                        <input type="text" {...register('bairro')} name='bairro' onChange={(e) => setBairro(e.target.value)}/>
                         <span>Bairro</span>
                     </div>
                     <div className="inputBoxCADCLI">
-                        <input type="number" name='numero' onChange={(e) => setNumero(parseInt(e.target.value))}/>
+                        <input type="text" {...register('cidade')} name='cidade' onChange={(e) => setCidade(e.target.value)}/>
+                        <span>Cidade</span>
+                    </div>
+                    <div className="inputBoxCADCLI">
+                        <input type="text" {...register('uf')} name='uf' onChange={(e) => setUf(e.target.value)}/>
+                        <span>Estado</span>
+                    </div>
+                    <div className="inputBoxCADCLI">
+                        <input type="number"  name='numero' onChange={(e) => setNumero(parseInt(e.target.value))}/>
                         <span>numero</span>
                     </div>
                     <div className="inputBoxCADCLI">
                         <input type="text" name='complemento' onChange={(e) => setComplemento(e.target.value)}/>
                         <span>Complemento</span>
-                    </div>
-                    <div className="inputBoxCADCLI">
-                        <input type="text" name='cidade' onChange={(e) => setCidade(e.target.value)}/>
-                        <span>Cidade</span>
-                    </div>
-                    <div className="inputBoxCADCLI">
-                        <input type="text" name='uf' onChange={(e) => setUf(e.target.value)}/>
-                        <span>Estado</span>
                     </div>
                 </div>
                 
@@ -138,10 +150,6 @@ return (
                  </div>
             </div>
            <div className='botaoA'>
-            
-           {/* <Link to="/cadastroCLI2"> 
-                <BotaoAvancar />
-            </Link> */}
                 <div className="containerbuttonAVC">
                     <button className="btn btn1" onClick={handleSubimit}> Cadastrar ▸</button>
                     </div>

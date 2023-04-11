@@ -6,7 +6,6 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 // import axios from "../../service/axios"
 import axios from "axios"
-import BotaoEdit from '../botaoEditar';
 import { stringify } from 'querystring';
 
 const TitReceberADM: React.FC = () => {
