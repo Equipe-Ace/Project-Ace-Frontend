@@ -1,9 +1,10 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import './styles.css'
 // import { Link, Navigate } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
+import { IMaskInput } from "react-imask";
 
 const FormCadCom2: React.FC = () => {    /*const [DadosUsuario, setDadosUsuario] = useState({
     nome:'',
@@ -21,48 +22,37 @@ const FormCadCom2: React.FC = () => {    /*const [DadosUsuario, setDadosUsuario]
 
 const { setValue, register, setFocus } = useForm();
 
-const [nome, setNome] = useState("")
-const [telefone, setTelefone] = useState("")
-const [cpf, setCpf] = useState("")
-const [cep, setCep] = useState("")
-const [rua, setRua] = useState("")
-const [bairro, setBairro] = useState("")
-const [numero, setNumero] = useState(0)
-const [complemento, setComplemento] = useState("")
-const [cidade, setCidade] = useState("")
-const [uf, setUf] = useState("")
-const [preco, setPreco] = useState(0)
-
-const userCadastrado = {
-    nome: nome,
-    cpf: cpf,
-    telefone: telefone,
-    endereco: {
-        cep:cep, 
-        rua: rua,
-        bairro:bairro,
-        cidade: cidade,
-        numero: numero,
-        complemento: complemento,
-        uf:uf
-    },
-    servico: {
-     preco: preco,
-     parcelas: [{}]
-    }
+    const [nome, setNome] = useState("")
+    const [telefone, setTelefone] = useState("")
+    const [cpf, setCpf] = useState("")
+    const [cep, setCep] = useState("")
+    const [rua, setRua] = useState("")
+    const [bairro, setBairro] = useState("")
+    const [numero, setNumero] = useState(0)
+    const [complemento, setComplemento] = useState("")
+    const [cidade, setCidade] = useState("")
+    const [uf, setUf] = useState("")
+    const [preco, setPreco] = useState(0)
+    const [preco2, setPreco2] = useState("");
+    const userCadastrado = {
+        nome: nome,
+        cpf: cpf,
+        telefone: telefone,
+        endereco: {
+            cep: cep,
+            rua: rua,
+            bairro: bairro,
+            cidade: cidade,
+            numero: numero,
+            complemento: complemento,
+            uf: uf
+        },
+        servico: {
+            preco: preco,
+            parcelas: [{}]
+        }
  }
 
-//const CadastroUsuario = {"nome":DadosUsuario.nome,"telefone":DadosUsuario.telefone,"cpf":DadosUsuario.cpf,"endereco":{"cep":DadosUsuario.cep,"rua":DadosUsuario.rua,"bairro":DadosUsuario.bairro,"numero":DadosUsuario.numero,"complemento":DadosUsuario.complemento,"cidade":DadosUsuario.cidade,"uf":DadosUsuario.uf},"servicos":[{"parcelas":[{"numeroParcelas":null,"dataVencimento":null,"dataPagamento":null,"dataCredito":null,"valorParcela":50.0,"valorPago":null}],"preco":500.0}]}
-
-/*const handleChange =(e: { target: { name: any; value: any; }; })=>{
-    const name = e.target.name;
-    const value = e.target.value;
-    setDadosUsuario((prev)=> {
-        return{...prev,[name]:value}
-    })
-    console.log(DadosUsuario)
-};
-*/
 
 const urlPost = "http://localhost:8080/Cliente/inserir"
 const handleSubimit = (e: { preventDefault: () => void; })=>{
@@ -79,39 +69,47 @@ const handleSubimit = (e: { preventDefault: () => void; })=>{
     const navigate = useNavigate();
 
     const checkCEP = (value: React.ChangeEvent<HTMLInputElement>) => {
-      const cep = value.target.value.replace(/\D/g, "");
-      fetch(`http://viacep.com.br/ws/${cep}/json/`)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data)
-        setValue("rua", data.logradouro);
-        setValue("uf", data.uf);
-        setValue("bairro", data.bairro);
-        setValue("cidade", data.localidade);
-        setFocus("number");
-    });
-};
-   
-return (
+        const cep = value.target.value.replace(/\D/g, "");
+        fetch(`http://viacep.com.br/ws/${cep}/json/`)
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data)
+                setValue("rua", data.logradouro);
+                setValue("uf", data.uf);
+                setValue("bairro", data.bairro);
+                setValue("cidade", data.localidade);
+                setFocus("number");
+
+            });
+    };
+
+    return (
         <>
          <h1> Cadastro de Cliente</h1>
             <div className="bg" >
                 <div className="coluna">
                     <div className="inputBoxCADCLI">
-                        <input type="text" name='nome' onChange={(e) => setNome(e.target.value)}/>
+                    <input type="text" name='nome' placeholder='digite seu nome...' onChange={(e) => setNome(e.target.value)} />
                         <span>Nome</span>
                     </div>
                     <div className="inputBoxCADCLI">
-                        <input type="text" name='telefone' onChange={(e) => setTelefone(e.target.value)}/>
+                    <IMaskInput
+                        mask="(00) 00000-0000"
+                        placeholder="Digite o seu telefone..."
+                        onAccept={(value) => setTelefone(value)}
+                        />
                         <span>telefone</span>
                     </div>
                     <div className="inputBoxCADCLI">
-                        <input type="text" name='cpf' onChange={(e) => setCpf(e.target.value)}/>
+                    <IMaskInput
+                        mask="000.000.000-00"
+                        placeholder="Digite o seu CPF..."
+                        onAccept={(value) => setCpf(value)}
+                        />
                         <span>CPF</span>
                     </div>
                     <div className="inputBoxCADCLI">
-                        <input type="text" name='cep' onBlur={checkCEP} onChange={(e) => setCep(e.target.value)}/>
-                        {/* onBlur={checkCEP} */}
+                    <input type="text" placeholder="Digite o seu CEP..." name='cep' onBlur={checkCEP} onChange={(e) => setCep(e.target.value)} />
                         <span>CEP</span>
                     </div>
                     <div className="inputBoxCADCLI">
@@ -121,23 +119,23 @@ return (
                 </div>
                 <div className='coluna2'>
                     <div className="inputBoxCADCLI">
-                        <input type="text" {...register('bairro')} name='bairro' onChange={(e) => setBairro(e.target.value)}/>
+                    <input type="text" {...register('bairro')} name='bairro' onChange={(e) => setBairro(e.target.value)} />
                         <span>Bairro</span>
                     </div>
                     <div className="inputBoxCADCLI">
-                        <input type="text" {...register('cidade')} name='cidade' onChange={(e) => setCidade(e.target.value)}/>
+                    <input type="text" {...register('cidade')} name='cidade' onChange={(e) => setCidade(e.target.value)} />
                         <span>Cidade</span>
                     </div>
                     <div className="inputBoxCADCLI">
-                        <input type="text" {...register('uf')} name='uf' onChange={(e) => setUf(e.target.value)}/>
+                    <input type="text" {...register('uf')} name='uf' onChange={(e) => setUf(e.target.value)} />
                         <span>Estado</span>
                     </div>
                     <div className="inputBoxCADCLI">
-                        <input type="number"  name='numero' onChange={(e) => setNumero(parseInt(e.target.value))}/>
+                    <input type="number" placeholder="Digite o seu numero..." name='numero' onChange={(e) => setNumero(parseInt(e.target.value))} />
                         <span>numero</span>
                     </div>
                     <div className="inputBoxCADCLI">
-                        <input type="text" name='complemento' onChange={(e) => setComplemento(e.target.value)}/>
+                    <input type="text" placeholder="Digite o complemento..." name='complemento' onChange={(e) => setComplemento(e.target.value)} />
                         <span>Complemento</span>
                     </div>
                 </div>
@@ -145,7 +143,29 @@ return (
             </div>
             <div className="coluna3">
                 <div className="inputBoxCADCLI">
-                    <input type="number" placeholder='R$: 00,00' onChange={(e) => setPreco(parseInt(e.target.value, 10))}/>
+                <IMaskInput
+                    mask="numeric"
+
+                    blocks={{
+                        // Define um bloco de números com duas casas decimais
+                        numeric: {
+                        // Definição de caracteres aceitáveis
+                        mask: Number,
+
+                        scale: 2,
+                        thousandsSeparator: '.',
+                        padFractionalZeros: true,
+                        normalizeZeros: true,
+                        radix: ',',
+                        mapToRadix: [',']
+
+                        },
+                    }}
+                    autofix={true}
+                    value={preco2}
+                    onAccept={(value) => setPreco2(value)}
+                    dir="rtl"
+                    placeholder="R$: 0,00"/>
                     <span>valor serviço:</span>
                  </div>
             </div>
