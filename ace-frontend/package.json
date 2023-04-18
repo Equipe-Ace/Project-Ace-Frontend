@@ -17,6 +17,7 @@
     "react-hook-form": "^7.43.9",
     "react-icons": "^4.8.0",
     "react-imask": "^6.6.0-alpha.0",
+    "react-input-mask": "^2.0.4",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.9.0",
     "react-scripts": "5.0.1",
@@ -46,8 +47,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "antd": "^5.4.2"
   }
-},
-"devDependencies": {
-  "antd": "^5.4.2"
 }
