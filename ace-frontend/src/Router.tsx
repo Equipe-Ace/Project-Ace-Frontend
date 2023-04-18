@@ -9,7 +9,10 @@ import CtrFIN2 from "./pages/ctrFIN2";
 import CtrFIN3 from "./pages/ctrFIN3";
 import CadCLI from "./pages/cadCLI";
 import SelectCli from "./pages/selectCLI";
-import RelatorioMenu from "./pages/relatoriomenu/cuewfhwehf";
+import RelatorioMenu from "./pages/relatoriomenu";
+import RelatorioPag from "./pages/relatoriomenu/relatoriopag";
+import RelatorioCre from "./pages/relatoriomenu/relatoriocre";
+import RelatorioVen from "./pages/relatoriomenu/relatorioven";
 
 
 
@@ -32,7 +35,9 @@ const AppRoutes = () => {
 
                 {/* MENUS */}
                 <Route path="/relatoriomenu" element={<RelatorioMenu />} />
-
+                <Route path="/relatoriopag" element={<RelatorioPag />} />
+                <Route path="/relatorioven" element={<RelatorioVen />} />
+                <Route path="/relatoriocre" element={<RelatorioCre />} />
 
 
             </Routes>
