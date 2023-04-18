@@ -23,18 +23,13 @@ const TitReceber2 = ({
     function handleFunction(e:React.MouseEvent<HTMLButtonElement>) {
         e.preventDefault()
 
-        
-        navigate("/ControleTitulosFIN")
+        navigate("/controletitulosfin")
     }
     return (
         <>
 
             <div className="bgTRAFIN2" >
                 <h1> Gerenciamento de Títulos </h1>
-                {/* <div className="inputBoxTRAFIN2">
-                    <input type="text" placeholder='⌕ pesquisar: ' value={parcela.idCliente} />
-                    <span>Usuário</span>
-                </div> */}
                 
                 <div className="inputBoxTRAFIN2">
                     <input type="text" placeholder='parcela - 0 ' value={parcela.numeroParcela + "°"}/>
@@ -48,11 +43,15 @@ const TitReceber2 = ({
                     <input type="text" placeholder='R$: 00,00' value={parcela.valorParcela}/>
                     <span>Valor a Pagar</span>
                 </div>
+
+                <div className='botaoti2'>
                 <BotaoAC onClick={(e) =>handleFunction(e)} />
                 
-                <Link to={`/ControleTitulosFIN3/${parcela.idCliente}`}>
+                <Link to={`/controletitulosfin3/${parcela.idCliente}`}>
                     <BotaoAvancar />
                 </Link>
+                </div>
+
             </div>
 
         </>
