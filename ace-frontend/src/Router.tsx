@@ -8,7 +8,7 @@ import CtrFIN from "./pages/ctrFIN";
 import CtrFIN2 from "./pages/ctrFIN2";
 import CtrFIN3 from "./pages/ctrFIN3";
 import CadCLI from "./pages/cadCLI";
-
+import SelectCli from "./pages/selectCLI";
 
 
 
@@ -18,15 +18,17 @@ const AppRoutes = () => {
             <Routes>
                 {/* ADM */}
                 <Route path="/" element={<LoginADM />} />
-                <Route path="/cadastroADM" element={<CadADM />} />
+                <Route path="/cadastroadm" element={<CadADM />} />
 
                 {/* FINANCEIRO */}
-                <Route path="/ControleTitulosFIN" element={<CtrFIN />} />
-                <Route path="/ControleTitulosFIN2/:idCliente" element={<CtrFIN2 />} />
-                <Route path="/ControleTitulosFIN3/:idCliente" element={<CtrFIN3 />} />
+                <Route path="/controletitulosfin" element={<CtrFIN />} />
+                <Route path="/controletitulosfin2/:idCliente" element={<CtrFIN2 />} />
+                <Route path="/controletitulosfin3/:idCliente" element={<CtrFIN3 />} />
 
                 {/* CLIENTE */}
-                <Route path="/cadastroCLI" element={<CadCLI />} />
+                <Route path="/cadastrocli" element={<CadCLI />} />
+                <Route path="/selectcli" element={<SelectCli />} />
+
             </Routes>
         </Router>
     );
