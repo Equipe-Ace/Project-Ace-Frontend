@@ -9,6 +9,7 @@ import CtrFIN2 from "./pages/ctrFIN2";
 import CtrFIN3 from "./pages/ctrFIN3";
 import CadCLI from "./pages/cadCLI";
 import SelectCli from "./pages/selectCLI";
+import RelatorioMenu from "./pages/relatoriomenu";
 
 
 
@@ -28,6 +29,11 @@ const AppRoutes = () => {
                 {/* CLIENTE */}
                 <Route path="/cadastrocli" element={<CadCLI />} />
                 <Route path="/selectcli" element={<SelectCli />} />
+
+                {/* MENUS */}
+                <Route path="/relatoriomenu" element={<RelatorioMenu />} />
+
+
 
             </Routes>
         </Router>
