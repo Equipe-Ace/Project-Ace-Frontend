@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import './styles.css'
-// import { Link, Navigate } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import { IMaskInput } from "react-imask";
+import IMask from 'imask';
 
 const FormCadCom2: React.FC = () => {    /*const [DadosUsuario, setDadosUsuario] = useState({
     nome:'',
@@ -94,9 +94,9 @@ const handleSubimit = (e: { preventDefault: () => void; })=>{
                     </div>
                     <div className="inputBoxCADCLI">
                     <IMaskInput
-                        mask="(00) 00000-0000"
-                        placeholder="Digite o seu telefone..."
-                        onAccept={(value) => setTelefone(value)}
+                            mask="(00) 00000-0000"
+                            placeholder="Digite o seu telefone..."
+                            onAccept={(value) => setTelefone(value)}
                         />
                         <span>telefone</span>
                     </div>
@@ -151,7 +151,7 @@ const handleSubimit = (e: { preventDefault: () => void; })=>{
                         numeric: {
                         // Definição de caracteres aceitáveis
                         mask: Number,
-
+                        signed: false,
                         scale: 2,
                         thousandsSeparator: '.',
                         padFractionalZeros: true,
@@ -165,7 +165,8 @@ const handleSubimit = (e: { preventDefault: () => void; })=>{
                     value={preco2}
                     onAccept={(value) => setPreco2(value)}
                     dir="rtl"
-                    placeholder="R$: 0,00"/>
+                    placeholder="R$: 0,00"
+                    />
                     <span>valor serviço:</span>
                  </div>
             </div>
