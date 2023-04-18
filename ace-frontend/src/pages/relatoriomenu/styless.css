@@ -1,4 +1,4 @@
-.bgSelect{
+.bgboxSelect{
     margin-top: 2%;
     display: flex;
     justify-content: center;
@@ -8,34 +8,37 @@
 
 }
 
-.boxSelect {
 
-    width: 50%;
-    box-shadow: 3px 3px 6px -1px #444444;
-
-    border: 2px solid black;
-    border-radius: 15px;
-
-    align-items: center;
-    align-content: center;
-
-    /* transform: translate(-20%, 20%); */
-    margin-left: 26%;
-    margin-top: 2%;
-}
-
-details{
-    padding: 10px 20px;
-    border-bottom: 1px solid black;
-    border-radius: 10px;
-}
-
-summary{
+.DtPag, .DtVen, .DtCre {
     cursor: pointer;
-    color: #530082;
-    font-size: 20px;
+    display:flex;
+    margin-top: 8%;
+    border-radius: 10px;
+    border: 2.3px solid #530082 ;
+    font-family: sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 8.2%;
+    width: 325px;
+    justify-content: center;
+    background: none ;
+    color: #530082 ;
+    
 }
 
-p {
-    font-size: 17px;
+.DtPag:hover, .DtVen:hover, .DtCre:hover  {
+    background: #530082;
+    color: antiquewhite;
+}
+
+.boxButtons {
+
+    margin:0 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 5% 10%;
+    
+    
 }

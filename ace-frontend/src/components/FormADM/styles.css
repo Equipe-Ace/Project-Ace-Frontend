@@ -9,13 +9,13 @@ h1 {
 
 .bgformadm{
     display: flex;
-    justify-content: center;
+    justify-content: center space-between ;
     align-items: center;
     min-height: 38rem;
     flex-direction: column;
     gap: 40px;
     background: none;
-    
+    gap: 7px
 }
 
 .inputBoxformadm{
