@@ -60,7 +60,7 @@ const handleSubimit = (e: { preventDefault: () => void; })=>{
     
     axios.post(urlPost, userCadastrado).then((response) => {
         console.log(response) 
-        alert("Usuário cadastrado com sucesso!")
+        alert("Cliente cadastrado com sucesso!")
         navigate("/ControleTitulosFIN")})
         .catch(error => console.log(error))
         
