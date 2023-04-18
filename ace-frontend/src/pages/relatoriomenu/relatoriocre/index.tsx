@@ -7,17 +7,37 @@ const RelatorioCre: React.FC = () => {
     return (
         <>
             <Header />
-            <div className="bgboxSelect" >
-                <h1> Selecione um tipo de relatório: </h1>
+            <div className="bgboxCre" >
+                <h1> Relatório de Crédito: </h1>
             </div>
 
-            <div className="boxButtons">
-            <button className='DtPag' >Data de Pagamento</button>
-            <button className='DtCre' >Data de Crédito</button>
-            <button className='DtVen' >Data de Vencimento</button>
-
+            <div className="boxDate">
+                <div className='row'>
+                    <span>Data de Início: </span>
+                    <input type="date" />
+                </div>
+                <div className='row'>
+                    <span>Data de Término: </span>
+                    <input type="date" />
+                </div>
             </div>
 
+            <div className='CenterDetails'>
+                <div className="DetailsDate">
+                    <details>
+                        <summary> Nome do Cliente </summary>
+                        <p>informações do clientinho</p>
+                    </details>
+                    <details>
+                        <summary> Nome do Cliente </summary>
+                        <p>informações do clientinho2</p>
+                    </details>
+                    <details>
+                        <summary> Nome do Cliente </summary>
+                        <p>informações do clientinho3</p>
+                    </details>
+                </div>
+            </div>
         </>
     );
 }
