@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import './styles.css'
-import BotaoAvancar from '../botaoAvan';
+import './styles.css';
 import { FaSearch } from 'react-icons/fa';
 import BotaoPAG from '../botaoPAG';
 import { api } from '../../service/api';
-import { useNavigate } from 'react-router-dom';
+import BotaoAC from '../botaoAC';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 interface ParcelaInfo{
@@ -53,11 +53,10 @@ const TitReceber3= ({
             }else{
                 alert("Parcela não encontrada")
             }
-            navigate(`/ControleTitulosFIN2/${parcela.idCliente}`)
+            navigate(`/controletitulosfin2/${parcela.idCliente}`)
         }).catch(error => console.log(error))    
     }
 
-    
     return (
         <>
 
@@ -76,8 +75,13 @@ const TitReceber3= ({
                     <input type="number" placeholder='R$: 00,00' onChange={(e) => setValorPagoParcela(parseInt(e.target.value, 10))} />
                     <span>Valor a Receber</span>
                 </div>
+
+                <div className='botaoti3'>
+                <Link to={`/controletitulosfin2/${parcela.idCliente}`}>
+                <BotaoAC />
+                </Link>
                 <BotaoPAG  onClick={(e) =>handleFunction(e)} />
-                
+                </div>
             </div>
 
         </>

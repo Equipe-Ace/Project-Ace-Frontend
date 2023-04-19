@@ -1,0 +1,42 @@
+.bgSelect{
+    margin-top: 2%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: none;
+
+}
+
+.CenterSelect{
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+
+.boxSelect {
+    width: 50%;
+    box-shadow: 3px 3px 6px -1px #444444;
+    border: 2px solid black;
+    border-radius: 15px;
+    align-items: center;
+    align-content: center;
+    margin-top: 2%;
+}
+
+details{
+    padding: 10px 20px;
+    border-bottom: 1px solid black;
+    border-radius: 10px;
+}
+
+summary{
+    cursor: pointer;
+    color: #530082;
+    font-size: 20px;
+}
+
+p {
+    font-size: 17px;
+}
