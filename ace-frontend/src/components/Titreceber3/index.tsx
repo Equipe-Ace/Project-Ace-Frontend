@@ -57,7 +57,6 @@ const TitReceber3= ({
         }).catch(error => console.log(error))    
     }
 
-    
     return (
         <>
 
@@ -78,7 +77,7 @@ const TitReceber3= ({
                 </div>
 
                 <div className='botaoti3'>
-                <Link to={`/controletitulosfin2`}>
+                <Link to={`/controletitulosfin2/${parcela.idCliente}`}>
                 <BotaoAC />
                 </Link>
                 <BotaoPAG  onClick={(e) =>handleFunction(e)} />

@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../../components/header/index'
 import './styles.css'
-
+import { Link } from 'react-router-dom';
 
 const RelatorioMenu: React.FC = () => {
     return (
@@ -24,6 +24,7 @@ const RelatorioMenu: React.FC = () => {
             <button className='DtVen' >Data de Vencimento</button>
             </Link>
             </div>
+
         </>
     );
 }

@@ -3,14 +3,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
     background: none;
-
 }
-
-
-
-
 
 .DtPag, .DtVen, .DtCre {
     cursor: pointer;
@@ -26,7 +20,6 @@
     justify-content: center;
     background: none ;
     color: #530082 ;
-
 }
 
 .DtPag:hover, .DtVen:hover, .DtCre:hover  {
@@ -35,15 +28,12 @@
 }
 
 .boxButtons {
-
     margin:0 30%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     padding: 5% 10%;
-
-
 }
 
 details{

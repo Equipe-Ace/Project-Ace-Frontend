@@ -20,7 +20,7 @@ const LoginADM: React.FC = () => {
                         <input type="text" placeholder="digite seu login..." />
                         <input type="password" placeholder="digite sua senha..." />
                     </div>
-                    <Link to="/cadastroADM">
+                    <Link to="/cadastrocli">
                         <button className="Botao"> <p> Entrar </p></button>
                     </Link>
                 </div>
