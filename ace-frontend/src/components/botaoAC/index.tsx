@@ -11,7 +11,7 @@ const BotaoAC= ({
     return(
         <>
             <div className="containerbuttonAVC">
-                <button className="btn btn1" onClick={onClick}> Alterar Cliente ▸</button>
+                <button className="btn btn1" onClick={onClick}> voltar ▸</button>
             </div>
         </>
     );

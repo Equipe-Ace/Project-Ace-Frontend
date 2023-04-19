@@ -22,7 +22,6 @@ input::placeholder {
   }
 
 .bgTRAFIN2{
-    margin-top: 3%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -31,6 +30,12 @@ input::placeholder {
     gap: 40px;
     background: none;
     
+}
+
+.botaoti2{
+    display: flex;
+    justify-content: center;
+    gap: 15px;
 }
 
 .inputBoxTRAFIN2{
