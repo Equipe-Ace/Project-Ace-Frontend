@@ -7,27 +7,7 @@ import { IMaskInput } from "react-imask";
 import IMask from 'imask';
 
 
-//import { InputMask, InputMaskNumber } from './mask';
-
-
-
-const FormCadCom2: React.FC = () => {    /*const [DadosUsuario, setDadosUsuario] = useState({
-    nome:'',
-    telefone:'',
-    cpf:'',
-    cep:'',
-    rua:'',
-    bairro:'',
-    numero:'',
-    complemento:'',
-    cidade:'',
-    uf:'',
-});
-*/
-
-
-
-
+const FormCadCom2: React.FC = () => {   
 
 
     const { setValue, register, setFocus } = useForm();
@@ -44,6 +24,12 @@ const FormCadCom2: React.FC = () => {    /*const [DadosUsuario, setDadosUsuario]
     const [uf, setUf] = useState("")
     const [preco, setPreco] = useState(0)
     const [preco2, setPreco2] = useState("");
+
+    function StrToFloat(Str: string): number {
+        const fixedValue = parseFloat(Str.replace(/\./g, '').replace(',', '.'));
+        return (fixedValue);
+      }
+
     const userCadastrado = {
         nome: nome,
         cpf: cpf,
@@ -58,27 +44,17 @@ const FormCadCom2: React.FC = () => {    /*const [DadosUsuario, setDadosUsuario]
             uf: uf
         },
         servico: {
-            preco: preco,
+            preco: StrToFloat(preco2),
             parcelas: [{}]
         }
     }
 
-    //const CadastroUsuario = {"nome":DadosUsuario.nome,"telefone":DadosUsuario.telefone,"cpf":DadosUsuario.cpf,"endereco":{"cep":DadosUsuario.cep,"rua":DadosUsuario.rua,"bairro":DadosUsuario.bairro,"numero":DadosUsuario.numero,"complemento":DadosUsuario.complemento,"cidade":DadosUsuario.cidade,"uf":DadosUsuario.uf},"servicos":[{"parcelas":[{"numeroParcelas":null,"dataVencimento":null,"dataPagamento":null,"dataCredito":null,"valorParcela":50.0,"valorPago":null}],"preco":500.0}]}
-
-    /*const handleChange =(e: { target: { name: any; value: any; }; })=>{
-        const name = e.target.name;
-        const value = e.target.value;
-        setDadosUsuario((prev)=> {
-            return{...prev,[name]:value}
-        })
-        console.log(DadosUsuario)
-    };
-    */
 
     const urlPost = "http://localhost:8080/Cliente/inserir"
     const handleSubimit = (e: { preventDefault: () => void; }) => {
         e.preventDefault();
 
+        
         axios.post(urlPost, userCadastrado).then((response) => {
             console.log(response)
             alert("Cliente cadastrado com sucesso!")
@@ -106,14 +82,7 @@ const FormCadCom2: React.FC = () => {    /*const [DadosUsuario, setDadosUsuario]
 
 
     };
-
-
-
-
-
-
-
-
+    
     return (
         <>
             <h1> Cadastro de Cliente</h1>
@@ -130,7 +99,7 @@ const FormCadCom2: React.FC = () => {    /*const [DadosUsuario, setDadosUsuario]
                         <IMaskInput
                             mask="(00) 00000-0000"
                             required
-                            onAccept={(value) => setTelefone(value)}
+                            onAccept={(value: React.SetStateAction<string>) => setTelefone(value)}
                             
                         />
                         {/* <input type="text" name='telefone' placeholder='(12)99999-9999' onChange={(e) => setTelefone(e.target.value)} /> */}
@@ -139,7 +108,7 @@ const FormCadCom2: React.FC = () => {    /*const [DadosUsuario, setDadosUsuario]
                     <div className="inputBoxCADCLI">
                         <IMaskInput
                             mask="000.000.000-00"
-                            onAccept={(value) => setCpf(value)}
+                            onAccept={(value: React.SetStateAction<string>) => setCpf(value)}
                             required
                         />
                         {/* <input type="text" name='cpf' placeholder='129.999.999-99' onChange={(e) => setCpf(e.target.value)} /> */}
@@ -223,18 +192,18 @@ const FormCadCom2: React.FC = () => {    /*const [DadosUsuario, setDadosUsuario]
                                 // Definição de caracteres aceitáveis
                                 mask: Number,
                                 signed: false,
-                                scale: 0,
-                                thousandsSeparator: ',',
+                                scale: 2,
+                                thousandsSeparator: '.',
                                 padFractionalZeros: false,
                                 normalizeZeros: false,
                                 radix: ',',
-                                mapToRadix: [',']
+                                mapToRadix: ['.']
 
                             },
                         }}
                         autofix={true}
                         value={preco2}
-                        onAccept={(value) => setPreco2(value)}
+                        onAccept={(value: React.SetStateAction<string>) => setPreco2(value)}
                         dir="rtl"
                         placeholder="R$: 0,00"
                         required
