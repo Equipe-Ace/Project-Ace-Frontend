@@ -1,63 +1,127 @@
-import React, { useState, } from 'react';
+import React from 'react';
 import './styles.css'
-import { FaSearch } from 'react-icons/fa';
-import BotaoGT from '../botaoAvan';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
-import { api } from '../../service/api';
-//import { createContext } from 'vm';
-
-import { useNavigate } from "react-router-dom";
-
-//const infoContext = createContext()
-
-//function infoProvider(){}
+import { Link, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import axios from "axios"
+import editPen from "../../img/EditPencil.svg"
+import next from "../../img/NextBt.svg"
+import back from "../../img/BackBt.svg"
+import { count } from 'console';
 
 
+const ITEMS_PER_PAGE = 5;
 
-    
-    
+const SelectCli: React.FC = () => {
+    useEffect(() => {
+        axios.get('http://localhost:8080/Cliente').then((Response) => { setLista(Response.data) })
 
-
-const TitReceber: React.FC = () => {
-   
-    const [clienteNome, setClienteNome] = useState("")
+    }, [])
+    const [Lista, setLista] = useState([])
+    const Listastr = JSON.stringify(Lista)
+    const ListaJson = JSON.parse(Listastr);
+    const [Pesquisa, setPesquisa] = useState("")
     const navigate = useNavigate();
-    
-   const selectClienteFunction = (e:React.MouseEvent<HTMLButtonElement>)=>{
-        e.preventDefault();
-        console.log("algo")
-        const nome = clienteNome
-        api.get(`/Cliente/pegarNome/${nome}`)
-        .then(response=> {
-            const clienteSelecionado = response.data
-            console.log(clienteSelecionado)
-            if(clienteSelecionado){
-                navigate(`/ControleTitulosFIN2/${clienteSelecionado.id}`);  
-            }else{
-                alert("cliente não encontrado")
-            }
-        })
+    const [page, setPage] = useState(0); 
+
+    const handleSearchInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setPesquisa(event.target.value);
+        setPage(0); 
+      };
+
+    const handleNextPageClick = () => {
+        if (page >= counter/ITEMS_PER_PAGE) {
+            alert("Não há mais clientes!")
+          }
+        else{
+            setPage(page + 1);      
+        }
+    };
+
+    const handlePrevPageClick = () => {
+        if (page > 0) {
+            setPage(page - 1);
+          }
+        else{
+            alert("A página já está no começo")
+        }
         
-    }
+    };
+
+    const startIndex = page * ITEMS_PER_PAGE;
+    const endIndex = startIndex + ITEMS_PER_PAGE;
+    let counter = 0;
+
+        
+
+    function handleClick(id: any) {
+        navigate(`/ControleTitulosFIN2/${id}`);
+      }
     
-    
+      function handleEditClick(id: number) {
+        return () => handleClick(id);
+      }
+
     return (
         <>
-
-            <div className="bgTRAFIN" >
-                <h1> Controle de Títulos a Receber </h1>
-                <div className="inputBoxTRAFIN">
-                    <input type="text" placeholder='⌕ pesquisar: ' onChange={(e) => setClienteNome(e.target.value)}/>
-                    <span>Cliente</span>
-                </div>
-                
-                    <BotaoGT onClick={(e) =>selectClienteFunction(e)} />
-            
+            <div className="bgSelect" >
+                <h1> Clientes Cadastrados </h1>
             </div>
 
+            <div className='mybg'>
+                <div className="inputBox">
+                    <input type="text" placeholder='⌕ pesquisar: ' onChange={(e) => setPesquisa(e.target.value)} />
+                </div>
+
+                <div className="boxSelect">
+                    { <tbody>
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>CPF</th>
+                                <th>Valor do serviço</th>
+                                <th></th>
+                            </tr>
+                        </thead>    
+                                    
+                        {ListaJson.filter((item: { nome: string; }) => {
+                            if (Pesquisa === "") {
+                                return item
+                            }
+                            else if (item.nome.toLocaleLowerCase().includes(Pesquisa.toLocaleLowerCase())) {
+                                return item
+                            }
+                        }).slice(startIndex, endIndex)
+                        .map((item: { id: number, nome: string, cpf: string, servico: any}, id: number) => {
+                            counter++
+                            return (
+                                item?
+                                (
+                                <tr key={id}>
+                                    <td>{item.nome}</td>  
+                                    <td>{item.cpf}</td>
+                                    <td>{item.servico["preco"]}</td>
+                                    <td className='button-1' onClick={handleEditClick(item.id)}><img src={editPen} alt="botão de edição"  /> </td>   
+                                </tr>
+                                )
+                                :
+                                (
+                                <></>
+                                )
+                            )
+                        })}
+                                <td colSpan={4}>
+                                <div className='arruma'>
+                                    <a className='button-1'> <img src={back} alt="botão de edição" onClick={handlePrevPageClick}/></a>
+                                    {page+1}
+                                    <a className='button-1'> <img src={next} alt="botão de edição"  onClick={handleNextPageClick} /></a>
+                                </div>
+                            </td>
+                    </tbody> } 
+                </div>
+            </div>
         </>
     );
 }
 
-export default TitReceber;
+export default SelectCli;

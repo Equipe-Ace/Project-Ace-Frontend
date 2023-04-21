@@ -1,7 +1,6 @@
 import React from 'react';
 import './styles.css'
 import BotaoAvancar from '../botaoAvan';
-import { FaSearch } from 'react-icons/fa';
 import BotaoAC from '../botaoAC';
 import { Link, useNavigate } from 'react-router-dom';
 

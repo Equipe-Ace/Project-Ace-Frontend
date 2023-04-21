@@ -45,7 +45,11 @@ const FormCadCom2: React.FC = () => {
         },
         servico: {
             preco: StrToFloat(preco2),
-            parcelas: [{}]
+            parcelas: [
+                {
+                  valorPago: 0,
+                }
+              ]
         }
     }
 
