@@ -44,17 +44,21 @@ const TitReceber3= ({
 
     function handleFunction(e:React.MouseEvent<HTMLButtonElement>) {
         e.preventDefault()
-        api.put("/Parcela/atualizarParcela", parcelaAtualizada)
-        .then(response => {
-            const resposta = response.data
-            console.log(resposta)
-            if(resposta){
-                alert("Parcela alterada com sucesso!");  
-            }else{
-                alert("Parcela não encontrada")
-            }
-            navigate(`/controletitulosfin2/${parcela.idCliente}`)
-        }).catch(error => console.log(error))    
+        if(parcelaAtualizada.valorPago >= parcela.valorParcela) {
+            api.put("/Parcela/atualizarParcela", parcelaAtualizada)
+            .then(response => {
+                const resposta = response.data
+                console.log(resposta)
+                if(resposta){
+                    alert("Parcela alterada com sucesso!");  
+                }else{
+                    alert("Parcela não encontrada")
+                }
+                navigate(`/controletitulosfin2/${parcela.idCliente}`)
+            }).catch(error => console.log(error))    
+        } else {
+            alert("Valor mínimo não atendido")
+        }
     }
 
     return (
