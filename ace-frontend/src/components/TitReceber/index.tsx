@@ -22,21 +22,26 @@ const SelectCli: React.FC = () => {
     const ListaJson = JSON.parse(Listastr);
     const [Pesquisa, setPesquisa] = useState("")
     const navigate = useNavigate();
-    const [page, setPage] = useState(0); 
+    const [page, setPage] = useState(0);
+    const [totalRowCount, setTotalRowCount] = useState(ListaJson.length);
+    
 
     const handleSearchInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setPesquisa(event.target.value);
-        setPage(0); 
       };
 
     const handleNextPageClick = () => {
-        if (page >= counter/ITEMS_PER_PAGE) {
+        if (page >= (ListaJson.length/5-1) ) {
             alert("Não há mais clientes!")
           }
         else{
             setPage(page + 1);      
         }
+        
     };
+    const resetPage = () => {
+        setPage(0)
+    }
 
     const handlePrevPageClick = () => {
         if (page > 0) {
@@ -70,7 +75,7 @@ const SelectCli: React.FC = () => {
 
             <div className='mybg'>
                 <div className="inputBox">
-                    <input type="text" placeholder='⌕ pesquisar: ' onChange={(e) => setPesquisa(e.target.value)} />
+                    <input type="text" placeholder='⌕ pesquisar: ' onChange={(e) => { setPesquisa(e.target.value); resetPage() }} />
                 </div>
 
                 <div className="boxSelect">
