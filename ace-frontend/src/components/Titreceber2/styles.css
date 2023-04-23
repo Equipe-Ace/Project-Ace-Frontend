@@ -89,3 +89,7 @@ input::placeholder {
 {
     border: 1px solid #000
 }
+
+#valorApagar{
+    text-align: right
+}

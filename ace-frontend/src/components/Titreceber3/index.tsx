@@ -5,12 +5,14 @@ import BotaoPAG from '../botaoPAG';
 import { api } from '../../service/api';
 import BotaoAC from '../botaoAC';
 import { Link, useNavigate } from 'react-router-dom';
+import { IMaskInput } from 'react-imask';
 
 
 interface ParcelaInfo{
     parcela: {
         id: string,
         idCliente: number,
+        nomeCliente: string,
         numeroParcela?: number,
         dataVencimento?: Date,
         dataPagamento?: Date,
@@ -28,17 +30,23 @@ const TitReceber3= ({
 
     const [dataPagamentoParcela, setDataPagamentoParcela] = useState(Date)
     const [dataCreditoParcela, setDataCreditoParcela] = useState(Date)
-    const [valorPagoParcela, setValorPagoParcela] = useState(Number)
+    const [valorPagoParcela, setValorPagoParcela] = useState("")
+
+    function StrToFloat(Str: string): number {
+        const fixedValue = parseFloat(Str.replace(/\./g, '').replace(',', '.'));
+        return (fixedValue);
+      }
 
     const parcelaAtualizada = {
         id: parcela.id,
         idCliente:parcela.idCliente ,
+        nomeCliente:parcela.nomeCliente,
         numeroParcela : parcela.numeroParcela,
         dataVencimento : parcela.dataVencimento,
         dataPagamento : dataPagamentoParcela,
         dataCredito : dataCreditoParcela,
         valorParcela : parcela.valorParcela,
-        valorPago : valorPagoParcela
+        valorPago : StrToFloat(valorPagoParcela)
     }
     const navigate = useNavigate()
 
@@ -76,7 +84,33 @@ const TitReceber3= ({
                     <span>Data de Crédito</span>
                 </div>
                 <div className="inputBoxTRAFIN3">
-                    <input type="number" placeholder='R$: 00,00' onChange={(e) => setValorPagoParcela(parseInt(e.target.value, 10))} />
+                <IMaskInput
+                        mask="numeric"
+
+                        blocks={{
+                            // Define um bloco de números com duas casas decimais
+                            numeric: {
+                                // Definição de caracteres aceitáveis
+                                mask: Number,
+                                signed: false,
+                                scale: 2,
+                                thousandsSeparator: '.',
+                                padFractionalZeros: false,
+                                normalizeZeros: false,
+                                radix: ',',
+                                mapToRadix: ['.']
+
+                            },
+                        }}
+                        autofix={true}
+                        value={valorPagoParcela}
+                        onAccept={(value: React.SetStateAction<string>) => setValorPagoParcela(value)}
+                        dir="rtl"
+                        placeholder="R$: 0,00"
+                        required
+                    />
+
+                    {/* <input type="number" placeholder='R$: 00,00' onChange={(e) => setValorPagoParcela(e.target.value)} /> */}
                     <span>Valor a Receber</span>
                 </div>
 
