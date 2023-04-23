@@ -51,3 +51,8 @@ span {
     flex-direction: column;
     gap: 5px;
 }
+
+.caixaDasParcelas{
+    display: flex;
+    justify-content: center
+}
