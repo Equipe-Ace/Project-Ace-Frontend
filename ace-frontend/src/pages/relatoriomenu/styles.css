@@ -6,7 +6,7 @@
     background: none;
 }
 
-.DtPag, .DtVen, .DtCre {
+.button{
     cursor: pointer;
     display:flex;
     margin-top: 8%;
@@ -16,13 +16,13 @@
     font-weight: bold;
     text-transform: uppercase;
     padding: 8.2%;
-    width: 325px;
+    width: 255px;
     justify-content: center;
     background: none ;
     color: #530082 ;   
 }
 
-.DtPag:hover, .DtVen:hover, .DtCre:hover  {
+.button:hover  {
     background: #530082;
     color: antiquewhite;
 }
@@ -35,3 +35,4 @@
     flex-direction: column;
     padding: 5% 10%;
 }
+

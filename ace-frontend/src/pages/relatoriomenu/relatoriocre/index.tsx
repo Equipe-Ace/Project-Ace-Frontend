@@ -73,6 +73,8 @@ const RelatorioCre: React.FC = () => {
     function fazerBusca(e: React.MouseEvent<HTMLButtonElement>){
         e.preventDefault()
 
+        setPage(0)
+
         api.get(`/Parcela/buscarParcelas/credito/${dataInicio}/${dataFinal}`)
         .then(response => {
             const resposta = response.data

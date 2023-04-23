@@ -74,6 +74,8 @@ const RelatorioPag: React.FC = () => {
     function fazerBusca(e: React.MouseEvent<HTMLButtonElement>){
         e.preventDefault()
 
+        setPage(0)
+
         api.get(`/Parcela/buscarParcelas/pagamento/${dataInicio}/${dataFinal}`)
         .then(response => {
             const resposta = response.data

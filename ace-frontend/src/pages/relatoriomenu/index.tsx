@@ -1,6 +1,8 @@
 import React from 'react';
 import Header from '../../components/header/index'
 import './styles.css'
+
+
 import { Link } from 'react-router-dom';
 
 const RelatorioMenu: React.FC = () => {
@@ -12,18 +14,22 @@ const RelatorioMenu: React.FC = () => {
             </div>
 
             <div className="boxButtons">
-            <Link to="/relatoriopag">
-            <button className='DtPag' >Data de Pagamento</button>
-            </Link>
+                <div className='alinhar'>
+                    
+                    <Link to="/relatoriopag">
+                        <button className='button' >Data de Pagamento</button>
+                    </Link>
 
-            <Link to="/relatoriocre">
-            <button className='DtCre' >Data de Crédito</button>
-            </Link>
+                    <Link to="/relatoriocre">
+                        <button className='button' >Data de Crédito</button>
+                    </Link>
 
-            <Link to="/relatorioven">
-            <button className='DtVen' >Data de Vencimento</button>
-            </Link>
+                    <Link to="/relatorioven">
+                        <button className='button' >Data de Vencimento</button>
+                    </Link>
+                </div>
             </div>
+            
 
         </>
     );

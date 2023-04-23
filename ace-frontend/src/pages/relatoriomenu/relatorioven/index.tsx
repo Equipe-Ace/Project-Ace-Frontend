@@ -73,7 +73,9 @@ const RelatorioVen: React.FC = () => {
     function fazerBusca(e: React.MouseEvent<HTMLButtonElement>){
         e.preventDefault()
 
-        api.get(`/Parcela/buscarParcelas/credito/${dataInicio}/${dataFinal}`)
+        setPage(0)
+
+        api.get(`http://localhost:8080/Parcela/buscarParcelas/vencimento/${dataInicio}/${dataFinal}`)
         .then(response => {
             const resposta = response.data
             console.log(resposta)
