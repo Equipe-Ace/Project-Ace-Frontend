@@ -2,11 +2,8 @@ h1 {
     font-family: sans-serif;
     font-size: 2.5em;
     color: #530082;
-    margin-bottom: 0.75rem;
-    
+    margin-bottom: 0.75rem;    
 }
-
-
 
 input::placeholder {
     color: #999999;
@@ -31,6 +28,7 @@ input::placeholder {
    box-shadow: 3px 3px 6px -1px #444444;
    border-radius: 13px;
 }
+
 .botaoti3{
     display: flex;
     justify-content: center;
@@ -74,13 +72,6 @@ input::placeholder {
     letter-spacing: 0.2em;
 }
 
-/* .inputBoxTRAFIN3:nth-child(2) input:valid ~ span,
-.inputBoxTRAFIN3:nth-child(2) input:focus ~ span
-{
-    background: #00dfc4;;
-    color: #530082;
-    border-radius: 2px;
-} */
 .inputBoxTRAFIN3 input:valid,
 .inputBoxTRAFIN3 input:focus
 {

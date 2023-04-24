@@ -45,7 +45,6 @@ const TitReceber2 = ({
 
                 <div className='botaoti2'>
                 <BotaoAC onClick={(e) =>handleFunction(e)} />
-                
                 <Link to={`/controletitulosfin3/${parcela.idCliente}`}>
                     <BotaoAvancar />
                 </Link>

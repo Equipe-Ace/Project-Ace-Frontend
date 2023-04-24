@@ -104,9 +104,7 @@ const FormCadCom2: React.FC = () => {
                             mask="(00) 00000-0000"
                             required
                             onAccept={(value: React.SetStateAction<string>) => setTelefone(value)}
-                            
                         />
-                        {/* <input type="text" name='telefone' placeholder='(12)99999-9999' onChange={(e) => setTelefone(e.target.value)} /> */}
                         <span>telefone</span>
                     </div>
                     <div className="inputBoxCADCLI">
@@ -115,7 +113,6 @@ const FormCadCom2: React.FC = () => {
                             onAccept={(value: React.SetStateAction<string>) => setCpf(value)}
                             required
                         />
-                        {/* <input type="text" name='cpf' placeholder='129.999.999-99' onChange={(e) => setCpf(e.target.value)} /> */}
                         <span>CPF</span>
                     </div>
                     <div className="inputBoxCADCLI">
@@ -125,7 +122,6 @@ const FormCadCom2: React.FC = () => {
                          onChange={(e) => setCep(e.target.value)} 
                          required
                          />
-                        {/* onBlur={checkCEP} */}
                         <span>CEP</span>
                     </div>
                     <div className="inputBoxCADCLI">

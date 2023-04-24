@@ -9,20 +9,12 @@
 }
 
 .boxSelect {
-
     width: 50%;
     box-shadow: 3px 3px 6px -1px #444444;
-
     border: 2px solid black;
     border-radius: 15px;
-
     align-items: center;
     align-content: center;
-
-    /* transform: translate(-20%, 20%); */
-    /* margin-left: 26%;
-    margin-top: 2%; */
-
     display: flex;
     justify-content: center;    
 }
@@ -116,7 +108,7 @@ td{
 
 .mybg{
     display: flex;
-    justify-content: center;
+    margin-top: 10px;
     align-items: center;
     min-height: 38rem;
     flex-direction: column;

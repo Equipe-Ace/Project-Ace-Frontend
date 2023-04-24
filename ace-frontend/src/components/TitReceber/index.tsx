@@ -10,7 +10,7 @@ import back from "../../img/BackBt.svg"
 import { count } from 'console';
 
 
-const ITEMS_PER_PAGE = 5;
+const ITEMS_PER_PAGE = 4;
 
 const SelectCli: React.FC = () => {
     useEffect(() => {
@@ -31,7 +31,7 @@ const SelectCli: React.FC = () => {
       };
 
     const handleNextPageClick = () => {
-        if (page >= (ListaJson.length/5-1) ) {
+        if (page >= (ListaJson.length/4-1) ) {
             alert("Não há mais clientes!")
           }
         else{
