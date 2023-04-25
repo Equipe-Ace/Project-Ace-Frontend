@@ -84,7 +84,10 @@ const FormCadCom2: React.FC = () => {
                 setValue("bairro", data.bairro);
                 setValue("cidade", data.localidade);
                 setFocus("number");
-
+                setRua(data.logradouro);
+                setBairro(data.bairro);
+                setCidade(data.localidade);
+                setUf(data.uf);
             });
 
 
@@ -132,6 +135,7 @@ const FormCadCom2: React.FC = () => {
                         <input type="text" 
                         {...register('rua')} 
                         name='rua' 
+                        value={rua}
                         onChange={(e) => setRua(e.target.value)} 
                         required
                         />
