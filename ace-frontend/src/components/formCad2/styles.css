@@ -9,7 +9,7 @@ h1 {
     display: flex;
     font-family: sans-serif;
     font-size: 2.5em;
-    color: #530082;
+    color: #530082; 
     margin: 15px;
     justify-content: center;
 }

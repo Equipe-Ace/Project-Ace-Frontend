@@ -99,7 +99,6 @@ const TitReceber3= ({
                                 normalizeZeros: false,
                                 radix: ',',
                                 mapToRadix: ['.']
-
                             },
                         }}
                         autofix={true}
@@ -109,9 +108,7 @@ const TitReceber3= ({
                         placeholder="R$: 0,00"
                         required
                     />
-
-                    {/* <input type="number" placeholder='R$: 00,00' onChange={(e) => setValorPagoParcela(e.target.value)} /> */}
-                    <span>Valor a Receber</span>
+                     <span>Valor a Receber</span>
                 </div>
 
                 <div className='botaoti3'>

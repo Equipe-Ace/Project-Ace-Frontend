@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import { IMaskInput } from "react-imask";
 import IMask from 'imask';
+import { error } from 'console';
 
 
 const FormCadCom2: React.FC = () => {   
@@ -57,16 +58,18 @@ const FormCadCom2: React.FC = () => {
     const urlPost = "http://localhost:8080/Cliente/inserir"
     const handleSubimit = (e: { preventDefault: () => void; }) => {
         e.preventDefault();
-
+        const cpfString = cpf.toString()
         
+        if(nome === "" || cpf === "" || preco2 === "" || cpfString.length !== 14 ){
+            alert('Preencha os campos corretamente!')
+        }else{
         axios.post(urlPost, userCadastrado).then((response) => {
             console.log(response)
             alert("Cliente cadastrado com sucesso!")
             navigate("/controletitulosfin")
         })
             .catch(error => console.log(error))
-
-    }
+    }}
 
     const navigate = useNavigate();
 
@@ -96,7 +99,8 @@ const FormCadCom2: React.FC = () => {
                         <input type="text" 
                         name='nome' 
                         onChange={(e) => setNome(e.target.value)} 
-                        required />
+                        required 
+                        />
                         <span>Nome</span>
                     </div>
                     <div className="inputBoxCADCLI">
@@ -120,7 +124,7 @@ const FormCadCom2: React.FC = () => {
                          name='cep' 
                          onBlur={checkCEP} 
                          onChange={(e) => setCep(e.target.value)} 
-                         required
+                         required 
                          />
                         <span>CEP</span>
                     </div>
@@ -185,7 +189,6 @@ const FormCadCom2: React.FC = () => {
                 <div className="inputBoxCADCLI">
                     <IMaskInput
                         mask="numeric"
-
                         blocks={{
                             // Define um bloco de números com duas casas decimais
                             numeric: {
@@ -198,7 +201,6 @@ const FormCadCom2: React.FC = () => {
                                 normalizeZeros: false,
                                 radix: ',',
                                 mapToRadix: ['.']
-
                             },
                         }}
                         autofix={true}
@@ -208,8 +210,6 @@ const FormCadCom2: React.FC = () => {
                         placeholder="R$: 0,00"
                         required
                     />
-
-                    {/* <input type="number" placeholder='R$: 00,00' maxLength={4} onChange={(e) => setPreco(parseInt(e.target.value, 10))} />  */}
                     <span>valor serviço:</span>
                 </div>
 
