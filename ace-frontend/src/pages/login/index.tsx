@@ -1,9 +1,51 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Logo from '../../img/logo.png'
 import './styles.css'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { api } from '../../service/api';
 
 const LoginADM: React.FC = () => {
+    
+    interface Usuario {
+        email: string
+        senha: string
+    }
+
+    
+
+    const [email, setEmail] = useState("")
+    const [senha, setSenha] = useState("")
+    const navigate = useNavigate()
+
+    const user = {
+        email: email,
+        senha: senha,
+
+    } 
+
+    function handleFunction (e:React.MouseEvent<HTMLButtonElement>){
+        e.preventDefault()
+
+        api.post("/login/autenticado", user).then(response => {
+            const token = response.data
+            console.log(token);
+
+            localStorage.setItem("token", token)
+
+            if(token){
+                alert("Bem vindo!")
+                navigate("/controletitulosfin")
+            }else{
+                alert("Tente novamente!")
+            }
+
+        })
+
+        
+
+        }
+    
+    
     return (
         <>
             <form action="">
@@ -17,12 +59,12 @@ const LoginADM: React.FC = () => {
                     </div>
 
                     <div className="inputs">
-                        <input type="text" placeholder="digite seu login..." />
-                        <input type="password" placeholder="digite sua senha..." />
+                        <input type="text" placeholder="digite seu login..." onChange={(e) => setEmail(e.target.value)}/>
+                        <input type="password" placeholder="digite sua senha..." onChange={(e) => setSenha(e.target.value)}/>
                     </div>
-                    <Link to="/cadastrocli">
-                        <button className="Botao"> <p> Entrar </p></button>
-                    </Link>
+                    
+                        <button className="Botao" onClick={handleFunction}> <p> Entrar </p></button>
+                    
                 </div>
             </form>
         </>
