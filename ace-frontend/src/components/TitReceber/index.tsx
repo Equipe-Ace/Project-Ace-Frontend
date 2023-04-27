@@ -8,6 +8,7 @@ import editPen from "../../img/EditPencil.svg"
 import next from "../../img/NextBt.svg"
 import back from "../../img/BackBt.svg"
 import { count } from 'console';
+import Modal from '../modalCliente/modal';
 
 
 const ITEMS_PER_PAGE = 4;
@@ -24,6 +25,21 @@ const SelectCli: React.FC = () => {
     const navigate = useNavigate();
     const [page, setPage] = useState(0);
     const [totalRowCount, setTotalRowCount] = useState(ListaJson.length);
+    const [id, setId] = useState(Number);
+    const [nome, setNome] = useState(String);
+    const [CPF, setCpf] = useState(String);
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const handleOpenModal = () => {
+      setIsModalOpen(true);
+    };
+  
+    const handleCloseModal = () => {
+      setIsModalOpen(false);
+    };
+  
+  
     
 
     const handleSearchInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -69,6 +85,17 @@ const SelectCli: React.FC = () => {
 
     return (
         <>
+                
+                <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
+                    
+                <tr><td>Id:</td> <td>{id}</td></tr>
+                <tr><td>Cpf:</td> <td>{CPF}</td></tr>
+                <tr><td>Nome:</td> <td>{nome}</td></tr>
+
+
+                <button onClick={handleCloseModal}>Close modal</button>
+                </Modal>
+
             <div className="bgSelect" >
                 <h1> Clientes Cadastrados </h1>
             </div>
@@ -85,6 +112,7 @@ const SelectCli: React.FC = () => {
                                 <th>Nome</th>
                                 <th>CPF</th>
                                 <th>Valor do serviço</th>
+                                <th></th>
                                 <th></th>
                             </tr>
                         </thead>    
@@ -107,6 +135,14 @@ const SelectCli: React.FC = () => {
                                     <td>{item.cpf}</td>
                                     <td>{item.servico["preco"]}</td>
                                     <td className='button-1' onClick={handleEditClick(item.id)}><img src={editPen} alt="botão de edição"  /> </td>   
+                                    <td className='button-1' onClick={() => {
+                                            handleOpenModal();
+                                            setId(item.id);
+                                            setCpf(item.cpf)
+                                            setNome(item.nome)
+                                        }}>
+                                        <img src={editPen} />
+                                    </td> 
                                 </tr>
                                 )
                                 :
