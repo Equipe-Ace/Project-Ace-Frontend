@@ -11,6 +11,11 @@ const LoginADM: React.FC = () => {
         senha: string
     }
 
+    interface Token {
+        token: string
+        role: string
+    }
+
     
 
     const [email, setEmail] = useState("")
@@ -19,7 +24,7 @@ const LoginADM: React.FC = () => {
 
     const user = {
         email: email,
-        senha: senha,
+        password: senha,
 
     } 
 
@@ -27,10 +32,10 @@ const LoginADM: React.FC = () => {
         e.preventDefault()
 
         api.post("/login/autenticado", user).then(response => {
-            const token = response.data
+            const token:Token = response.data
             console.log(token);
 
-            localStorage.setItem("token", token)
+            localStorage.setItem("token", token.token)
 
             if(token){
                 alert("Bem vindo!")
