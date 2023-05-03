@@ -74,14 +74,24 @@ const RelatorioPag: React.FC = () => {
     function fazerBusca(e: React.MouseEvent<HTMLButtonElement>){
         e.preventDefault()
 
-        setPage(0)
+        const ConvDataIni = new Date(dataInicio)
+        const ConvDataFin = new Date(dataFinal)
 
-        api.get(`/Parcela/buscarParcelas/pagamento/${dataInicio}/${dataFinal}`)
-        .then(response => {
-            const resposta = response.data
-            console.log(resposta)
-            setListaParcela(resposta)
-        })
+
+        if (ConvDataFin<ConvDataIni){
+                alert(' \nErro: Filtro invalido!\nData final deve ser maior que a inicial.')
+        }   
+
+        else{
+            setPage(0)
+
+            api.get(`/Parcela/buscarParcelas/pagamento/${dataInicio}/${dataFinal}`)
+            .then(response => {
+                const resposta = response.data
+                console.log(resposta)
+                setListaParcela(resposta)
+            })
+        }
     }
     
     

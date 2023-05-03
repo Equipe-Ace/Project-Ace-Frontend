@@ -8,6 +8,7 @@ import back from "../../../img/BackBt.svg"
 import { useNavigate } from 'react-router-dom';
 
 
+
 const RelatorioVen: React.FC = () => {
     
     interface Parcela{
@@ -73,14 +74,23 @@ const RelatorioVen: React.FC = () => {
     function fazerBusca(e: React.MouseEvent<HTMLButtonElement>){
         e.preventDefault()
 
-        setPage(0)
+        const ConvDataIni = new Date(dataInicio)
+        const ConvDataFin = new Date(dataFinal)
 
-        api.get(`http://localhost:8080/Parcela/buscarParcelas/vencimento/${dataInicio}/${dataFinal}`)
-        .then(response => {
-            const resposta = response.data
-            console.log(resposta)
-            setListaParcela(resposta)
-        })
+
+        if (ConvDataFin<ConvDataIni){
+                alert(' \nErro: Filtro invalido!\nData final deve ser maior que a inicial.')
+        }
+        else{
+            setPage(0)
+
+            api.get(`http://localhost:8080/Parcela/buscarParcelas/vencimento/${dataInicio}/${dataFinal}`)
+            .then(response => {
+                const resposta = response.data
+                console.log(resposta)
+                setListaParcela(resposta)
+            })
+        }
     }
     
     
