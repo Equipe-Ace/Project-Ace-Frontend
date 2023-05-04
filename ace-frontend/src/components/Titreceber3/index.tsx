@@ -13,7 +13,7 @@ interface ParcelaInfo{
         id: string,
         idCliente: number,
         nomeCliente: string,
-        numeroParcela?: number,
+        numeroParcela: number,
         dataVencimento?: Date,
         dataPagamento?: Date,
         dataCredito?: Date,
@@ -31,6 +31,7 @@ const TitReceber3= ({
     const [dataPagamentoParcela, setDataPagamentoParcela] = useState(Date)
     const [dataCreditoParcela, setDataCreditoParcela] = useState(Date)
     const [valorPagoParcela, setValorPagoParcela] = useState("")
+    const [valorMaximo, setValorMaximo] = useState(Number)
 
     function StrToFloat(Str: string): number {
         const fixedValue = parseFloat(Str.replace(/\./g, '').replace(',', '.'));
@@ -50,24 +51,29 @@ const TitReceber3= ({
     }
     const navigate = useNavigate()
 
-    function handleFunction(e:React.MouseEvent<HTMLButtonElement>) {
-        e.preventDefault()
-        if(parcelaAtualizada.valorPago >= parcela.valorParcela) {
-            api.put("/Parcela/atualizarParcela", parcelaAtualizada)
-            .then(response => {
+      function handleFunction(e:React.MouseEvent<HTMLButtonElement>) {
+            e.preventDefault()
+            if(parcela.numeroParcela < 12) {
+              setValorMaximo((12 - parcela.numeroParcela)*parcela.valorParcela + (parcela.valorParcela - parcela.valorPago))
+            }
+            if(parcelaAtualizada.valorPago > valorMaximo) {
+              alert("Valor máximo ultrapassado")  
+            } else if(parcelaAtualizada.valorPago >= parcela.valorParcela) {
+              api.put("/Parcela/atualizarParcela", parcelaAtualizada)
+              .then(response => {
                 const resposta = response.data
                 console.log(resposta)
                 if(resposta){
-                    alert("Parcela alterada com sucesso!");  
+                  alert("Parcela alterada com sucesso!");  
                 }else{
-                    alert("Parcela não encontrada")
+                  alert("Parcela não encontrada")
                 }
                 navigate(`/controletitulosfin2/${parcela.idCliente}`)
-            }).catch(error => console.log(error))    
-        } else {
-            alert("Valor mínimo não atendido")
+              }).catch(error => console.log(error))
+            } else {
+              alert("Valor mínimo não atendido")
+            }
         }
-    }
 
     return (
         <>
