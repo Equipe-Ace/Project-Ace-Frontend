@@ -40,6 +40,7 @@ const RelatorioCre: React.FC = () => {
     const endIndex = startIndex + ITEMS_PER_PAGE;
     let counterr = 0;
 
+    const userToken = localStorage.getItem("token")
     const handleNextPageClick = () => {
         if (page >= (ListaJson.length/5-1) ) {
             alert("Não há mais clientes!")
@@ -84,7 +85,12 @@ const RelatorioCre: React.FC = () => {
         else{
             setPage(0)
 
-            api.get(`/Parcela/buscarParcelas/credito/${dataInicio}/${dataFinal}`)
+            api.get(`/Parcela/buscarParcelas/credito/${dataInicio}/${dataFinal}` , 
+            {
+                headers: {
+                    Authorization: `Bearer ${userToken}` 
+                }
+            })
             .then(response => {
                 const resposta = response.data
                 console.log(resposta)

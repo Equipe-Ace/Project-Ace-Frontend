@@ -15,8 +15,14 @@ const CtrFIN3: React.FC = () => {
         getParcela()
     }, [])
 
+    const userToken = localStorage.getItem("token")
+
     async function getParcela(){
-        api.get(`/Parcela/buscarParcela/${idCliente}`)
+        api.get(`/Parcela/buscarParcela/${idCliente}` ,{
+            headers: {
+                Authorization: `Bearer ${userToken}` 
+            }
+        })
         .then(response => {
             setParcela(response.data)
         })

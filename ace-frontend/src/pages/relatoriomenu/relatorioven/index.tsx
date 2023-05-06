@@ -40,6 +40,8 @@ const RelatorioVen: React.FC = () => {
     const endIndex = startIndex + ITEMS_PER_PAGE;
     let counterr = 0;
 
+    const userToken = localStorage.getItem("token")
+
     const handleNextPageClick = () => {
         if (page >= (ListaJson.length/5-1) ) {
             alert("Não há mais clientes!")
@@ -84,7 +86,11 @@ const RelatorioVen: React.FC = () => {
         else{
             setPage(0)
 
-            api.get(`http://localhost:8080/Parcela/buscarParcelas/vencimento/${dataInicio}/${dataFinal}`)
+            api.get(`http://localhost:8080/Parcela/buscarParcelas/vencimento/${dataInicio}/${dataFinal}`, {
+                headers: {
+                    Authorization: `Bearer ${userToken}` 
+                }
+            })
             .then(response => {
                 const resposta = response.data
                 console.log(resposta)
