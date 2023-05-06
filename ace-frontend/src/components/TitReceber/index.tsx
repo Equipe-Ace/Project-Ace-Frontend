@@ -12,9 +12,16 @@ import { count } from 'console';
 
 const ITEMS_PER_PAGE = 4;
 
+const userToken =localStorage.getItem("token")
+
 const SelectCli: React.FC = () => {
     useEffect(() => {
-        axios.get('http://localhost:8080/Cliente').then((Response) => { setLista(Response.data) })
+        axios.get('http://localhost:8080/Cliente',
+        {
+            headers: {
+                Authorization: `Bearer ${userToken}` 
+            }
+        }).then((Response) => { setLista(Response.data) })
 
     }, [])
     const [Lista, setLista] = useState([])

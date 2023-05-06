@@ -10,23 +10,45 @@ const CtrFIN3: React.FC = () => {
     const { idCliente } = useParams();
 
     const [ parcela, setParcela] = useState()
+    let paginaRetornada = null;
+
+    const userPermissao = localStorage.getItem("role");
 
     useEffect(()=>{
         getParcela()
     }, [])
 
+    const userToken = localStorage.getItem("token")
+
     async function getParcela(){
-        api.get(`/Parcela/buscarParcela/${idCliente}`)
+        api.get(`/Parcela/buscarParcela/${idCliente}` ,{
+            headers: {
+                Authorization: `Bearer ${userToken}` 
+            }
+        })
         .then(response => {
             setParcela(response.data)
         })
     }  
-    return (
-        <>
-            <Header />
-           {parcela && <TitReceber3 parcela={parcela}/>}
 
-        </>
+    const pagina = 
+    <>
+      <Header />
+        {parcela && <TitReceber3 parcela={parcela}/>}  
+    </>
+
+    const paginaVazia = 
+    <>
+
+    </>
+
+    if(userPermissao === "ADMIN" || userPermissao === "FINANCEIRO"){
+        paginaRetornada = pagina;
+    }else{
+        paginaRetornada = paginaVazia;
+    }
+    return (
+       paginaRetornada
     );
 }
 

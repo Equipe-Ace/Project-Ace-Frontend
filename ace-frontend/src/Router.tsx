@@ -13,12 +13,14 @@ import RelatorioPag from "./pages/relatoriomenu/relatoriopag";
 import RelatorioCre from "./pages/relatoriomenu/relatoriocre";
 import RelatorioVen from "./pages/relatoriomenu/relatorioven";
 
+import { ContextProvider } from "./context/useContext";
 
 
 const AppRoutes = () => {
     return (
         <Router>
             <Routes>
+              
                 {/* ADM */}
                 <Route path="/" element={<LoginADM />} />
                 <Route path="/cadastroadm" element={<CadADM />} />
@@ -36,7 +38,7 @@ const AppRoutes = () => {
                 <Route path="/relatoriopag" element={<RelatorioPag />} />
                 <Route path="/relatorioven" element={<RelatorioVen />} />
                 <Route path="/relatoriocre" element={<RelatorioCre />} />
-
+              
 
             </Routes>
         </Router>

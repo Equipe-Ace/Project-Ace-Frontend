@@ -38,6 +38,8 @@ const TitReceber3= ({
         return (fixedValue);
       }
 
+      const userToken = localStorage.getItem("token")
+
     const parcelaAtualizada = {
         id: parcela.id,
         idCliente:parcela.idCliente ,
@@ -59,7 +61,11 @@ const TitReceber3= ({
             if(parcelaAtualizada.valorPago > valorMaximo) {
               alert("Valor máximo ultrapassado")  
             } else if(parcelaAtualizada.valorPago >= parcela.valorParcela) {
-              api.put("/Parcela/atualizarParcela", parcelaAtualizada)
+              api.put("/Parcela/atualizarParcela", parcelaAtualizada, {
+                headers: {
+                    Authorization: `Bearer ${userToken}` 
+                }
+            })
               .then(response => {
                 const resposta = response.data
                 console.log(resposta)

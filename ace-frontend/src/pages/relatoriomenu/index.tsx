@@ -4,9 +4,11 @@ import './styles.css'
 
 
 import { Link } from 'react-router-dom';
+const userPermissao = localStorage.getItem("role")
+let paginaRetornada = null;
 
 const RelatorioMenu: React.FC = () => {
-    return (
+    const pagina = 
         <>
             <Header />
             <div className="bgboxSelect" >
@@ -29,9 +31,17 @@ const RelatorioMenu: React.FC = () => {
                     </Link>
                 </div>
             </div>
-            
-
         </>
+    const paginaVazia =<></>
+
+    if(userPermissao === "ADMIN" || userPermissao === "FINANCEIRO"){
+        paginaRetornada = pagina;
+    }else{
+        paginaRetornada = paginaVazia;
+    }
+
+    return (
+        paginaRetornada
     );
 }
 

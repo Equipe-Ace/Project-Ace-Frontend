@@ -40,6 +40,8 @@ const RelatorioPag: React.FC = () => {
     const endIndex = startIndex + ITEMS_PER_PAGE;
     let counterr = 0;
 
+    const userToken = localStorage.getItem("token")
+
     const handleNextPageClick = () => {
         if (page >= (ListaJson.length/5-1) ) {
             alert("Não há mais clientes!")
@@ -85,7 +87,12 @@ const RelatorioPag: React.FC = () => {
         else{
             setPage(0)
 
-            api.get(`/Parcela/buscarParcelas/pagamento/${dataInicio}/${dataFinal}`)
+            api.get(`/Parcela/buscarParcelas/pagamento/${dataInicio}/${dataFinal}`,
+            {
+                headers: {
+                    Authorization: `Bearer ${userToken}` 
+                }
+            })
             .then(response => {
                 const resposta = response.data
                 console.log(resposta)
@@ -94,8 +101,10 @@ const RelatorioPag: React.FC = () => {
         }
     }
     
-    
-    return (
+    let paginaRetornada = null;
+    const userPermissao = localStorage.getItem("role")
+
+    const pagina = 
         <>
             <Header />
             <div className="bgboxCre" >
@@ -170,6 +179,16 @@ const RelatorioPag: React.FC = () => {
             </div>
             </div>
         </>
+
+    const paginaVazia = <></>
+    
+    if(userPermissao === "ADMIN" || userPermissao === "FINANCEIRO"){
+        paginaRetornada = pagina;
+    }else{
+        paginaRetornada = paginaVazia;
+    }
+    return (
+        paginaRetornada
     );
 }
 
