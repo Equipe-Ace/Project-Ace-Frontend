@@ -98,9 +98,11 @@ const RelatorioCre: React.FC = () => {
             })
         }
     }
-    
-    
-    return (
+
+    let paginaRetornada = null;
+    const userPermissao = localStorage.getItem("role")
+
+    const pagina = 
         <>
             <Header />
             <div className="bgboxCre" >
@@ -175,6 +177,17 @@ const RelatorioCre: React.FC = () => {
             </div>
             </div>
         </>
+    
+    const paginaVazia = <></>
+
+    if(userPermissao === "ADMIN" || userPermissao === "FINANCEIRO"){
+        paginaRetornada = pagina;
+    }else{
+        paginaRetornada = paginaVazia;
+    }
+
+    return (
+        paginaRetornada
     );
 }
 

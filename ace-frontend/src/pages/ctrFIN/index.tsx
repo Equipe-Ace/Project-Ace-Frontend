@@ -9,7 +9,7 @@ let paginaRetornada = null;
 //if(userPermissao === "ADMIN" || userPermissao === "COMERCIAL" || userPermissao === "FINANCEIRO"){
 const CtrFIN: React.FC = () => {
     const pagina = 
-        <>       
+        <>   
             <Header />
             <TitReceber/>    
         </>
