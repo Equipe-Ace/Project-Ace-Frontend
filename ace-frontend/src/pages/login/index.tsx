@@ -36,10 +36,13 @@ const LoginADM: React.FC = () => {
             console.log(token);
 
             localStorage.setItem("token", token.token)
+            localStorage.setItem("role", token.role)
 
             if(token){
                 alert("Bem vindo!")
-                navigate("/controletitulosfin")
+                //navigate("/controletitulosfin")
+                console.log(localStorage.getItem("token"))
+                console.log(localStorage.getItem("role"))
             }else{
                 alert("Tente novamente!")
             }

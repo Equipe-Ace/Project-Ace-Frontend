@@ -20,7 +20,7 @@ const AppRoutes = () => {
     return (
         <Router>
             <Routes>
-                <ContextProvider>
+              
                 {/* ADM */}
                 <Route path="/" element={<LoginADM />} />
                 <Route path="/cadastroadm" element={<CadADM />} />
@@ -38,7 +38,7 @@ const AppRoutes = () => {
                 <Route path="/relatoriopag" element={<RelatorioPag />} />
                 <Route path="/relatorioven" element={<RelatorioVen />} />
                 <Route path="/relatoriocre" element={<RelatorioCre />} />
-                </ContextProvider>
+              
 
             </Routes>
         </Router>

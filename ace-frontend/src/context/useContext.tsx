@@ -13,7 +13,7 @@ export const ContextProvider = ({children}: ContextProviderProps) => {
     
     
     return (
-        <Context.Provider value={{value, setValue}}>
+        <Context.Provider value="">
             {children}
         </Context.Provider>
     )

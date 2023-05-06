@@ -54,6 +54,8 @@ const FormCadCom2: React.FC = () => {
         }
     }
 
+    const userToken = localStorage.getItem("token")
+    //const userRole
 
     const urlPost = "http://localhost:8080/Cliente/inserir"
     const handleSubimit = (e: { preventDefault: () => void; }) => {
@@ -63,7 +65,11 @@ const FormCadCom2: React.FC = () => {
         if(nome === "" || cpf === "" || preco2 === "" || cpfString.length !== 14 ){
             alert('Preencha os campos corretamente!')
         }else{
-        axios.post(urlPost, userCadastrado).then((response) => {
+        axios.post(urlPost, userCadastrado, {
+            headers: {
+                Authorization: `Bearer ${userToken}` 
+            }
+        }).then((response) => {
             console.log(response)
             alert("Cliente cadastrado com sucesso!")
             navigate("/controletitulosfin")
