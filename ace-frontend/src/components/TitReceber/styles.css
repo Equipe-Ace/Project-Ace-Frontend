@@ -47,6 +47,8 @@ th{
 
 td{
     padding: 20px;
+    padding-left: 40px;
+    padding-right: 40px;
     text-align: center;
     border-bottom: 1px solid #0000002a;
     
@@ -157,3 +159,41 @@ td{
     background-size: 90%;
     border-radius: 10px;
 }
+
+
+
+.alignRight{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+}
+
+.button-close {
+    background-color: #e40a0aa1;
+    border-radius: 10px;
+    border-style: none;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    padding: 7px 10px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition: color 100ms;
+    vertical-align: baseline;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  }
+  
+  .button-close:hover{
+      cursor: pointer;
+      background-color: #720404;
+      background-size: 90%;
+      border-radius: 10px;
+  }
+  

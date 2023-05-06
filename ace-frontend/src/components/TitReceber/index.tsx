@@ -8,6 +8,8 @@ import editPen from "../../img/EditPencil.svg"
 import next from "../../img/NextBt.svg"
 import back from "../../img/BackBt.svg"
 import { count } from 'console';
+import Modal from '../modalCliente/modal';
+import card from '../../img/Real sign.svg'
 
 
 const ITEMS_PER_PAGE = 4;
@@ -31,7 +33,47 @@ const SelectCli: React.FC = () => {
     const navigate = useNavigate();
     const [page, setPage] = useState(0);
     const [totalRowCount, setTotalRowCount] = useState(ListaJson.length);
+    const [id, setId] = useState(Number);
+    const [nome, setNome] = useState(String);
+    const [CPF, setCpf] = useState(String);
+    const [Cliente, setCliente] = useState('');
+    const [TotalParcelas, setTotalParcelas] = useState(Number);
+    const [ParcelasPagas, setParcelasPagas] = useState(0);
+    const [ParcelasPendentes,setParcelasPendentes] = useState(0);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [todasParcelas, setTodasParcelas] = useState(false);
+    const [valorParcela, setValorParcela] = useState(0);
+    const [valorServio, setValorServico] = useState(0);
     
+
+
+
+    const Parcelas = (objParcelas: Array<any>) => {
+        const newArray = objParcelas.reduce((acc, item) => {
+            if (item.dataPagamento != null) {
+              acc.pagos += 1;
+            } else {
+              acc.pendentes += 1;
+            }
+            return acc;
+          }, { pagos: 0, pendentes: 0 });
+          
+        console.log(newArray);
+        setParcelasPendentes(newArray['pendentes'])
+        setParcelasPagas(newArray['pagos'])
+    };
+
+
+
+    const handleOpenModal = () => {
+        setIsModalOpen(true);
+    };
+  
+    const handleCloseModal = () => {
+      setIsModalOpen(false);
+    };
+  
+
 
     const handleSearchInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setPesquisa(event.target.value);
@@ -76,6 +118,21 @@ const SelectCli: React.FC = () => {
 
     return (
         <>
+
+                <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
+                    <div className='alignRight'>
+                        <a className='button-close' onClick={handleCloseModal}>X</a>
+                    </div>
+                    <tr><td>Cpf</td> <td>{CPF}</td></tr>
+                    <tr><td>Nome</td> <td>{nome}</td></tr>
+                    <tr><td>Id</td> <td>{id}</td></tr>
+                    <tr><td>Total de Parcelas</td> <td>{TotalParcelas}</td></tr>
+                    <tr><td>Valor das Parcelas</td><td>R$:{valorParcela.toFixed(2)}</td></tr>
+                    <tr><td>Parcelas Pendentes</td><td>{ParcelasPendentes}</td></tr>
+                    <tr><td>Parcelas Pagas</td><td>{ParcelasPagas}</td></tr>
+                    <tr><td>Valor Total</td><td>R$:{valorServio.toFixed(2)}</td></tr>
+                </Modal>
+
             <div className="bgSelect" >
                 <h1> Clientes Cadastrados </h1>
             </div>
@@ -92,6 +149,7 @@ const SelectCli: React.FC = () => {
                                 <th>Nome</th>
                                 <th>CPF</th>
                                 <th>Valor do serviço</th>
+                                <th></th>
                                 <th></th>
                             </tr>
                         </thead>    
@@ -112,8 +170,21 @@ const SelectCli: React.FC = () => {
                                 <tr key={id}>
                                     <td>{item.nome}</td>  
                                     <td>{item.cpf}</td>
-                                    <td>{item.servico["preco"]}</td>
-                                    <td className='button-1' onClick={handleEditClick(item.id)}><img src={editPen} alt="botão de edição"  /> </td>   
+                                    <td>R$:{item.servico["preco"].toFixed(2)}</td>
+                                    <td className='button-1' onClick={() => {
+
+                                            setId(item.id);
+                                            setCpf(item.cpf)
+                                            setNome(item.nome)
+                                            setTotalParcelas(item.servico["parcelas"].length)
+                                            Parcelas(item.servico["parcelas"]);
+                                            setValorParcela(item.servico["parcelas"][1]['valorParcela'])
+                                            setValorServico(item.servico['preco'])
+                                            handleOpenModal();
+                                        }}>
+                                        <img src={editPen} />
+                                    </td> 
+                                    <td className='button-1' onClick={handleEditClick(item.id)}><img src={card} alt="botão de edição"  /> </td>   
                                 </tr>
                                 )
                                 :
