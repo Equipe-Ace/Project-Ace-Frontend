@@ -43,11 +43,11 @@ form .container .inputs input {
     width: 220px;
     margin-top: 20px;
     border-radius:11px;
-    border: 2px solid #BA4DE3;
+    border: 1.6px solid #000000;
 }
 
 form .container .inputs input::placeholder {
-    color:#BA4DE3;
+    color:#acaaac;
 }
 
 form .container .titulo {
@@ -76,22 +76,25 @@ form .container .titulo p {
 /* botao */
 
 
+form .container .Botao {
+  margin-top: 10px;
+}
+
+
+
 button{
     position: relative;
     height: 45px;
     width: 130px;
     margin: 0 40px;
-    font-size: 23px;
-    font-weight: 500px;
-    letter-spacing: 1px;
+    font-size: 50px;
     border-radius: 5px;
-    text-transform: uppercase;
-    border: 1px solid transparent;
+    border: 2px solid transparent;
     outline: none;
     cursor: pointer;
     background: #ffffff;
     overflow: hidden;
-    transition: 0.6s;
+    transition: 1s;
     
   }
 
