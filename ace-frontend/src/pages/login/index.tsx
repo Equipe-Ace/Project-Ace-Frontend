@@ -70,9 +70,8 @@ const LoginADM: React.FC = () => {
                         <input type="text" placeholder="digite seu login..." onChange={(e) => setEmail(e.target.value)}/>
                         <input type="password" placeholder="digite sua senha..." onChange={(e) => setSenha(e.target.value)}/>
                     </div>
-                        
-                        <button className="Botao" onClick={handleFunction}> <p> Entrar </p></button>
-                    
+
+                            <button className="Botao" onClick={handleFunction}> <p> Entrar </p></button>
                 </div>
             </form>
         </>

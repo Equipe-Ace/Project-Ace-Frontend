@@ -43,7 +43,7 @@ form .container .inputs input {
     width: 220px;
     margin-top: 20px;
     border-radius:11px;
-    border: 1.6px solid #000000;
+    border: 1.6px solid #4c4848ae;
 }
 
 form .container .inputs input::placeholder {

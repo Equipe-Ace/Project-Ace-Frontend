@@ -19,22 +19,17 @@ const FormADM: React.FC = () =>{
             <div className="bgformadm" >
             <h1> Cadastro de usuários</h1>
                 <div className="inputBoxformadm">
-                    <input type="text" />
-                    <span>Nome</span>
-                </div>
-                <div className="inputBoxformadm">
-                    <input type="text" />
+                    <input type="text" required />
                     <span>Email</span>
                 </div>
                 <div className="inputBoxformadm">
-                    <input type="text" />
+                    <input type="password" required/>
                     <span>senha</span>
                 </div>
                 <OpcDrop />
                 
-            <div className="containerbuttonAVC">
-                <button className="btn btn1"> Avançar ▸</button>
-            </div>
+                <button className="avcbtn"> Avançar ▸</button>
+
 
             </div>
             
