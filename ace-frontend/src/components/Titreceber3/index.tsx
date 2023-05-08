@@ -31,7 +31,6 @@ const TitReceber3= ({
     const [dataPagamentoParcela, setDataPagamentoParcela] = useState(Date)
     const [dataCreditoParcela, setDataCreditoParcela] = useState(Date)
     const [valorPagoParcela, setValorPagoParcela] = useState("")
-    const [valorMaximo, setValorMaximo] = useState(Number)
 
     function StrToFloat(Str: string): number {
         const fixedValue = parseFloat(Str.replace(/\./g, '').replace(',', '.'));
@@ -49,18 +48,15 @@ const TitReceber3= ({
         dataPagamento : dataPagamentoParcela,
         dataCredito : dataCreditoParcela,
         valorParcela : parcela.valorParcela,
-        valorPago : StrToFloat(valorPagoParcela)
+        valorPago : StrToFloat(valorPagoParcela) + parcela.valorPago
     }
     const navigate = useNavigate()
 
       function handleFunction(e:React.MouseEvent<HTMLButtonElement>) {
             e.preventDefault()
-            if(parcela.numeroParcela < 12) {
-              setValorMaximo((12 - parcela.numeroParcela)*parcela.valorParcela + (parcela.valorParcela - parcela.valorPago))
-            }
-            if(parcelaAtualizada.valorPago > valorMaximo) {
-              alert("Valor máximo ultrapassado")  
-            } else if(parcelaAtualizada.valorPago >= parcela.valorParcela) {
+            if(parcelaAtualizada.valorPago > (11 - parcelaAtualizada.numeroParcela)*parcelaAtualizada.valorParcela + parcelaAtualizada.valorParcela) {
+              alert("Valor máximo ultrapassado")
+            } else if(parcelaAtualizada.valorPago >= parcelaAtualizada.valorParcela) {
               api.put("/Parcela/atualizarParcela", parcelaAtualizada, {
                 headers: {
                     Authorization: `Bearer ${userToken}` 
