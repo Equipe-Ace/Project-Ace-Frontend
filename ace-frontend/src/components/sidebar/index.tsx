@@ -36,6 +36,80 @@ const Sidebar: React.FC<SidebarProps> = ({ active, close }) => {
       </div>
     </div>
   );
+
+// if(funcionario.cargo == "adm"){
+  // return (
+  //   <div className="sidebar">
+  //     <div className={`Container2 ${active ? "active" : ""}`}>
+  //       <FaTimes onClick={close} />
+
+  //       <img className="logo" src={logo} alt=""></img>
+  //       <div className="Content">
+
+  //       <Link to="/cadastroCLI">
+  //         <SidebarItem Icon={FaUserPlus} Text="Cadastro" />
+  //       </Link>
+
+  //       <Link to="/ControleTitulosFIN">
+  //         <SidebarItem Icon={FaIdCard} Text="Controle de Títulos" />
+  //       </Link>
+
+  //       <Link to="/relatoriomenu">
+  //         <SidebarItem Icon={FaChartBar} Text="Relatórios" />
+  //       </Link>
+  //       </div>
+  //     </div>
+  //   </div>
+  // );
+  // }
+
+  // if(funcionario.cargo == "comercial"){
+
+  //   return (
+  //     <div className="sidebar">
+  //       <div className={`Container2 ${active ? "active" : ""}`}>
+  //         <FaTimes onClick={close} />
+  
+  //         <img className="logo" src={logo} alt=""></img>
+  //         <div className="Content">
+  
+  //       <Link to="/cadastroCLI">
+  //         <SidebarItem Icon={FaUserPlus} Text="Cadastro" />
+  //       </Link>
+
+  //         <Link to="/ControleTitulosFIN">
+  //           <SidebarItem Icon={FaIdCard} Text="Controle de Títulos" />
+  //         </Link>
+  
+  //         </div>
+  //       </div>
+  //     </div>
+  //   );
+  //   }
+
+  //   if(funcionario.cargo == "fin"){
+
+  //     return (
+  //       <div className="sidebar">
+  //         <div className={`Container2 ${active ? "active" : ""}`}>
+  //           <FaTimes onClick={close} />
+    
+  //           <img className="logo" src={logo} alt=""></img>
+  //           <div className="Content">
+    
+  //           <Link to="/ControleTitulosFIN">
+  //             <SidebarItem Icon={FaIdCard} Text="Controle de Títulos" />
+  //           </Link>
+    
+  //           <Link to="/relatoriomenu">
+  //             <SidebarItem Icon={FaChartBar} Text="Relatórios" />
+  //           </Link>
+  //           </div>
+  //         </div>
+  //       </div>
+  //     );
+  //     }
+
 };
 
 export default Sidebar;

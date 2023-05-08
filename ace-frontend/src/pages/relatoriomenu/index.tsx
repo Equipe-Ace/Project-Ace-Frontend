@@ -18,17 +18,21 @@ const RelatorioMenu: React.FC = () => {
             <div className="boxButtons">
                 <div className='alinhar'>
                     
-                    <Link to="/relatoriopag">
-                        <button className='button' >Data de Pagamento</button>
+                    <Link to="/relatorioven">
+                        <button className='button' >Data de Vencimento</button>
                     </Link>
 
                     <Link to="/relatoriocre">
                         <button className='button' >Data de Crédito</button>
                     </Link>
 
-                    <Link to="/relatorioven">
-                        <button className='button' >Data de Vencimento</button>
+                    <Link to="/relatoriopag">
+                        <button className='button' >Data de Pagamento</button>
                     </Link>
+
+
+
+
                 </div>
             </div>
         </>
