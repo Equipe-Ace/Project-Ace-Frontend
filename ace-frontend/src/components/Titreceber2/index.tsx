@@ -39,7 +39,7 @@ const TitReceber2 = ({
                     <span>Data de Vencimento</span>
                 </div>
                 <div className="inputBoxTRAFIN2">
-                    <input id ="valorApagar"type="text" placeholder='R$: 00,00' value={parcela.valorParcela.toFixed(2)}/>
+                    <input id ="valorApagar"type="text" placeholder='R$: 00,00' value={(parcela.valorParcela - parcela.valorPago).toFixed(2)}/>
                     <span>Valor a Pagar</span>
                 </div>
 
