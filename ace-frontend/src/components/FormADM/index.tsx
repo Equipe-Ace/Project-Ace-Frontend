@@ -28,8 +28,9 @@ const FormADM: React.FC = () =>{
                 </div>
                 <OpcDrop />
                 
-                <button className="avcbtn"> Avançar ▸</button>
-
+            <div className="containerbuttonAVC">
+                <button className="btn btn1"> Avançar ▸</button>
+            </div>
 
             </div>
             

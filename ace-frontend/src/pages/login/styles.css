@@ -76,33 +76,29 @@ form .container .titulo p {
 /* botao */
 
 
-form .container .Botao {
-  margin-top: 10px;
+form .container .Botaoentrar {
+  position: relative;
+  height: 45px;
+  width: 130px;
+  margin: 10px 40px;
+  font-size: 50px;
+  border-radius: 5px;
+  border: 2px solid transparent;
+  outline: none;
+  cursor: pointer;
+  background: #ffffff;
+  overflow: hidden;
+  transition: 1s;
 }
 
 
 
-button{
-    position: relative;
-    height: 45px;
-    width: 130px;
-    margin: 0 40px;
-    font-size: 50px;
-    border-radius: 5px;
-    border: 2px solid transparent;
-    outline: none;
-    cursor: pointer;
-    background: #ffffff;
-    overflow: hidden;
-    transition: 1s;
-    
-  }
-
-  button:last-child{
+form .container .Botaoentrar:last-child{
     color: #8A05BE;
     border-color: #8A05BE;
   }
-  button:before, button:after{
+
+form .container .Botaoentrar:before, form .container .Botaoentrar:after{
     position: absolute;
     content: '';
     left: 0;
@@ -112,26 +108,28 @@ button{
     opacity: 0.4;
     transition: 0.6s;
   }
-  button:before{
+
+
+form .container .Botaoentrar:before{
     width: 60px;
     background: rgba(255,255,255,0.6);
     transform: translateX(-130px) skewX(-45deg);
   }
-  button:after{
+  form .container .Botaoentrar:after{
     width: 30px;
     background: rgba(255,255,255,0.6);
     transform: translateX(-130px) skewX(-45deg);
   }
-  button:hover:before,
-  button:hover:after{
+  form .container .Botaoentrar:hover:before,
+  form .container .Botaoentrar:hover:after{
     opacity: 0.6;
     transform: translateX(320px) skewX(-45deg);
   }
-  button:hover{
+  form .container .Botaoentrar:hover{
     color: #f2f2f2;
   }
 
-  button:hover:last-child{
+  form .container .Botaoentrar:hover:last-child{
     background: #8A05BE;
   }
 
