@@ -38,7 +38,7 @@ form .container .inputs {
 }
 
 form .container .inputs input {
-    background-color: hsla(0, 5%, 24%, 0.17);
+    background-color: hsla(0, 0%, 100%, 0.17);
     padding: 15px 20px;
     width: 220px;
     margin-top: 20px;
@@ -47,7 +47,7 @@ form .container .inputs input {
 }
 
 form .container .inputs input::placeholder {
-    color:#acaaac;
+    color:#a15aa1;
 }
 
 form .container .titulo {

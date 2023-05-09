@@ -40,7 +40,7 @@ const LoginADM: React.FC = () => {
 
             if(token){
                 alert("Bem vindo!")
-                //navigate("/controletitulosfin")
+                navigate("/controletitulosfin")
                 console.log(localStorage.getItem("token"))
                 console.log(localStorage.getItem("role"))
             }else{
