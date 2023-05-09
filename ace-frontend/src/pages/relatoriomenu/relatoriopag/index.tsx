@@ -6,6 +6,7 @@ import editPen from "../../../img/EditPencil.svg"
 import next from "../../../img/NextBt.svg"
 import back from "../../../img/BackBt.svg"
 import { useNavigate } from 'react-router-dom';
+import Dados from '../../../components/dadosRelatorio'
 
 
 const RelatorioPag: React.FC = () => {
@@ -109,6 +110,7 @@ const RelatorioPag: React.FC = () => {
             <Header />
             <div className="bgboxCre" >
                 <h1> Relatório de Pagamento: </h1>
+                <Dados></Dados>
             </div>
 
             <div className="boxDate">

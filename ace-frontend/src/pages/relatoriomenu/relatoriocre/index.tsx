@@ -6,7 +6,7 @@ import './styles.css'
 import editPen from "../../../img/EditPencil.svg"
 import next from "../../../img/NextBt.svg"
 import back from "../../../img/BackBt.svg"
-
+import Dados from '../../../components/dadosRelatorio'
 
 
 const RelatorioCre: React.FC = () => {
@@ -107,6 +107,7 @@ const RelatorioCre: React.FC = () => {
             <Header />
             <div className="bgboxCre" >
                 <h1> Relatório de Crédito: </h1>
+                <Dados></Dados>
             </div>
 
             <div className="boxDate">

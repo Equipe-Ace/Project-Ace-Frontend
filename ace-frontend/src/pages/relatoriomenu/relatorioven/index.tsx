@@ -1,5 +1,6 @@
 import React, { ReactNode, useState } from 'react';
-import Header from '../../../components/header/index'
+import Header from '../../../components/header/index';
+import Dados from '../../../components/dadosRelatorio/index'
 import { api } from '../../../service/api';
 import './styles.css'
 import editPen from "../../../img/EditPencil.svg"
@@ -107,6 +108,7 @@ const RelatorioVen: React.FC = () => {
             <Header />
             <div className="bgboxCre" >
                 <h1> Relatório de Vencimento: </h1>
+                <Dados></Dados>
             </div>
 
             <div className="boxDate">
@@ -135,7 +137,7 @@ const RelatorioVen: React.FC = () => {
                                 <th>Nome do Cliente</th>
                                 <th>Data de Vencimento</th>
                                 <th>Valor a Pagar</th>
-                                <th>Valor a Receber</th>
+                                <th>Valor Recebido</th>
                             </tr>
                         </thead>    
                                     
@@ -157,7 +159,7 @@ const RelatorioVen: React.FC = () => {
                                     <td>{parcela.dataVencimento}</td>
                                     <td>{parcela.valorParcela}</td>
                                     <td>{parcela.valorPago}</td>
-                                    <td className='button-1' onClick={handleEditClick(parcela.idCliente)}><img src={editPen} alt="botão de edição"  /> </td>   
+                                    {/* <td className='button-1' onClick={handleEditClick(parcela.idCliente)}><img src={editPen} alt="botão de edição"  /> </td>    */}
                                 </tr>
                                 )
                                 :

@@ -22,15 +22,13 @@ const RelatorioMenu: React.FC = () => {
                         <button className='button' >Data de Vencimento</button>
                     </Link>
 
-                    <Link to="/relatoriopag">
-                        <button className='button' >Data de Pagamento</button>
-                    </Link>
-
                     <Link to="/relatoriocre">
                         <button className='button' >Data de Crédito</button>
                     </Link>
 
-
+                    <Link to="/relatoriopag">
+                        <button className='button' >Data de Pagamento</button>
+                    </Link>
 
 
 
