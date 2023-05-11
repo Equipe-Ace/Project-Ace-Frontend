@@ -80,9 +80,9 @@ form .container .Botaoentrar {
   position: relative;
   height: 45px;
   width: 130px;
-  margin: 10px 40px;
+  margin: 18px 40px;
   font-size: 50px;
-  border-radius: 5px;
+  border-radius: 7px;
   border: 2px solid transparent;
   outline: none;
   cursor: pointer;

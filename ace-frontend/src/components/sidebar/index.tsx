@@ -5,111 +5,77 @@ import SidebarItem from "./sidebaritem";
 import { Link } from 'react-router-dom';
 import logo from "../../img/logo.png";
 
-
-
 interface SidebarProps {
   active: boolean;
   close: () => void;
 }
-
+const userPermissao = localStorage.getItem("role");
 const Sidebar: React.FC<SidebarProps> = ({ active, close }) => {
-  return (
-    <div className="sidebar">
-      <div className={`Container2 ${active ? "active" : ""}`}>
-        <FaTimes onClick={close} />
+  if (userPermissao == "ADMIN") {
+    return (
+      <div className="sidebar">
+        <div className={`Container2 ${active ? "active" : ""}`}>
+          <FaTimes onClick={close} />
 
-        <img className="logo" src={logo} alt=""></img>
-        <div className="Content">
+          <img className="logo" src={logo} alt=""></img>
+          <div className="Content">
+            <Link to="/cadastroCLI">
+              <SidebarItem Icon={FaUserPlus} Text="Cadastro" />
+            </Link>
 
-        <Link to="/cadastroCLI">
-          <SidebarItem Icon={FaUserPlus} Text="Cadastro" />
-        </Link>
+            <Link to="/ControleTitulosFIN">
+              <SidebarItem Icon={FaIdCard} Text="Controle de Títulos" />
+            </Link>
 
-        <Link to="/ControleTitulosFIN">
-          <SidebarItem Icon={FaIdCard} Text="Controle de Títulos" />
-        </Link>
-
-        <Link to="/relatoriomenu">
-          <SidebarItem Icon={FaChartBar} Text="Relatórios" />
-        </Link>
+            <Link to="/relatoriomenu">
+              <SidebarItem Icon={FaChartBar} Text="Relatórios" />
+            </Link>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  } else if (userPermissao == "COMERCIAL") {
+    return (
+      <div className="sidebar">
+        <div className={`Container2 ${active ? "active" : ""}`}>
+          <FaTimes onClick={close} />
 
-// if(funcionario.cargo == "adm"){
-  // return (
-  //   <div className="sidebar">
-  //     <div className={`Container2 ${active ? "active" : ""}`}>
-  //       <FaTimes onClick={close} />
+          <img className="logo" src={logo} alt=""></img>
+          <div className="Content">
+            <Link to="/cadastroCLI">
+              <SidebarItem Icon={FaUserPlus} Text="Cadastro" />
+            </Link>
 
-  //       <img className="logo" src={logo} alt=""></img>
-  //       <div className="Content">
+            <Link to="/ControleTitulosFIN">
+              <SidebarItem Icon={FaIdCard} Text="Controle de Títulos" />
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  } else if (userPermissao == "FINANCEIRO") {
+    return (
+      <div className="sidebar">
+        <div className={`Container2 ${active ? "active" : ""}`}>
+          <FaTimes onClick={close} />
 
-  //       <Link to="/cadastroCLI">
-  //         <SidebarItem Icon={FaUserPlus} Text="Cadastro" />
-  //       </Link>
+          <img className="logo" src={logo} alt=""></img>
+          <div className="Content">
+            <Link to="/ControleTitulosFIN">
+              <SidebarItem Icon={FaIdCard} Text="Controle de Títulos" />
+            </Link>
 
-  //       <Link to="/ControleTitulosFIN">
-  //         <SidebarItem Icon={FaIdCard} Text="Controle de Títulos" />
-  //       </Link>
-
-  //       <Link to="/relatoriomenu">
-  //         <SidebarItem Icon={FaChartBar} Text="Relatórios" />
-  //       </Link>
-  //       </div>
-  //     </div>
-  //   </div>
-  // );
-  // }
-
-  // if(funcionario.cargo == "comercial"){
-
-  //   return (
-  //     <div className="sidebar">
-  //       <div className={`Container2 ${active ? "active" : ""}`}>
-  //         <FaTimes onClick={close} />
-  
-  //         <img className="logo" src={logo} alt=""></img>
-  //         <div className="Content">
-  
-  //       <Link to="/cadastroCLI">
-  //         <SidebarItem Icon={FaUserPlus} Text="Cadastro" />
-  //       </Link>
-
-  //         <Link to="/ControleTitulosFIN">
-  //           <SidebarItem Icon={FaIdCard} Text="Controle de Títulos" />
-  //         </Link>
-  
-  //         </div>
-  //       </div>
-  //     </div>
-  //   );
-  //   }
-
-  //   if(funcionario.cargo == "fin"){
-
-  //     return (
-  //       <div className="sidebar">
-  //         <div className={`Container2 ${active ? "active" : ""}`}>
-  //           <FaTimes onClick={close} />
-    
-  //           <img className="logo" src={logo} alt=""></img>
-  //           <div className="Content">
-    
-  //           <Link to="/ControleTitulosFIN">
-  //             <SidebarItem Icon={FaIdCard} Text="Controle de Títulos" />
-  //           </Link>
-    
-  //           <Link to="/relatoriomenu">
-  //             <SidebarItem Icon={FaChartBar} Text="Relatórios" />
-  //           </Link>
-  //           </div>
-  //         </div>
-  //       </div>
-  //     );
-  //     }
-
+            <Link to="/relatoriomenu">
+              <SidebarItem Icon={FaChartBar} Text="Relatórios" />
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  } else {
+    return <>
+    </>;
+  };
 };
 
 export default Sidebar;
