@@ -22,22 +22,17 @@ const FormADM: React.FC = () => {
                     <span>senha</span>
                 </div>
 
-                <div className='rolebox' >
                     <div>
-                        <span>Comercial</span>
-                        <input type='radio' className='comercial'>
-                        </input>
-
-                        <span>Financeiro</span>
-                        <input type='radio' className='financeiro'>
-                        </input>
+                    <p>
+                        <input type="checkbox" id="financeirobox" required />
+                        <label htmlFor="financeirobox">Financeiro</label>
+                    </p>
+                    <p>
+                        <input type="checkbox" id="comercialbox" required />
+                        <label htmlFor="comercialbox">Comercial</label>
+                    </p>
                     </div>
 
-
-
-
-
-                </div>
                 <div className="containerbuttonAVC">
                     <button className="btn btn1"> Avançar ▸</button>
                 </div>
