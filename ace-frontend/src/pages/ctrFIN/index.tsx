@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import Header from '../../components/header/index'
+import erro404 from '../../img/erro404.png'
 import TitReceber from '../../components/TitReceber';
 
 
 
-//if(userPermissao === "ADMIN" || userPermissao === "COMERCIAL" || userPermissao === "FINANCEIRO"){
 const CtrFIN: React.FC = () => {
 
     let paginaRetornada = null;
@@ -22,7 +22,15 @@ useEffect(() =>{
     
     const paginaVazia = 
     <>
-
+    <div className='pge' >
+        <div className='info' >
+        <h1>Erro 404</h1>
+        <h2> Ooops, A rota não foi encontrada</h2>
+        </div>
+        <div className="errinho">
+            <img src={erro404} alt="erro" />
+        </div>
+    </div>
     </>
     if(userPermissaoo === "ADMIN" || userPermissaoo === "COMERCIAL" || userPermissaoo === "FINANCEIRO"){
         paginaRetornada = pagina;

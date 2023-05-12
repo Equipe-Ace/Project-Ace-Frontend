@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import Header from '../../components/header/index'
 import TitReceber2 from '../../components/Titreceber2';
 import { api } from '../../service/api';
+import erro404 from '../../img/erro404.png'
 
 
 const CtrFIN2: React.FC = () => {
@@ -35,10 +36,18 @@ const CtrFIN2: React.FC = () => {
 
     const paginaVazia = 
     <>
-
+     <div className='pge' >
+        <div className='info' >
+        <h1>Erro 404</h1>
+        <h2> Ooops, A rota não foi encontrada</h2>
+        </div>
+        <div className="errinho">
+            <img src={erro404} alt="erro" />
+        </div>
+    </div>
     </>
 
-    if(userPermissao === "ADMIN" || userPermissao === "FINANCEIRO"){
+    if(userPermissao === "ADMIN" || userPermissao === "FINANCEIRO" || userPermissao === "COMERCIAL" ){
         paginaRetornada = pagina;
     }else{
     paginaRetornada = paginaVazia;

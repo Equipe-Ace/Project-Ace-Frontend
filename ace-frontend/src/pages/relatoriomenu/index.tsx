@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '../../components/header/index'
 import './styles.css'
+import erro404 from '../../img/erro404.png'
 
 
 import { Link } from 'react-router-dom';
@@ -36,7 +37,18 @@ const RelatorioMenu: React.FC = () => {
                 </div>
             </div>
         </>
-    const paginaVazia =<></>
+    const paginaVazia =
+    <>
+    <div className='pge' >
+        <div className='info' >
+        <h1>Erro 404</h1>
+        <h2> Ooops, A seginte rota não foi encontrada: /relatoriomenu</h2>
+        </div>
+        <div className="errinho">
+            <img src={erro404} alt="erro" />
+        </div>
+    </div>
+    </>
 
     if(userPermissao === "ADMIN" || userPermissao === "FINANCEIRO"){
         paginaRetornada = pagina;
