@@ -21,7 +21,9 @@ const RelatorioVen: React.FC = () => {
 	    dataPagamento: ReactNode,
 	    dataCredito: ReactNode,
 	    valorParcela: number,
-	    valorPago: number
+	    valorPago: number,
+        statusAtraso: boolean,
+        statusPago: String
     }
     
     const [dataInicio, setDataInicio] = useState("")

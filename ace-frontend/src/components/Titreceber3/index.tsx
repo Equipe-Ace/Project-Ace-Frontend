@@ -18,7 +18,9 @@ interface ParcelaInfo{
         dataPagamento?: Date,
         dataCredito?: Date,
         valorParcela: number,
-        valorPago: number
+        valorPago: number,
+        statusAtraso: boolean,
+        statusPago?: String
    }
 }
 
@@ -48,7 +50,10 @@ const TitReceber3= ({
         dataPagamento : dataPagamentoParcela,
         dataCredito : dataCreditoParcela,
         valorParcela : parcela.valorParcela,
-        valorPago : StrToFloat(valorPagoParcela) + parcela.valorPago
+        valorPago : StrToFloat(valorPagoParcela) + parcela.valorPago,
+        statusAtraso: parcela.statusAtraso,
+        statusPago: "Pago"
+
     }
     const navigate = useNavigate()
 
