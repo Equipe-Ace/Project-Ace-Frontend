@@ -149,7 +149,7 @@ const SelectCli: React.FC = () => {
                                 <th>Nome</th>
                                 <th>CPF</th>
                                 <th>Valor do serviço</th>
-                                <th></th>
+                                <th>Pagamento</th>
                                 <th></th>
                             </tr>
                         </thead>    
@@ -171,6 +171,7 @@ const SelectCli: React.FC = () => {
                                     <td>{item.nome}</td>  
                                     <td>{item.cpf}</td>
                                     <td>R$:{item.servico["preco"].toFixed(2)}</td>
+                                    <td className='button-1' onClick={handleEditClick(item.id)}><img src={card} alt="botão de edição"  /> </td>
                                     <td className='button-1' onClick={() => {
 
                                             setId(item.id);
@@ -184,7 +185,6 @@ const SelectCli: React.FC = () => {
                                         }}>
                                         <img src={editPen} />
                                     </td> 
-                                    <td className='button-1' onClick={handleEditClick(item.id)}><img src={card} alt="botão de edição"  /> </td>   
                                 </tr>
                                 )
                                 :
