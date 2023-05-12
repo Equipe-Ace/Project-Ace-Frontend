@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./styles.css";
 import { FaTimes, FaUserPlus, FaIdCard,FaChartBar} from "react-icons/fa";
 import SidebarItem from "./sidebaritem";
@@ -12,8 +12,14 @@ interface SidebarProps {
 
 // useEffect(() => {}, [])// 
 
-const userPermissao = localStorage.getItem("role");
+
 const Sidebar: React.FC<SidebarProps> = ({ active, close }) => {
+const [userPermissao, setUserPermissao] = useState<string | null>(null)
+useEffect(() => {
+  const userPermissaoo = localStorage.getItem("role");
+  setUserPermissao(userPermissaoo)
+},[])
+
   if (userPermissao == "ADMIN") {
     return (
       <div className="sidebar">
