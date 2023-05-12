@@ -25,6 +25,18 @@ h1 {
     margin: 50px;
     gap: 40px;
 }
+.pge{
+    display: flex;
+    justify-content: center;
+    margin-top: 70px;
+}
+.info{
+    margin-top: 90px;
+}
+.errinho img {
+    width: 600px ;
+    height: 520px;
+}
 
 .coluna .coluna2 {
     display: inline-block;

@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from './../../components/header/index'
+import erro404 from '../../img/erro404.png'
 import FormCadCom2 from '../../components/formCad2';
 
 const CadCLI: React.FC = () => {
@@ -13,7 +14,17 @@ const CadCLI: React.FC = () => {
     </>
     
     const paginaVazia = 
-    <></>
+    <>
+    <div className='pge' >
+        <div className='info' >
+        <h1>Erro 404</h1>
+        <h2> Ooops, A seginte rota não foi encontrada: /cadastroCLI</h2>
+        </div>
+        <div className="errinho">
+            <img src={erro404} alt="erro" />
+        </div>
+    </div>
+    </>
 
     if(userPermissao === "ADMIN" || userPermissao === "COMERCIAL"){
         paginaRetornada = pagina;

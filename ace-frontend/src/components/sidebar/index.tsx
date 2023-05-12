@@ -48,7 +48,6 @@ const Sidebar: React.FC<SidebarProps> = ({ active, close }) => {
             <Link to="/cadastroCLI">
               <SidebarItem Icon={FaUserPlus} Text="Cadastro" />
             </Link>
-
             <Link to="/ControleTitulosFIN">
               <SidebarItem Icon={FaIdCard} Text="Controle de Títulos" />
             </Link>
