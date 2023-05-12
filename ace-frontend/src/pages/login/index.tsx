@@ -47,6 +47,8 @@ const LoginADM: React.FC = () => {
                 alert("Tente novamente!")
             }
 
+        }).catch(error => {
+            alert("Login ou senha inválidos!")
         })
 
         
