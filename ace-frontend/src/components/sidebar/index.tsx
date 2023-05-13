@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./styles.css";
-import { FaTimes, FaUserPlus, FaIdCard,FaChartBar} from "react-icons/fa";
+import { FaTimes, FaUserPlus, FaIdCard,FaChartBar,FaSignOutAlt} from "react-icons/fa";
 import SidebarItem from "./sidebaritem";
 import { Link } from 'react-router-dom';
 import logo from "../../img/logo.png";
@@ -39,6 +39,10 @@ useEffect(() => {
             <Link to="/relatoriomenu">
               <SidebarItem Icon={FaChartBar} Text="Relatórios" />
             </Link>
+
+            <Link to="/">
+              <SidebarItem Icon={FaSignOutAlt} Text="Sair" />
+            </Link>
           </div>
         </div>
       </div>
@@ -56,6 +60,9 @@ useEffect(() => {
             </Link>
             <Link to="/ControleTitulosFIN">
               <SidebarItem Icon={FaIdCard} Text="Controle de Títulos" />
+            </Link>
+            <Link to="/">
+              <SidebarItem Icon={FaSignOutAlt} Text="Sair" />
             </Link>
           </div>
         </div>
@@ -75,6 +82,10 @@ useEffect(() => {
 
             <Link to="/relatoriomenu">
               <SidebarItem Icon={FaChartBar} Text="Relatórios" />
+            </Link>
+            
+            <Link to="/">
+              <SidebarItem Icon={FaSignOutAlt} Text="Sair" />
             </Link>
           </div>
         </div>
