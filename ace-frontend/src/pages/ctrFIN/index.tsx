@@ -8,7 +8,7 @@ import TitReceber from '../../components/TitReceber';
 const CtrFIN: React.FC = () => {
 
     let paginaRetornada = null;
-const [userPermissaoo, setUserPermissaoo] = useState<string | null>(null)
+    const [userPermissaoo, setUserPermissaoo] = useState<string | null>(null)
 
 useEffect(() =>{
     const userPermissao = localStorage.getItem("role");
