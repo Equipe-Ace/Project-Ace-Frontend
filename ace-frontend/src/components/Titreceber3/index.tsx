@@ -18,7 +18,9 @@ interface ParcelaInfo{
         dataPagamento?: Date,
         dataCredito?: Date,
         valorParcela: number,
-        valorPago: number
+        valorPago: number,
+        statusAtraso: boolean,
+        statusPago?: String
    }
 }
 
@@ -48,32 +50,39 @@ const TitReceber3= ({
         dataPagamento : dataPagamentoParcela,
         dataCredito : dataCreditoParcela,
         valorParcela : parcela.valorParcela,
-        valorPago : StrToFloat(valorPagoParcela) + parcela.valorPago
+        valorPago : StrToFloat(valorPagoParcela) + parcela.valorPago,
+        statusAtraso: parcela.statusAtraso,
+        statusPago: "Pago"
+
     }
     const navigate = useNavigate()
 
       function handleFunction(e:React.MouseEvent<HTMLButtonElement>) {
             e.preventDefault()
-            if(parcelaAtualizada.valorPago > (11 - parcelaAtualizada.numeroParcela)*parcelaAtualizada.valorParcela + parcelaAtualizada.valorParcela) {
-              alert("Valor máximo ultrapassado")
-            } else if(parcelaAtualizada.valorPago >= parcelaAtualizada.valorParcela) {
-              api.put("/Parcela/atualizarParcela", parcelaAtualizada, {
-                headers: {
-                    Authorization: `Bearer ${userToken}` 
-                }
-            })
-              .then(response => {
-                const resposta = response.data
-                console.log(resposta)
-                if(resposta){
-                  alert("Parcela alterada com sucesso!");  
-                }else{
-                  alert("Parcela não encontrada")
-                }
-                navigate(`/controletitulosfin2/${parcela.idCliente}`)
-              }).catch(error => console.log(error))
+            if(dataCreditoParcela >= dataPagamentoParcela) {
+              if(parcelaAtualizada.valorPago > (11 - parcelaAtualizada.numeroParcela)*parcelaAtualizada.valorParcela + parcelaAtualizada.valorParcela) {
+                alert("Valor máximo ultrapassado")
+              } else if(parcelaAtualizada.valorPago >= parcelaAtualizada.valorParcela) {
+                api.put("/Parcela/atualizarParcela", parcelaAtualizada, {
+                  headers: {
+                      Authorization: `Bearer ${userToken}` 
+                  }
+              })
+                .then(response => {
+                  const resposta = response.data
+                  console.log(resposta)
+                  if(resposta){
+                    alert("Parcela alterada com sucesso!");  
+                  }else{
+                    alert("Parcela não encontrada")
+                  }
+                  navigate(`/controletitulosfin2/${parcela.idCliente}`)
+                }).catch(error => console.log(error))
+              } else {
+                alert("Valor mínimo não atendido")
+              }
             } else {
-              alert("Valor mínimo não atendido")
+              alert("A data de pagamento não pode ser maior que a data de credito")
             }
         }
 

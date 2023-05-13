@@ -5,15 +5,17 @@ import BotaoAC from '../botaoAC';
 import { Link, useNavigate } from 'react-router-dom';
 
 interface ParcelaInfo{
-     parcela: {
-        idCliente: number,
-	    numeroParcela?: number,
-	    dataVencimento?: Date,
-	    dataPagamento?: Date,
-	    dataCredito?: Date,
-	    valorParcela: number,
-	    valorPago: number
-    }
+    parcela: {
+       idCliente: number,
+       numeroParcela?: number,
+       dataVencimento?: Date,
+       dataPagamento?: Date,
+       dataCredito?: Date,
+       valorParcela: number,
+       valorPago: number,
+       statusAtraso?: boolean,
+       statusPago?: String
+   }
 }
 const TitReceber2 = ({
     parcela

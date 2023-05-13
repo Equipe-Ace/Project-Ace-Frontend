@@ -168,8 +168,8 @@ const SelectCli: React.FC = () => {
                                     
                         {todasParcelas.map((item: { id: number, numeroParcela: string, valorPago: Number, valorParcela: Number, dataVencimento:string,dataPagamento:string,dataCredito:string }, id: number) => {
                             const formattedDataVencimento = new Date(item.dataVencimento).toLocaleDateString('pt-BR');
-                            const formattedDataPagamento = new Date(item.dataVencimento).toLocaleDateString('pt-BR');
-                            const formattedDataCredito = new Date(item.dataVencimento).toLocaleDateString('pt-BR');
+                            const formattedDataPagamento = new Date(item.dataPagamento).toLocaleDateString('pt-BR');
+                            const formattedDataCredito = new Date(item.dataCredito).toLocaleDateString('pt-BR');
                             return (
                                 <tr key={id}>
                                     <td>{item.numeroParcela}.</td>  
