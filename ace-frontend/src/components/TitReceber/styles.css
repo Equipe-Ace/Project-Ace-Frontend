@@ -197,3 +197,60 @@ td{
       border-radius: 10px;
   }
   
+  .alignCenter {
+    padding-top: 4%;
+    padding-bottom: 3%;
+    display: flex;
+    justify-content: center;
+    align-items: center
+  }
+
+.dropdown {
+    padding-top: 4%;
+    padding-bottom: 3%;
+    display: flex;
+    justify-content: center;
+    align-items: center
+  }
+
+  .dropdown:hover{
+    cursor: pointer;
+    background-color: #7064646e;
+    background-size: 90%;
+    border-radius: 10px;
+}
+
+
+.drodownTable {
+    border-collapse: collapse;
+    width: auto;
+
+  }
+  
+  .drodownTable th,
+  .drodownTable td {
+    padding: 15px;
+    text-align: center;
+  }
+  
+  .drodownTable th {
+    background-color: #f2f2f2;
+    color: #333;
+  }
+  
+  .drodownTable tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .drodownTable tr:hover {
+    background-color: #6c04a321;
+  }
+  
+  .drodownTable td.action {
+    text-align: center;
+  }
+  
+  .pageButtom{
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
