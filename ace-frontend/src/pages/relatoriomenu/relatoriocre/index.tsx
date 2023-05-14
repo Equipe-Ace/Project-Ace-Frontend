@@ -137,7 +137,7 @@ const RelatorioCre: React.FC = () => {
                             <tr>
                                 <th>Nome do Cliente</th>
                                 <th>Data de Credito</th>
-                                <th>Valor a Pagar</th>
+                                <th>Valor da Parcela</th>
                                 <th>Valor a Receber</th>
                             </tr>
                         </thead>    

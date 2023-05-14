@@ -140,7 +140,7 @@ const RelatorioPag: React.FC = () => {
                             <tr>
                                 <th>Nome do Cliente</th>
                                 <th>Data de Pagamento</th>
-                                <th>Valor a Pagar</th>
+                                <th>Valor da parcela</th>
                                 <th>Valor a Receber</th>
                             </tr>
                         </thead>    
