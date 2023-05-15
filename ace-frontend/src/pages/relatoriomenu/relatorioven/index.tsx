@@ -23,7 +23,8 @@ const RelatorioVen: React.FC = () => {
 	    valorParcela: number,
 	    valorPago: number,
         statusAtraso: boolean,
-        statusPago: String
+        statusPago: String,
+        statusVencida: string
     }
     
     const [dataInicio, setDataInicio] = useState("")
@@ -140,6 +141,7 @@ const RelatorioVen: React.FC = () => {
                                 <th>Data de Vencimento</th>
                                 <th>Valor a Pagar</th>
                                 <th>Valor Recebido</th>
+                                <th>Status</th>
                             </tr>
                         </thead>    
                                     
@@ -161,6 +163,7 @@ const RelatorioVen: React.FC = () => {
                                     <td>{parcela.dataVencimento}</td>
                                     <td>{parcela.valorParcela}</td>
                                     <td>{parcela.valorPago}</td>
+                                    <td>{parcela.statusVencida}</td>
                                     {/* <td className='button-1' onClick={handleEditClick(parcela.idCliente)}><img src={editPen} alt="botão de edição"  /> </td>    */}
                                 </tr>
                                 )
