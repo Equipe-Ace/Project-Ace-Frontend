@@ -4,7 +4,7 @@ import Header from '../../components/header/index'
 import TitReceber2 from '../../components/Titreceber2';
 import { api } from '../../service/api';
 import erro404 from '../../img/erro404.png'
-
+import { Link } from 'react-router-dom';
 
 const CtrFIN2: React.FC = () => {
     const { idCliente } = useParams();
@@ -40,6 +40,11 @@ const CtrFIN2: React.FC = () => {
         <div className='info' >
         <h1>Erro 404</h1>
         <h2> Ooops, A rota não foi encontrada</h2>
+        <Link to="/">
+            <button className='vol'>
+                voltar
+            </button>
+        </Link>
         </div>
         <div className="errinho">
             <img src={erro404} alt="erro" />

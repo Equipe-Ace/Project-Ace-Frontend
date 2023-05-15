@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Header from '../../components/header/index'
 import erro404 from '../../img/erro404.png'
 import TitReceber from '../../components/TitReceber';
-
-
+import { Link } from 'react-router-dom';
 
 const CtrFIN: React.FC = () => {
 
@@ -26,6 +25,11 @@ useEffect(() =>{
         <div className='info' >
         <h1>Erro 404</h1>
         <h2> Ooops, A rota não foi encontrada</h2>
+        <Link to="/">
+            <button className='vol'>
+                voltar
+            </button>
+        </Link>
         </div>
         <div className="errinho">
             <img src={erro404} alt="erro" />

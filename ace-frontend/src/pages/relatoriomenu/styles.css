@@ -48,3 +48,13 @@
     padding: 5% 10%;
 }
 
+.vol{
+    height: 40px;
+    width: 120px;
+    margin-top: 55px;
+    font-size: 25px;
+    border-radius: 7px;
+    border: 2px solid transparent;
+    color: #fff;
+    background-color: #530082;
+  }
