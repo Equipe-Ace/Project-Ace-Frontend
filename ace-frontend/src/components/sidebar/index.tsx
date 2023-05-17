@@ -23,6 +23,7 @@ useEffect(() => {
   if (userPermissao == "ADMIN") {
     return (
       <div className="sidebar">
+        {/* <div className="sidebaropacity"></div> */}
         <div className={`Container2 ${active ? "active" : ""}`}>
           <FaTimes onClick={close} />
 

@@ -105,3 +105,28 @@ h1 {
 .inputBoxCADCLI input:focus{
     border: 1px solid #000
 }
+
+@media (max-width: 1045px) {
+    .bg{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 50px;
+        gap: 40px;
+        flex-direction: column;
+        
+    }
+    .coluna3  {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 10px;
+        transition: 1.5s;
+    }
+}
+
+@media (max-width: 790px) {
+    .inputBoxCADCLI {
+        position: relative;
+        width: 390px; 
+    }
+}
