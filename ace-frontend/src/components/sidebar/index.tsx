@@ -32,6 +32,10 @@ useEffect(() => {
               <SidebarItem Icon={FaUserPlus} Text="Cadastro" />
             </Link>
 
+            <Link to="/cadastroadm">
+              <SidebarItem Icon={FaUserPlus} Text="Cadastro de Usuário" />
+            </Link>
+
             <Link to="/ControleTitulosFIN">
               <SidebarItem Icon={FaIdCard} Text="Controle de Títulos" />
             </Link>
