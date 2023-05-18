@@ -142,7 +142,7 @@ const SelectCli: React.FC = () => {
                             </tbody>
                         </table>
                         <br/></div><br/>
-                        <div><h4 className='dropdown' onClick={handleDropdown2}>Dados Gerais</h4>
+                        <div><h4 className='dropdown' onClick={handleDropdown2}>Extrato do Cliente</h4>
                         {showText2 && <p className=''>
                             <div className='arruma'>
                             <table className='drodownTable'>                             
