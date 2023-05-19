@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { api } from '../../service/api';
 
 const LoginADM: React.FC = () => {
-    
+
     interface Usuario {
         email: string
         senha: string
@@ -16,7 +16,7 @@ const LoginADM: React.FC = () => {
         role: string
     }
 
-    
+
 
     const [email, setEmail] = useState("")
     const [senha, setSenha] = useState("")
@@ -26,24 +26,24 @@ const LoginADM: React.FC = () => {
         email: email,
         password: senha,
 
-    } 
+    }
 
-    function handleFunction (e:React.MouseEvent<HTMLButtonElement>){
+    function handleFunction(e: React.MouseEvent<HTMLButtonElement>) {
         e.preventDefault()
 
         api.post("/login/autenticado", user).then(response => {
-            const token:Token = response.data
+            const token: Token = response.data
             console.log(token);
 
             localStorage.setItem("token", token.token)
             localStorage.setItem("role", token.role)
 
-            if(token){
+            if (token) {
                 alert("Bem vindo!")
                 navigate("/controletitulosfin")
                 console.log(localStorage.getItem("token"))
                 console.log(localStorage.getItem("role"))
-            }else{
+            } else {
                 alert("Tente novamente!")
             }
 
@@ -51,31 +51,33 @@ const LoginADM: React.FC = () => {
             alert("Login ou senha inválidos!")
         })
 
-        
 
-        }
-    
-    
+
+    }
+
+
     return (
         <>
-            <form action="">
-                <div className="container">
-                    <div className="logo">
-                        <img src={Logo} alt="logo" />
-                    </div>
-                    <div className="titulo">
-                        <h1>Bem Vindo!</h1>
-                        <p>Entre na sua conta:</p>
-                    </div>
+            <div className='loginall'>
+                <form action="">
+                    <div className="container">
+                        <div className="logo">
+                            <img src={Logo} alt="logo" />
+                        </div>
+                        <div className="titulo">
+                            <h1>Bem Vindo!</h1>
+                            <p>Entre na sua conta:</p>
+                        </div>
 
-                    <div className="inputs">
-                        <input type="text" placeholder="digite seu login..." onChange={(e) => setEmail(e.target.value)}/>
-                        <input type="password" placeholder="digite sua senha..." onChange={(e) => setSenha(e.target.value)}/>
-                    </div>
+                        <div className="inputs">
+                            <input type="text" placeholder="digite seu login..." onChange={(e) => setEmail(e.target.value)} />
+                            <input type="password" placeholder="digite sua senha..." onChange={(e) => setSenha(e.target.value)} />
+                        </div>
 
-                            <button className="Botaoentrar" onClick={handleFunction}> <p> Entrar </p></button>
-                </div>
-            </form>
+                        <button className="Botaoentrar" onClick={handleFunction}> <p> Entrar </p></button>
+                    </div>
+                </form>
+            </div>
         </>
     );
 }
