@@ -118,8 +118,8 @@
 [type="checkbox"]:checked + label:after {
     content: '✕';
     position: absolute;
-    top: .525em;
-    left: .18em;
+    top: .580em;
+    left: .12em;
     font-size: 1.375em;
     color: #CB22ED;
     line-height: 0;
@@ -166,4 +166,12 @@ p {
     font-style: bold;
 }
 
+@media (max-width: 410px) {
+    .inputBoxformadm{
+        transition: 800ms ease;
+        position: relative;
+        width: 240px; 
+        border-radius: 13px;
+    }
 
+}
