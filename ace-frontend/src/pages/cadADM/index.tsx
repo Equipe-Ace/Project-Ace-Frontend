@@ -17,9 +17,11 @@ const CadADM: React.FC = () => {
     }, [])
 
     const pagina = 
-        <>   
+        <>
+        <div className='alladm'>
             <Header />
             <FormADM/>
+        </div> 
         </>
     
     const paginaVazia = 

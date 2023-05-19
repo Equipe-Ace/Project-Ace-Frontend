@@ -110,6 +110,7 @@ const RelatorioPag: React.FC = () => {
     const pagina = 
         <>
             <Header />
+            <div className='allthings1'>
             <div className="bgboxCre" >
                 <h1> Relatório de Pagamento: </h1>
                 <Dados></Dados>
@@ -180,6 +181,7 @@ const RelatorioPag: React.FC = () => {
                                 </div>
                             </td>
                     </tbody> } 
+            </div>
             </div>
             </div>
         </>

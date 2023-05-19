@@ -187,7 +187,7 @@ const SelectCli: React.FC = () => {
 
 
                 </Modal>
-
+        <div className='allthings'>
             <div className="bgSelect" >
                 <h1> Clientes Cadastrados </h1>
             </div>
@@ -260,6 +260,7 @@ const SelectCli: React.FC = () => {
                     </tbody> } 
                 </div>
             </div>
+        </div>
         </>
     );
 }
