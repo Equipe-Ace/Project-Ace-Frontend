@@ -71,7 +71,7 @@ const FormADM: React.FC = () => {
             <div className="bgformadm" >
                 <h1> Cadastro de usuários</h1>
                 <div className="inputBoxformadm">
-                    <input type="text" required onChange={(e) => setUserEmail(e.target.value)}/>
+                    <input type="email" required onChange={(e) => setUserEmail(e.target.value)}/>
                     <span>Email</span>
                 </div>
                 <div className="inputBoxformadm">

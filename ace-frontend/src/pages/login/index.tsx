@@ -70,7 +70,7 @@ const LoginADM: React.FC = () => {
                         </div>
 
                         <div className="inputs">
-                            <input type="text" placeholder="digite seu login..." onChange={(e) => setEmail(e.target.value)} />
+                            <input type="email" placeholder="digite seu login..." onChange={(e) => setEmail(e.target.value)} />
                             <input type="password" placeholder="digite sua senha..." onChange={(e) => setSenha(e.target.value)} />
                         </div>
 

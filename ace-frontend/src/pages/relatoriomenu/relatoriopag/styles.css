@@ -59,3 +59,21 @@ span {
     flex-direction: column;
     gap: 5px;
 }
+
+@media (max-width:560px ){
+    .boxDate{
+        transition: 4s ;
+        display: flex;
+        flex-direction: column;
+        gap: 23px;
+
+        
+    }
+    h1 {
+        transition: 800ms ease;
+        font-size: 33px;
+    }
+
+      
+}
+
