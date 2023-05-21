@@ -7,6 +7,10 @@ form .container {
   background-color: #fff;
   width: 66%;
   height: 79%;
+  max-width: 110vh;
+  min-width: 30vh;
+  max-height: 90vh;
+  min-height: 50vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -196,6 +200,15 @@ form .container .Botaoentrar:hover:last-child {
 
   form .container .inputs input {
     width: 39%;
+  }
+
+}
+
+@media (max-width: 705px) {
+
+  form .logo img {
+    width: 300px;
+    height: 300px;
   }
 
 }
