@@ -12,7 +12,7 @@ import RelatorioMenu from "./pages/relatoriomenu";
 import RelatorioPag from "./pages/relatoriomenu/relatoriopag";
 import RelatorioCre from "./pages/relatoriomenu/relatoriocre";
 import RelatorioVen from "./pages/relatoriomenu/relatorioven";
-
+import RelatorioGeral from "./pages/relatoriomenu/relatorioGeral";
 import { ContextProvider } from "./context/useContext";
 
 
@@ -34,7 +34,7 @@ const AppRoutes = () => {
                 <Route path="/cadastrocli" element={<CadCLI />} />
 
                 {/* MENUS */}
-                <Route path="/relatoriomenu" element={<RelatorioMenu />} />
+                <Route path="/relatoriomenu" element={<RelatorioGeral/>} />  {/*RelatorioMenu*/ }
                 <Route path="/relatoriopag" element={<RelatorioPag />} />
                 <Route path="/relatorioven" element={<RelatorioVen />} />
                 <Route path="/relatoriocre" element={<RelatorioCre />} />
