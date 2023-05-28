@@ -204,6 +204,7 @@ const SelectCli: React.FC = () => {
                                 <th>Nome</th>
                                 <th>CPF</th>
                                 <th>Valor do serviço</th>
+                                <th>Status</th>
                                 <th>Pagamento</th>
                                 <th></th>
                             </tr>
@@ -217,7 +218,7 @@ const SelectCli: React.FC = () => {
                                 return item
                             }
                         }).slice(startIndex, endIndex)
-                        .map((item: { id: number, nome: string, cpf: string, servico: any}, id: number) => {
+                        .map((item: { id: number, nome: string, cpf: string, servico: any, adimplencia:string}, id: number) => {
                             counter++
                             return (
                                 item?
@@ -226,6 +227,7 @@ const SelectCli: React.FC = () => {
                                     <td>{item.nome}</td>  
                                     <td>{item.cpf}</td>
                                     <td>R$:{item.servico["preco"].toFixed(2)}</td>
+                                    <td>{item.adimplencia}</td>
                                     <td className='button-1' onClick={handleEditClick(item.id)}><img src={card} alt="botão de edição"  /> </td>
                                     <td className='button-1' onClick={() => {
 
