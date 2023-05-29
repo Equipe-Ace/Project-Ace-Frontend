@@ -6,7 +6,7 @@
 form .container {
   background-color: #fff;
   width: 66%;
-  height: 79%;
+  /* height: 79%; */
   max-width: 110vh;
   min-width: 30vh;
   max-height: 90vh;
@@ -21,7 +21,7 @@ form .container {
 
 form .logo img {
   width: 200px;
-  height: 200px;
+  margin-top: 10px;
 }
 
 form {
@@ -89,7 +89,7 @@ form .container .titulo p {
 
 form .container .Botaoentrar {
   position: relative;
-  height: 45px;
+  height: 40px;
   width: 140px;
   margin: 18px 40px;
   font-size: 50px;
@@ -175,13 +175,11 @@ form .container .Botaoentrar:hover:last-child {
     font-size: 12px;
   }
 
-
   form .container .titulo h1 {
     font-family: 'Monda', sans-serif;
     font-size: 36px;
     color: #8A05BE;
   }
-
 
   form .container .titulo p {
     font-family: 'Monda', sans-serif;

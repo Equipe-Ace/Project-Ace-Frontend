@@ -10,13 +10,6 @@
       z-index: 1000;
   }
 
-/* .sidebar .sidebaropacity {
-    background: rgba(0, 0, 0, 0.25);
-    width: 100%;
-    height:100%;
-} */
-
-
 .sidebar .Container2.active{ 
     left: 0% !important;
   }
@@ -26,18 +19,8 @@
       width: 111px;
       height: 108px;
       left: 71px;
-      top: 28px;
+      top: 40px;
   }
-
-/* .sidebar .Container2 svg {
-      position: fixed;
-      color: rgba(83, 0, 130, 1);
-      width: 30px;
-      height: 30px;
-      margin-top: 20px;
-      margin-left: 32px;
-      cursor: pointer;
-  } */
 
   @keyframes showSidebar {
       from {
@@ -52,6 +35,6 @@
   }
 
 .sidebar .Container2 .Content  {
-      margin-top: 150px;
+      margin-top: 130px;
   }
 
