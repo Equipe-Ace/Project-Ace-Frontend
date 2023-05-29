@@ -20,9 +20,7 @@ const RelatorioCre: React.FC = () => {
 	    dataPagamento: ReactNode,
 	    dataCredito: ReactNode,
 	    valorParcela: number,
-	    valorPago: number,
-        statusAtraso: boolean,
-        statusPago: String
+	    valorPago: number
     }
     
     const [dataInicio, setDataInicio] = useState("")

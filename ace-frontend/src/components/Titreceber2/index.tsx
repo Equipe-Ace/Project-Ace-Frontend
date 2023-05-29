@@ -12,9 +12,7 @@ interface ParcelaInfo{
        dataPagamento?: Date,
        dataCredito?: Date,
        valorParcela: number,
-       valorPago: number,
-       statusAtraso?: boolean,
-       statusPago?: String
+       valorPago: number
    }
 }
 const TitReceber2 = ({

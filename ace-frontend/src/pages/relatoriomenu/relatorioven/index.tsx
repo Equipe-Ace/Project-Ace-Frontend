@@ -22,8 +22,6 @@ const RelatorioVen: React.FC = () => {
 	    dataCredito: ReactNode,
 	    valorParcela: number,
 	    valorPago: number,
-        statusAtraso: boolean,
-        statusPago: String,
         statusVencida: string
     }
     
