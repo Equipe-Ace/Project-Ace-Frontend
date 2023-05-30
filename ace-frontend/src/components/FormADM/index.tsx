@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './styles.css'
 import Dropdown from '../dropdown';
 import BotaoAvancar from '../botaoAvan';
@@ -10,6 +10,13 @@ import { api } from '../../service/api';
 
 const FormADM: React.FC = () => {
     
+    const [userToken, setUserToken] = useState<string | null>()
+
+    useEffect(()=> {
+        const tokinho = localStorage.getItem("token")
+        setUserToken(tokinho)
+    }, [])
+
     interface UserInfo{
         email?: string
         senha?: string
@@ -31,7 +38,12 @@ const FormADM: React.FC = () => {
         e.preventDefault()
 
         console.log(userInfo)
-        api.post("/login/", userInfo).then(
+        api.post("/login/", userInfo,
+        {
+            headers: {
+                Authorization: `Bearer ${userToken}` 
+            }
+        }).then(
             response => {
                 const resposta = response.data
                 console.log(resposta)

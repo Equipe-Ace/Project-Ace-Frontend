@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 import Header from '../../../components/header/index'
 import { api } from '../../../service/api';
 import './styles.css'
@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import Dados from '../../../components/dadosRelatorio'
 import a_z from "../../../img/a-z.svg"
 import z_a from "../../../img/z-a.svg"
+import { ReactElement } from 'react-imask/dist/mixin';
 
 
 
@@ -25,7 +26,8 @@ const RelatorioPag: React.FC = () => {
 	    dataPagamento: ReactNode,
 	    dataCredito: ReactNode,
 	    valorParcela: number,
-	    valorPago: number
+	    valorPago: number,
+        statusVencida: string
     }
     
     const [dataInicio, setDataInicio] = useState("")
@@ -98,12 +100,42 @@ const RelatorioPag: React.FC = () => {
     setSelectedOption(event.target.value);
     }
 
+    const [coluna2, setColuna2] = useState("dados1")
+    const [coluna3, setColuna3] = useState("dados2")
+    const [coluna4, setColuna4] = useState("dados3")
+    const [coluna5, setColuna5] = useState("dados4")
+    
+ 
     function fazerBusca(){
         setTipodata(selectedOption)
         const ConvDataIni = new Date(dataInicio)
         const ConvDataFin = new Date(dataFinal)
-
-
+        
+        if(tipodata === "vencer"){
+            setColuna2("Data de Vencimento")
+            setColuna3("Valor da parcela")
+            setColuna4("Valor tal")
+            setColuna5("Status")
+        }
+        if(tipodata === "paga"){
+            setColuna2("Data de Pagamento")
+            setColuna3("Data de Vencimento")
+            setColuna4("Valor Parcela")
+            setColuna5("Status")
+        }
+        if(tipodata === "creditada"){
+            setColuna2("Data de Pagamento")
+            setColuna3("Data de Crédito")
+            setColuna4("Valor Pago")
+            setColuna5("Status")
+        }
+        if(tipodata === "atraso"){
+            setColuna2("Data de Vencimento")
+            setColuna3("Data de Pagamento")
+            setColuna4("Valor da Parcela")
+            setColuna5("Status")
+        }
+        console.log(`/Parcela/buscarParcelas/${selectedOption}/${dataInicio}/${dataFinal}`)
         if (ConvDataFin<ConvDataIni){
                 alert(' \nErro: Filtro invalido!\nData final deve ser maior que a inicial.')
         }   
@@ -163,9 +195,11 @@ function toBrDate(date:Date){
                 <div className='filtroRow'>
                     <span>Filtro: </span>
                     <select value={selectedOption} onChange={handleChangeOption} className='btn btn1'>          
-                            <option value="vencimento">Vencimento</option>
-                            <option value="pagamento">Pagamento</option>
-                            <option value="credito">Crédito</option>
+                            <option value="vencer">A vencer</option>
+                            <option value="paga">Pagas</option>
+                            <option value="creditada">Creditadas</option>
+                            <option value="atraso">Em atraso</option>
+
                     </select>
                 </div>              
             </div>
@@ -189,44 +223,67 @@ function toBrDate(date:Date){
             { <tbody>
                         <thead>
                             <tr>
+                                <th>Nome do cliente</th>
+                                <th>{coluna2}</th>
+                                <th>{coluna3}</th>
+                                <th>{coluna4}</th>
+                                <th>{coluna5}</th>
+                            </tr>
+                            {/* <tr>
                                 <th>Nome do Cliente</th>
                                 <th>Data de {tipodata.charAt(0).toUpperCase() +tipodata.slice(1)}</th>
                                 <th>Valor da parcela</th>
                                 <th>Valor pago</th>
-                            </tr>
+                            </tr> */}
                         </thead>    
                                     
                     {slicedData.
                         map((parcela: any, index: number) => {
                             counterr++
-                            if(tipodata==='vencimento'){
+                            if(tipodata==='vencer'){
                             return (                
                                 <tr key={index}>
                                     <td>{parcela.nomeCliente}</td>  
                                     <td>{toBrDate(parcela.dataVencimento)}</td>
                                     <td>R$:{parcela.valorParcela.toFixed(2)}</td>
                                     <td>{parcela.valorPago}</td>
+                                    <td>{parcela.statusVencida}</td>
+
 
                                 </tr>                               
                             )}
-                            if(tipodata==="pagamento"){
+                            if(tipodata==="paga"){
                                 return(                   
                                     <tr key={index}>
                                         <td>{parcela.nomeCliente}</td>  
                                         <td>{toBrDate(parcela.dataPagamento)}</td>
+                                        <td>{toBrDate(parcela.dataVencimento)}</td>
                                         <td>R$:{parcela.valorParcela.toFixed(2)}</td>
-                                        <td>{parcela.valorPago}</td>
+                                        <td>{parcela.statusVencida}</td>
                                         
                                     </tr>                                       
                                 )
                             }
-                            if(tipodata==="credito"){
+                            if(tipodata==="creditada"){
                                 return(                                  
                                     <tr key={index}>
                                         <td>{parcela.nomeCliente}</td>  
+                                        <td>{toBrDate(parcela.dataPagamento)}</td>
                                         <td>{toBrDate(parcela.dataCredito)}</td>
-                                        <td>{parcela.valorParcela}</td>
                                         <td>R$:{parcela.valorPago.toFixed(2)}</td>
+                                        <td>{parcela.statusVencida}</td>
+                                    </tr>                                        
+                                )
+                            }
+                            if(tipodata==="atraso"){
+                                return(                                  
+                                    <tr key={index}>
+                                        <td>{parcela.nomeCliente}</td>  
+                                        <td>{toBrDate(parcela.dataVencimento)}</td>
+                                        <td>{toBrDate(parcela.dataPagamento)}</td>
+                                        <td>R$:{parcela.valorPago.toFixed(2)}</td>
+                                        <td>{parcela.statusVencida}</td>
+                                       
   
                                     </tr>                                        
                                 )
