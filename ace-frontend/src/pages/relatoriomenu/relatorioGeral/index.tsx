@@ -7,6 +7,8 @@ import next from "../../../img/NextBt.svg"
 import back from "../../../img/BackBt.svg"
 import { useNavigate } from 'react-router-dom';
 import Dados from '../../../components/dadosRelatorio'
+import a_z from "../../../img/a-z.svg"
+import z_a from "../../../img/z-a.svg"
 
 
 
@@ -35,8 +37,11 @@ const RelatorioPag: React.FC = () => {
     const [page, setPage] = useState(0);
     const [selectedOption, setSelectedOption] = useState('credito');
     const [tipodata,setTipodata] = useState('Crédito');
-    const [formatedTipoData, setFormatedTipoData]= useState('Crédito')
+    const [formatedTipoData, setFormatedTipoData]= useState('Crédito');
+    const [sort, setSort] = useState<'a-z' | 'z-a'>('a-z');
+    const [imageSrc, setImageSrc] = useState(a_z);
     const navigate = useNavigate();
+
 
 
     const ITEMS_PER_PAGE = 5;
@@ -45,6 +50,18 @@ const RelatorioPag: React.FC = () => {
     let counterr = 0;
 
     const userToken = localStorage.getItem("token")
+
+    const handleSort = () => {
+        
+        setSort(sort === 'a-z' ? 'z-a' : 'a-z');
+
+        if (imageSrc === a_z) {
+          setImageSrc(z_a);
+        } else {
+          setImageSrc(a_z);
+        }
+        console.log('a')
+      };
 
     const handleNextPageClick = () => {
         if (page >= (ListaJson.length/5-1) ) {
@@ -111,6 +128,24 @@ const RelatorioPag: React.FC = () => {
     let paginaRetornada = null;
     const userPermissao = localStorage.getItem("role")
 
+    const sortedList = ListaJson
+                .filter((parcela: {nomeCliente: string}) => {
+                    if (Pesquisa === "") {
+                    return parcela.nomeCliente;
+                    } else if (parcela.nomeCliente.toLowerCase().includes(Pesquisa.toLowerCase())) {
+                    return parcela.nomeCliente;
+                    }
+                })
+                .sort((a: Parcela, b: Parcela) => {
+                    if (sort === 'a-z') {
+                    return a.nomeCliente.localeCompare(b.nomeCliente);
+                    } else {
+                    return b.nomeCliente.localeCompare(a.nomeCliente);
+                    }
+                });
+
+const slicedData = sortedList.slice(startIndex, endIndex);
+
     const pagina = 
         <>
             <Header />
@@ -127,11 +162,10 @@ const RelatorioPag: React.FC = () => {
                             <option value="pagamento">Pagamento</option>
                             <option value="credito">Crédito</option>
                     </select>
-                </div>
+                </div>              
             </div>
 
-            
-
+        
             <div className="boxDate">
                 <div className='row'>
                     <span>Data de Início: </span>
@@ -157,15 +191,8 @@ const RelatorioPag: React.FC = () => {
                             </tr>
                         </thead>    
                                     
-                        {ListaJson.filter((parcela: {nomeCliente : string}) => {
-                            if (Pesquisa === "") {
-                                return parcela.nomeCliente
-                            }
-                            else if (parcela.nomeCliente.toLocaleLowerCase().includes(Pesquisa.toLocaleLowerCase())) {
-                                return parcela.nomeCliente
-                            }
-                        }).slice(startIndex, endIndex)
-                        .map((parcela: Parcela, index: number) => {
+                    {slicedData.
+                        map((parcela: Parcela, index: number) => {
                             counterr++
                             if(tipodata==='vencimento'){
                             return (                
@@ -209,7 +236,12 @@ const RelatorioPag: React.FC = () => {
                                     <a className='button-1'> <img src={next} alt="botão de edição"  onClick={handleNextPageClick} /></a>
                                 </div>
 
+                            <div className='arruma'>  
+                                <img src={imageSrc} alt="Ordem"  onClick={handleSort} className=' sortBtn '/>
+                            </div>
+
                             <Dados></Dados>
+
                     </tbody> } 
                     
             </div>

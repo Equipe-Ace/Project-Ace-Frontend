@@ -87,3 +87,11 @@ span {
     padding-bottom: 15px;
 }
 
+.sortBtn{
+    border-radius: 5px;
+}
+
+.sortBtn:hover{
+    background-color: #44444446;
+}
+
