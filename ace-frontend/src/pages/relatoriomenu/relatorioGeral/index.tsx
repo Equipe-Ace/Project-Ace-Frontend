@@ -146,6 +146,11 @@ const RelatorioPag: React.FC = () => {
 
 const slicedData = sortedList.slice(startIndex, endIndex);
 
+function toBrDate(date:Date){
+    var formattedDate = new Date(date).toLocaleDateString('pt-BR');
+    return formattedDate
+  }
+
     const pagina = 
         <>
             <Header />
@@ -192,14 +197,14 @@ const slicedData = sortedList.slice(startIndex, endIndex);
                         </thead>    
                                     
                     {slicedData.
-                        map((parcela: Parcela, index: number) => {
+                        map((parcela: any, index: number) => {
                             counterr++
                             if(tipodata==='vencimento'){
                             return (                
                                 <tr key={index}>
                                     <td>{parcela.nomeCliente}</td>  
-                                    <td>{parcela.dataVencimento}</td>
-                                    <td>{parcela.valorParcela}</td>
+                                    <td>{toBrDate(parcela.dataVencimento)}</td>
+                                    <td>R$:{parcela.valorParcela.toFixed(2)}</td>
                                     <td>{parcela.valorPago}</td>
 
                                 </tr>                               
@@ -208,8 +213,8 @@ const slicedData = sortedList.slice(startIndex, endIndex);
                                 return(                   
                                     <tr key={index}>
                                         <td>{parcela.nomeCliente}</td>  
-                                        <td>{parcela.dataPagamento}</td>
-                                        <td>{parcela.valorParcela}</td>
+                                        <td>{toBrDate(parcela.dataPagamento)}</td>
+                                        <td>R$:{parcela.valorParcela.toFixed(2)}</td>
                                         <td>{parcela.valorPago}</td>
                                         
                                     </tr>                                       
@@ -219,9 +224,9 @@ const slicedData = sortedList.slice(startIndex, endIndex);
                                 return(                                  
                                     <tr key={index}>
                                         <td>{parcela.nomeCliente}</td>  
-                                        <td>{parcela.dataCredito}</td>
+                                        <td>{toBrDate(parcela.dataCredito)}</td>
                                         <td>{parcela.valorParcela}</td>
-                                        <td>{parcela.valorPago}</td>
+                                        <td>R$:{parcela.valorPago.toFixed(2)}</td>
   
                                     </tr>                                        
                                 )
