@@ -56,7 +56,7 @@ const TitReceber3= ({
       function handleFunction(e:React.MouseEvent<HTMLButtonElement>) {
             e.preventDefault()
             if(dataCreditoParcela >= dataPagamentoParcela) {
-              if(parcelaAtualizada.valorPago > (11 - parcelaAtualizada.numeroParcela)*parcelaAtualizada.valorParcela + parcelaAtualizada.valorParcela) {
+              if(parcelaAtualizada.valorPago > (12 - parcelaAtualizada.numeroParcela)*parcelaAtualizada.valorParcela + parcelaAtualizada.valorParcela) {
                 alert("Valor máximo ultrapassado")
               } else if(parcelaAtualizada.valorPago >= parcelaAtualizada.valorParcela) {
                 api.put("/Parcela/atualizarParcela", parcelaAtualizada, {
@@ -118,8 +118,7 @@ const TitReceber3= ({
                         value={valorPagoParcela}
                         onAccept={(value: React.SetStateAction<string>) => setValorPagoParcela(value)}
                         dir="rtl"
-                        placeholder="R$: 0,00"
-                        required
+                        placeholder={"R$"+`${(parcela.valorParcela-parcela.valorPago).toFixed(2)}`}
                     />
                      <span>Valor a Receber</span>
                 </div>
