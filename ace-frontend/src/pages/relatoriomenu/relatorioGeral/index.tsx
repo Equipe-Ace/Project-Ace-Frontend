@@ -37,7 +37,7 @@ const RelatorioPag: React.FC = () => {
     const ListaJson = JSON.parse(Listastr);
     const [Pesquisa, setPesquisa] = useState("")
     const [page, setPage] = useState(0);
-    const [selectedOption, setSelectedOption] = useState('credito');
+    const [selectedOption, setSelectedOption] = useState('vencer');
     const [tipodata,setTipodata] = useState('Crédito');
     const [formatedTipoData, setFormatedTipoData]= useState('Crédito');
     const [sort, setSort] = useState<'a-z' | 'z-a'>('a-z');
@@ -111,25 +111,25 @@ const RelatorioPag: React.FC = () => {
         const ConvDataIni = new Date(dataInicio)
         const ConvDataFin = new Date(dataFinal)
         
-        if(tipodata === "vencer"){
+        if(selectedOption === "vencer"){
             setColuna2("Data de Vencimento")
             setColuna3("Valor da parcela")
-            setColuna4("Valor tal")
+            setColuna4("Valor pago")
             setColuna5("Status")
         }
-        if(tipodata === "paga"){
+        if(selectedOption === "paga"){
             setColuna2("Data de Pagamento")
             setColuna3("Data de Vencimento")
             setColuna4("Valor Parcela")
             setColuna5("Status")
         }
-        if(tipodata === "creditada"){
+        if(selectedOption === "creditada"){
             setColuna2("Data de Pagamento")
             setColuna3("Data de Crédito")
             setColuna4("Valor Pago")
             setColuna5("Status")
         }
-        if(tipodata === "atraso"){
+        if(selectedOption === "atraso"){
             setColuna2("Data de Vencimento")
             setColuna3("Data de Pagamento")
             setColuna4("Valor da Parcela")
@@ -179,7 +179,11 @@ const RelatorioPag: React.FC = () => {
 const slicedData = sortedList.slice(startIndex, endIndex);
 
 function toBrDate(date:Date){
-    var formattedDate = new Date(date).toLocaleDateString('pt-BR');
+    if(date === null){
+        var formattedDate = "pendente";
+    }else {
+        var formattedDate = new Date(date).toLocaleDateString('pt-BR');
+    }
     return formattedDate
   }
 
