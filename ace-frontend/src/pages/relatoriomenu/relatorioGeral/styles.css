@@ -5,8 +5,8 @@
     box-sizing: border-box;
 }
 
-.allthings1{
-    height: 100vh;
+.allthings2{
+    height: 100%;
     width: 100%;
 }
 
@@ -58,11 +58,23 @@ span {
 
 .boxFiltro {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     flex-direction: row;
     padding-top: 0px; 
     padding-bottom: 0%;  
+}
+
+.boxFiltro .ordemasc {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.boxFiltro .ordemasc img {
+    cursor: pointer;
+    margin-top:20px ;
+    
 }
 
 .filtroRow{
@@ -86,6 +98,8 @@ span {
     padding-top: 10px;
     padding-bottom: 15px;
 }
+
+
 
 .sortBtn{
     border-radius: 5px;

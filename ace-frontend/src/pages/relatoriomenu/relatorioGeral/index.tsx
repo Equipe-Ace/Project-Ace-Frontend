@@ -16,20 +16,20 @@ import { ReactElement } from 'react-imask/dist/mixin';
 
 const RelatorioPag: React.FC = () => {
 
-    
-    interface Parcela{
+
+    interface Parcela {
         id: number,
-	    idCliente: number,
+        idCliente: number,
         nomeCliente: string,
-	    numeroParcela: number,
-	    dataVencimento: ReactNode,
-	    dataPagamento: ReactNode,
-	    dataCredito: ReactNode,
-	    valorParcela: number,
-	    valorPago: number,
+        numeroParcela: number,
+        dataVencimento: ReactNode,
+        dataPagamento: ReactNode,
+        dataCredito: ReactNode,
+        valorParcela: number,
+        valorPago: number,
         statusVencida: string
     }
-    
+
     const [dataInicio, setDataInicio] = useState("")
     const [dataFinal, setDataFinal] = useState("")
     const [listaParcela, setListaParcela] = useState([])
@@ -38,8 +38,8 @@ const RelatorioPag: React.FC = () => {
     const [Pesquisa, setPesquisa] = useState("")
     const [page, setPage] = useState(0);
     const [selectedOption, setSelectedOption] = useState('vencer');
-    const [tipodata,setTipodata] = useState('Crédito');
-    const [formatedTipoData, setFormatedTipoData]= useState('Crédito');
+    const [tipodata, setTipodata] = useState('Crédito');
+    const [formatedTipoData, setFormatedTipoData] = useState('Crédito');
     const [sort, setSort] = useState<'a-z' | 'z-a'>('a-z');
     const [imageSrc, setImageSrc] = useState(a_z);
     const navigate = useNavigate();
@@ -54,25 +54,25 @@ const RelatorioPag: React.FC = () => {
     const userToken = localStorage.getItem("token")
 
     const handleSort = () => {
-        
+
         setSort(sort === 'a-z' ? 'z-a' : 'a-z');
 
         if (imageSrc === a_z) {
-          setImageSrc(z_a);
+            setImageSrc(z_a);
         } else {
-          setImageSrc(a_z);
+            setImageSrc(a_z);
         }
         console.log('a')
-      };
+    };
 
     const handleNextPageClick = () => {
-        if (page >= (ListaJson.length/5-1) ) {
+        if (page >= (ListaJson.length / 5 - 1)) {
             alert("Não há mais clientes!")
-          }
-        else{
-            setPage(page + 1);      
         }
-        
+        else {
+            setPage(page + 1);
+        }
+
     };
     const resetPage = () => {
         setPage(0)
@@ -81,11 +81,11 @@ const RelatorioPag: React.FC = () => {
     const handlePrevPageClick = () => {
         if (page > 0) {
             setPage(page - 1);
-          }
-        else{
+        }
+        else {
             alert("A página já está no começo")
         }
-        
+
     };
 
     function handleEditClick(id: number) {
@@ -93,236 +93,240 @@ const RelatorioPag: React.FC = () => {
     }
 
     function handleClick(id: any) {
-    navigate(`/ControleTitulosFIN2/${id}`);
+        navigate(`/ControleTitulosFIN2/${id}`);
     }
 
     function handleChangeOption(event: any) {
-    setSelectedOption(event.target.value);
+        setSelectedOption(event.target.value);
     }
 
     const [coluna2, setColuna2] = useState("dados1")
     const [coluna3, setColuna3] = useState("dados2")
     const [coluna4, setColuna4] = useState("dados3")
     const [coluna5, setColuna5] = useState("dados4")
-    
- 
-    function fazerBusca(){
+
+
+    function fazerBusca() {
         setTipodata(selectedOption)
         const ConvDataIni = new Date(dataInicio)
         const ConvDataFin = new Date(dataFinal)
-        
-        if(selectedOption === "vencer"){
+
+        if (selectedOption === "vencer") {
             setColuna2("Data de Vencimento")
             setColuna3("Valor da parcela")
             setColuna4("Valor pago")
             setColuna5("Status")
         }
-        if(selectedOption === "paga"){
+        if (selectedOption === "paga") {
             setColuna2("Data de Pagamento")
             setColuna3("Data de Vencimento")
             setColuna4("Valor Parcela")
             setColuna5("Status")
         }
-        if(selectedOption === "creditada"){
+        if (selectedOption === "creditada") {
             setColuna2("Data de Pagamento")
             setColuna3("Data de Crédito")
             setColuna4("Valor Pago")
             setColuna5("Status")
         }
-        if(selectedOption === "atraso"){
+        if (selectedOption === "atraso") {
             setColuna2("Data de Vencimento")
             setColuna3("Data de Pagamento")
             setColuna4("Valor da Parcela")
             setColuna5("Status")
         }
         console.log(`/Parcela/buscarParcelas/${selectedOption}/${dataInicio}/${dataFinal}`)
-        if (ConvDataFin<ConvDataIni){
-                alert(' \nErro: Filtro invalido!\nData final deve ser maior que a inicial.')
-        }   
+        if (ConvDataFin < ConvDataIni) {
+            alert(' \nErro: Filtro invalido!\nData final deve ser maior que a inicial.')
+        }
 
-        else{
+        else {
             setPage(0)
-        
+
             api.get(`/Parcela/buscarParcelas/${selectedOption}/${dataInicio}/${dataFinal}`,
-            {
-                headers: {
-                    Authorization: `Bearer ${userToken}` 
-                }
-            })
-            .then(response => {
-                const resposta = response.data
-                console.log(resposta)
-                setListaParcela(resposta)
-            })
+                {
+                    headers: {
+                        Authorization: `Bearer ${userToken}`
+                    }
+                })
+                .then(response => {
+                    const resposta = response.data
+                    console.log(resposta)
+                    setListaParcela(resposta)
+                })
         }
     }
-    
+
     let paginaRetornada = null;
     const userPermissao = localStorage.getItem("role")
 
     const sortedList = ListaJson
-                .filter((parcela: {nomeCliente: string}) => {
-                    if (Pesquisa === "") {
-                    return parcela.nomeCliente;
-                    } else if (parcela.nomeCliente.toLowerCase().includes(Pesquisa.toLowerCase())) {
-                    return parcela.nomeCliente;
-                    }
-                })
-                .sort((a: Parcela, b: Parcela) => {
-                    if (sort === 'a-z') {
-                    return a.nomeCliente.localeCompare(b.nomeCliente);
-                    } else {
-                    return b.nomeCliente.localeCompare(a.nomeCliente);
-                    }
-                });
+        .filter((parcela: { nomeCliente: string }) => {
+            if (Pesquisa === "") {
+                return parcela.nomeCliente;
+            } else if (parcela.nomeCliente.toLowerCase().includes(Pesquisa.toLowerCase())) {
+                return parcela.nomeCliente;
+            }
+        })
+        .sort((a: Parcela, b: Parcela) => {
+            if (sort === 'a-z') {
+                return a.nomeCliente.localeCompare(b.nomeCliente);
+            } else {
+                return b.nomeCliente.localeCompare(a.nomeCliente);
+            }
+        });
 
-const slicedData = sortedList.slice(startIndex, endIndex);
+    const slicedData = sortedList.slice(startIndex, endIndex);
 
-function toBrDate(date:Date){
-    if(date === null){
-        var formattedDate = "pendente";
-    }else {
-        var formattedDate = new Date(date).toLocaleDateString('pt-BR');
+    function toBrDate(date: Date) {
+        if (date === null) {
+            var formattedDate = "pendente";
+        } else {
+            var formattedDate = new Date(date).toLocaleDateString('pt-BR');
+        }
+        return formattedDate
     }
-    return formattedDate
-  }
 
-    const pagina = 
+    const pagina =
         <>
             <Header />
-            <div className='allthings1'>
-            <div className="bgboxCre" >
-                <h1> Relatório Geral: </h1>
-            </div>
+            <div className='allthings2'>
+                <div className="bgboxCre" >
+                    <h1> Relatório Geral: </h1>
+                </div>
 
-            <div className="boxFiltro">
-                <div className='filtroRow'>
-                    <span>Filtro: </span>
-                    <select value={selectedOption} onChange={handleChangeOption} className='btn btn1'>          
+                <div className="boxFiltro">
+
+
+                    <div className='filtroRow'>
+                        <span>Filtro: </span>
+                        <select value={selectedOption} onChange={handleChangeOption} className='btn btn1'>
                             <option value="vencer">A vencer</option>
                             <option value="paga">Pagas</option>
                             <option value="creditada">Creditadas</option>
                             <option value="atraso">Em atraso</option>
 
-                    </select>
-                </div>              
-            </div>
-
-        
-            <div className="boxDate">
-                <div className='row'>
-                    <span>Data de Início: </span>
-                    <input type="date" onChange={(e) => setDataInicio(e.target.value)}/>
+                        </select>
+                    </div>
+                    <div className='ordemasc'>
+                        <img src={imageSrc} alt="Ordem" onClick={handleSort} className=' sortBtn ' />
+                    </div>
                 </div>
-                <div className='row'>
-                    <span>Data de Término: </span>
-                    <input type="date" onChange={(e) => setDataFinal(e.target.value)}/>
+
+
+                <div className="boxDate">
+                    <div className='row'>
+                        <span>Data de Início: </span>
+                        <input type="date" onChange={(e) => setDataInicio(e.target.value)} />
+                    </div>
+                    <div className='row'>
+                        <span>Data de Término: </span>
+                        <input type="date" onChange={(e) => setDataFinal(e.target.value)} />
+                    </div>
                 </div>
-            </div>  
 
 
 
-            <div className='caixaDasParcelas'>
-            <div className='boxSelect'>
-            { <tbody>
-                        <thead>
-                            <tr>
-                                <th>Nome do cliente</th>
-                                <th>{coluna2}</th>
-                                <th>{coluna3}</th>
-                                <th>{coluna4}</th>
-                                <th>{coluna5}</th>
-                            </tr>
-                            {/* <tr>
+                <div className='caixaDasParcelas'>
+                    <div className='boxSelect'>
+                        {<tbody>
+                            <thead>
+                                <tr>
+                                    <th>Nome do cliente</th>
+                                    <th>{coluna2}</th>
+                                    <th>{coluna3}</th>
+                                    <th>{coluna4}</th>
+                                    <th>{coluna5}</th>
+                                </tr>
+                                {/* <tr>
                                 <th>Nome do Cliente</th>
                                 <th>Data de {tipodata.charAt(0).toUpperCase() +tipodata.slice(1)}</th>
                                 <th>Valor da parcela</th>
                                 <th>Valor pago</th>
                             </tr> */}
-                        </thead>    
-                                    
-                    {slicedData.
-                        map((parcela: any, index: number) => {
-                            counterr++
-                            if(tipodata==='vencer'){
-                            return (                
-                                <tr key={index}>
-                                    <td>{parcela.nomeCliente}</td>  
-                                    <td>{toBrDate(parcela.dataVencimento)}</td>
-                                    <td>R$:{parcela.valorParcela.toFixed(2)}</td>
-                                    <td>{parcela.valorPago}</td>
-                                    <td>{parcela.statusVencida}</td>
+                            </thead>
+
+                            {slicedData.
+                                map((parcela: any, index: number) => {
+                                    counterr++
+                                    if (tipodata === 'vencer') {
+                                        return (
+                                            <tr key={index}>
+                                                <td>{parcela.nomeCliente}</td>
+                                                <td>{toBrDate(parcela.dataVencimento)}</td>
+                                                <td>R$:{parcela.valorParcela.toFixed(2)}</td>
+                                                <td>{parcela.valorPago}</td>
+                                                <td>{parcela.statusVencida}</td>
 
 
-                                </tr>                               
-                            )}
-                            if(tipodata==="paga"){
-                                return(                   
-                                    <tr key={index}>
-                                        <td>{parcela.nomeCliente}</td>  
-                                        <td>{toBrDate(parcela.dataPagamento)}</td>
-                                        <td>{toBrDate(parcela.dataVencimento)}</td>
-                                        <td>R$:{parcela.valorParcela.toFixed(2)}</td>
-                                        <td>{parcela.statusVencida}</td>
-                                        
-                                    </tr>                                       
-                                )
-                            }
-                            if(tipodata==="creditada"){
-                                return(                                  
-                                    <tr key={index}>
-                                        <td>{parcela.nomeCliente}</td>  
-                                        <td>{toBrDate(parcela.dataPagamento)}</td>
-                                        <td>{toBrDate(parcela.dataCredito)}</td>
-                                        <td>R$:{parcela.valorPago.toFixed(2)}</td>
-                                        <td>{parcela.statusVencida}</td>
-                                    </tr>                                        
-                                )
-                            }
-                            if(tipodata==="atraso"){
-                                return(                                  
-                                    <tr key={index}>
-                                        <td>{parcela.nomeCliente}</td>  
-                                        <td>{toBrDate(parcela.dataVencimento)}</td>
-                                        <td>{toBrDate(parcela.dataPagamento)}</td>
-                                        <td>R$:{parcela.valorPago.toFixed(2)}</td>
-                                        <td>{parcela.statusVencida}</td>
-                                       
-  
-                                    </tr>                                        
-                                )
-                            }
+                                            </tr>
+                                        )
+                                    }
+                                    if (tipodata === "paga") {
+                                        return (
+                                            <tr key={index}>
+                                                <td>{parcela.nomeCliente}</td>
+                                                <td>{toBrDate(parcela.dataPagamento)}</td>
+                                                <td>{toBrDate(parcela.dataVencimento)}</td>
+                                                <td>R$:{parcela.valorParcela.toFixed(2)}</td>
+                                                <td>{parcela.statusVencida}</td>
+
+                                            </tr>
+                                        )
+                                    }
+                                    if (tipodata === "creditada") {
+                                        return (
+                                            <tr key={index}>
+                                                <td>{parcela.nomeCliente}</td>
+                                                <td>{toBrDate(parcela.dataPagamento)}</td>
+                                                <td>{toBrDate(parcela.dataCredito)}</td>
+                                                <td>R$:{parcela.valorPago.toFixed(2)}</td>
+                                                <td>{parcela.statusVencida}</td>
+                                            </tr>
+                                        )
+                                    }
+                                    if (tipodata === "atraso") {
+                                        return (
+                                            <tr key={index}>
+                                                <td>{parcela.nomeCliente}</td>
+                                                <td>{toBrDate(parcela.dataVencimento)}</td>
+                                                <td>{toBrDate(parcela.dataPagamento)}</td>
+                                                <td>R$:{parcela.valorPago.toFixed(2)}</td>
+                                                <td>{parcela.statusVencida}</td>
 
 
-                        })}
-                                
-                                <div className='arruma'>
-                                    <a className='button-1'> <img src={back} alt="botão de edição" onClick={handlePrevPageClick}/></a>
-                                    {page+1}
-                                    <a className='button-1'> <img src={next} alt="botão de edição"  onClick={handleNextPageClick} /></a>
-                                </div>
+                                            </tr>
+                                        )
+                                    }
 
-                            <div className='arruma'>  
-                                <img src={imageSrc} alt="Ordem"  onClick={handleSort} className=' sortBtn '/>
+
+                                })}
+
+                            <div className='arruma'>
+                                <a className='button-1'> <img src={back} alt="botão de edição" onClick={handlePrevPageClick} /></a>
+                                {page + 1}
+                                <a className='button-1'> <img src={next} alt="botão de edição" onClick={handleNextPageClick} /></a>
                             </div>
+
+
 
                             <Dados></Dados>
 
-                    </tbody> } 
-                    
-            </div>
-            
-            </div>
-            <div className='btn-1-center'>
-            <button className='btn btn1 btn-1-center' onClick={fazerBusca}>Buscar</button></div>
+                        </tbody>}
+
+                    </div>
+
+                </div>
+                <div className='btn-1-center'>
+                    <button className='btn btn1 btn-1-center' onClick={fazerBusca}>Buscar</button></div>
             </div>
         </>
 
     const paginaVazia = <></>
-    
-    if(userPermissao === "ADMIN" || userPermissao === "FINANCEIRO"){
+
+    if (userPermissao === "ADMIN" || userPermissao === "FINANCEIRO") {
         paginaRetornada = pagina;
-    }else{
+    } else {
         paginaRetornada = paginaVazia;
     }
     return (
