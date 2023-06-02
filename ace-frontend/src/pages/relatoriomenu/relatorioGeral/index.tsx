@@ -10,6 +10,7 @@ import Dados from '../../../components/dadosRelatorio'
 import a_z from "../../../img/a-z.svg"
 import z_a from "../../../img/z-a.svg"
 import { ReactElement } from 'react-imask/dist/mixin';
+import { log } from 'console';
 
 
 
@@ -42,10 +43,13 @@ const RelatorioPag: React.FC = () => {
     const [formatedTipoData, setFormatedTipoData] = useState('Crédito');
     const [sort, setSort] = useState<'a-z' | 'z-a'>('a-z');
     const [imageSrc, setImageSrc] = useState(a_z);
+    const [totalPago, setTotalPago] = useState(0)
+    const [totalReceber, setTotalReceber] = useState(0)
     const navigate = useNavigate();
 
 
-
+    let TotalPago = 0
+    let TotalReceber = 0
     const ITEMS_PER_PAGE = 5;
     const startIndex = page * ITEMS_PER_PAGE;
     const endIndex = startIndex + ITEMS_PER_PAGE;
@@ -105,7 +109,6 @@ const RelatorioPag: React.FC = () => {
     const [coluna4, setColuna4] = useState("dados3")
     const [coluna5, setColuna5] = useState("dados4")
 
-
     function fazerBusca() {
         setTipodata(selectedOption)
         const ConvDataIni = new Date(dataInicio)
@@ -153,6 +156,14 @@ const RelatorioPag: React.FC = () => {
                     const resposta = response.data
                     console.log(resposta)
                     setListaParcela(resposta)
+                    TotalPago = 0
+                    TotalReceber = 0
+                    resposta.forEach((parcela: Parcela) => {
+                        TotalPago = TotalPago + parcela.valorPago
+                        TotalReceber = TotalReceber + parcela.valorParcela - parcela.valorPago
+                    })
+                    setTotalPago(TotalPago)
+                    setTotalReceber(TotalReceber)
                 })
         }
     }
@@ -255,7 +266,7 @@ const RelatorioPag: React.FC = () => {
                                                 <td>{parcela.nomeCliente}</td>
                                                 <td>{toBrDate(parcela.dataVencimento)}</td>
                                                 <td>R$:{parcela.valorParcela.toFixed(2)}</td>
-                                                <td>{parcela.valorPago}</td>
+                                                <td>R$:{parcela.valorPago.toFixed(2)}</td>
                                                 <td>{parcela.statusVencida}</td>
 
 
@@ -310,7 +321,12 @@ const RelatorioPag: React.FC = () => {
 
 
 
-                            <Dados></Dados>
+                            <div className="myDiv">
+                                <table>
+                                    <tr><th>Total Recebido </th><th>Total a Receber</th></tr>
+                                    <tr><td>R$:{totalPago.toFixed(2)}</td><td>R$:{totalReceber.toFixed(2)}</td></tr>
+                                </table>
+                            </div>
 
                         </tbody>}
 
