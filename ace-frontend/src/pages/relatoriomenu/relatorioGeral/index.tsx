@@ -9,6 +9,8 @@ import { useNavigate } from 'react-router-dom';
 import Dados from '../../../components/dadosRelatorio'
 import a_z from "../../../img/a-z.svg"
 import z_a from "../../../img/z-a.svg"
+import arrowup from "../../../img/arrowup.svg"
+import arrowdown from "../../../img/arrowdown.svg"
 import { ReactElement } from 'react-imask/dist/mixin';
 import { log } from 'console';
 
@@ -23,9 +25,9 @@ const RelatorioPag: React.FC = () => {
         idCliente: number,
         nomeCliente: string,
         numeroParcela: number,
-        dataVencimento: ReactNode,
-        dataPagamento: ReactNode,
-        dataCredito: ReactNode,
+        dataVencimento: string | number;
+        dataPagamento: string | number,
+        dataCredito: string | number,
         valorParcela: number,
         valorPago: number,
         statusVencida: string
@@ -41,10 +43,12 @@ const RelatorioPag: React.FC = () => {
     const [selectedOption, setSelectedOption] = useState('vencer');
     const [tipodata, setTipodata] = useState('Crédito');
     const [formatedTipoData, setFormatedTipoData] = useState('Crédito');
-    const [sort, setSort] = useState<'a-z' | 'z-a'>('a-z');
+    const [sort, setSort] = useState('a-z');
     const [imageSrc, setImageSrc] = useState(a_z);
     const [total1, setTotal1] = useState(0)
     const [total2, setTotal2] = useState(0)
+    const [isDescending, setIsDescending] = useState(false);
+
     const navigate = useNavigate();
 
 
@@ -57,17 +61,14 @@ const RelatorioPag: React.FC = () => {
 
     const userToken = localStorage.getItem("token")
 
-    const handleSort = () => {
-
-        setSort(sort === 'a-z' ? 'z-a' : 'a-z');
-
-        if (imageSrc === a_z) {
-            setImageSrc(z_a);
+    const handleSort = (property:any) => {
+        if (sort === property) {
+          setIsDescending(!isDescending);
         } else {
-            setImageSrc(a_z);
+          setIsDescending(false);
+          setSort(property);
         }
-        console.log('a')
-    };
+      };
 
     const handleNextPageClick = () => {
         if (page >= (ListaJson.length / 5 - 1)) {
@@ -104,12 +105,20 @@ const RelatorioPag: React.FC = () => {
         setSelectedOption(event.target.value);
     }
 
-    const [coluna2, setColuna2] = useState("dados1")
-    const [coluna3, setColuna3] = useState("dados2")
-    const [coluna4, setColuna4] = useState("dados3")
-    const [coluna5, setColuna5] = useState("dados4")
-    const [coluna6, setColuna6] = useState("Total Vencido")
-    const [coluna7, setColuna7] = useState("Total a Vencer")
+
+    const [coluna2, setColuna2] = useState<JSX.Element | React.ReactNode>(<>dado1</>)
+    const [coluna3, setColuna3] = useState<JSX.Element | React.ReactNode>(<>dado2</>)
+    const [coluna4, setColuna4] = useState<JSX.Element | React.ReactNode>(<>dado3</>)
+    const [coluna5, setColuna5] = useState<JSX.Element | React.ReactNode>(<>dado4</>)
+    const [coluna6, setColuna6] = useState<JSX.Element | React.ReactNode>(<>Total Vencido</>)
+    const [coluna7, setColuna7] = useState<JSX.Element | React.ReactNode>(<>Total a Vencer</>)
+
+
+    var dataVen=(
+        <p onClick={() => handleSort('dataVencimento')} >
+        Data Vencimento
+        </p>
+    )
 
     function fazerBusca() {
         setTipodata(selectedOption)
@@ -117,7 +126,7 @@ const RelatorioPag: React.FC = () => {
         const ConvDataFin = new Date(dataFinal)
 
         if (selectedOption === "vencer") {
-            setColuna2("Data de Vencimento")
+            setColuna2(dataVen)
             setColuna3("Valor da parcela")
             setColuna4("Valor pago")
             setColuna5("Status")
@@ -204,21 +213,42 @@ const RelatorioPag: React.FC = () => {
     let paginaRetornada = null;
     const userPermissao = localStorage.getItem("role")
 
-    const sortedList = ListaJson
-        .filter((parcela: { nomeCliente: string }) => {
-            if (Pesquisa === "") {
-                return parcela.nomeCliente;
-            } else if (parcela.nomeCliente.toLowerCase().includes(Pesquisa.toLowerCase())) {
-                return parcela.nomeCliente;
-            }
-        })
-        .sort((a: Parcela, b: Parcela) => {
+    const sortedList = ListaJson.filter((parcela: { nomeCliente: string }) => {
+        if (Pesquisa === "") {
+            return parcela.nomeCliente;
+        } 
+        else if (parcela.nomeCliente.toLowerCase().includes(Pesquisa.toLowerCase())) {
+            return parcela.nomeCliente;
+        }}).sort((a: Parcela, b: Parcela) => {
             if (sort === 'a-z') {
-                return a.nomeCliente.localeCompare(b.nomeCliente);
-            } else {
-                return b.nomeCliente.localeCompare(a.nomeCliente);
+                return isDescending ? b.nomeCliente.localeCompare(a.nomeCliente): a.nomeCliente.localeCompare(b.nomeCliente);
+            } 
+            else if (sort === 'dataVencimento') {
+                const dateA = new Date(a.dataVencimento || 0).getTime();
+                const dateB = new Date(b.dataVencimento || 0).getTime();
+                return isDescending ? dateB - dateA : dateA - dateB;
+            } 
+            else if (sort === 'dataPagamento') {
+                const dateA = new Date(a.dataPagamento || 0).getTime();
+                const dateB = new Date(b.dataPagamento || 0).getTime();
+                return isDescending ? dateB - dateA : dateA - dateB;
+            } 
+            else if (sort === 'dataCredito') {
+                const dateA = new Date(a.dataCredito || 0).getTime();
+                const dateB = new Date(b.dataCredito || 0).getTime();
+                return isDescending ? dateB - dateA : dateA - dateB;
+            } 
+            else if (sort === 'valorParcela') {
+                return isDescending ? b.valorParcela - a.valorParcela : a.valorParcela - b.valorParcela;
             }
-        });
+            else if (sort === 'valorPago') {
+                return isDescending ? b.valorPago - a.valorPago : a.valorPago - b.valorPago;
+            }
+            else if (sort === 'statusVencida') {
+                return isDescending ? b.statusVencida.localeCompare(a.statusVencida): a.statusVencida.localeCompare(b.statusVencida);
+            }
+      return 0; 
+    });
 
     const slicedData = sortedList.slice(startIndex, endIndex);
 
@@ -231,6 +261,17 @@ const RelatorioPag: React.FC = () => {
         return formattedDate
     }
 
+    const handleSortChange = (event:any) => {
+        const selectedSort = event.target.value;
+        setSort(selectedSort);
+      };
+    
+      const handleSortToggle = () => {
+        setIsDescending(!isDescending);
+      };
+
+
+
     const pagina =
         <>
             <Header />
@@ -240,8 +281,6 @@ const RelatorioPag: React.FC = () => {
                 </div>
 
                 <div className="boxFiltro">
-
-
                     <div className='filtroRow'>
                         <span>Filtro: </span>
                         <select value={selectedOption} onChange={handleChangeOption} className='btn btn1'>
@@ -252,10 +291,31 @@ const RelatorioPag: React.FC = () => {
 
                         </select>
                     </div>
-                    <div className='ordemasc'>
-                        <img src={imageSrc} alt="Ordem" onClick={handleSort} className=' sortBtn ' />
+
+                    <div className='filtroRow'>
+                        <span>Ordenar por:</span>
+                        <select id="sortSelect" value={sort} onChange={handleSortChange} className='btn btn1'>
+                            <option value="a-z">Nome</option>
+                            <option value="dataVencimento">Data Vencimento</option>
+                            <option value="dataPagamento">Data Pagamento</option>
+                            <option value="dataCredito">Data de Crédito</option>
+                            <option value="valorParcela">Valor da Parcela</option>
+                            <option value="valorPago">Valor Pago</option>
+                            <option value="statusVencida">Status</option>
+                        </select>
+
+                        
+
                     </div>
+                    
+                    <div className='sortButton'>
+                        <div className=' button-1' onClick={handleSortToggle}>
+                            {isDescending ? (<img src={arrowup} alt="" /> ): (<img src={arrowdown} alt="" /> )}
+                        </div>
+                    </div>
+              
                 </div>
+
 
 
                 <div className="boxDate">
@@ -276,7 +336,7 @@ const RelatorioPag: React.FC = () => {
                         {<tbody>
                             <thead>
                                 <tr>
-                                    <th>Nome do cliente</th>
+                                    <th>Nome do Cliente</th>
                                     <th>{coluna2}</th>
                                     <th>{coluna3}</th>
                                     <th>{coluna4}</th>
