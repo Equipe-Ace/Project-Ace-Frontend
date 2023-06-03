@@ -43,13 +43,13 @@ const RelatorioPag: React.FC = () => {
     const [formatedTipoData, setFormatedTipoData] = useState('Crédito');
     const [sort, setSort] = useState<'a-z' | 'z-a'>('a-z');
     const [imageSrc, setImageSrc] = useState(a_z);
-    const [totalPago, setTotalPago] = useState(0)
-    const [totalReceber, setTotalReceber] = useState(0)
+    const [total1, setTotal1] = useState(0)
+    const [total2, setTotal2] = useState(0)
     const navigate = useNavigate();
 
 
-    let TotalPago = 0
-    let TotalReceber = 0
+    let Total1 = 0
+    let Total2 = 0
     const ITEMS_PER_PAGE = 5;
     const startIndex = page * ITEMS_PER_PAGE;
     const endIndex = startIndex + ITEMS_PER_PAGE;
@@ -108,6 +108,8 @@ const RelatorioPag: React.FC = () => {
     const [coluna3, setColuna3] = useState("dados2")
     const [coluna4, setColuna4] = useState("dados3")
     const [coluna5, setColuna5] = useState("dados4")
+    const [coluna6, setColuna6] = useState("Total Vencido")
+    const [coluna7, setColuna7] = useState("Total a Vencer")
 
     function fazerBusca() {
         setTipodata(selectedOption)
@@ -119,24 +121,32 @@ const RelatorioPag: React.FC = () => {
             setColuna3("Valor da parcela")
             setColuna4("Valor pago")
             setColuna5("Status")
+            setColuna6("Total Vencido")
+            setColuna7("Total a Vencer")
         }
         if (selectedOption === "paga") {
             setColuna2("Data de Pagamento")
             setColuna3("Data de Vencimento")
             setColuna4("Valor Parcela")
             setColuna5("Status")
+            setColuna6("Total Recebido")
+            setColuna7("Total a Receber")
         }
         if (selectedOption === "creditada") {
             setColuna2("Data de Pagamento")
             setColuna3("Data de Crédito")
             setColuna4("Valor Pago")
             setColuna5("Status")
+            setColuna6("Total Creditado")
+            setColuna7("Total a Creditar")
         }
         if (selectedOption === "atraso") {
             setColuna2("Data de Vencimento")
             setColuna3("Data de Pagamento")
             setColuna4("Valor da Parcela")
             setColuna5("Status")
+            setColuna6("Total Pago em Atraso")
+            setColuna7("Total Pago")
         }
         console.log(`/Parcela/buscarParcelas/${selectedOption}/${dataInicio}/${dataFinal}`)
         if (ConvDataFin < ConvDataIni) {
@@ -156,14 +166,37 @@ const RelatorioPag: React.FC = () => {
                     const resposta = response.data
                     console.log(resposta)
                     setListaParcela(resposta)
-                    TotalPago = 0
-                    TotalReceber = 0
+                    Total1 = 0
+                    Total2 = 0
                     resposta.forEach((parcela: Parcela) => {
-                        TotalPago = TotalPago + parcela.valorPago
-                        TotalReceber = TotalReceber + parcela.valorParcela - parcela.valorPago
+                        if (selectedOption === "vencer") {
+                            if(parcela.statusVencida == "vencida") {
+                                Total1 = Total1 + parcela.valorParcela  - parcela.valorPago
+                            } else if(parcela.statusVencida == "A vencer") {
+                                Total2 = Total2 + parcela.valorParcela  - parcela.valorPago
+                            }
+                        }
+                        if (selectedOption === "paga") {
+                            Total1 = Total1 + parcela.valorPago
+                            Total2 = Total2 + parcela.valorParcela - parcela.valorPago
+                        }
+                        if (selectedOption === "creditada") {
+                            if(parcela.statusVencida == "creditada") {
+                                Total1 = Total1 + parcela.valorPago
+                            } else if(parcela.statusVencida == "A creditar") {
+                                Total2 = Total2 + parcela.valorPago
+                            }
+                        }
+                        if (selectedOption === "atraso") {
+                            if(parcela.statusVencida == "Paga em atraso") {
+                                Total1 = Total1 + parcela.valorPago
+                            } else if(parcela.statusVencida == "paga") {
+                                Total2 = Total2 + parcela.valorPago
+                            }
+                        }
                     })
-                    setTotalPago(TotalPago)
-                    setTotalReceber(TotalReceber)
+                    setTotal1(Total1)
+                    setTotal2(Total2)
                 })
         }
     }
@@ -323,8 +356,8 @@ const RelatorioPag: React.FC = () => {
 
                             <div className="myDiv">
                                 <table>
-                                    <tr><th>Total Recebido </th><th>Total a Receber</th></tr>
-                                    <tr><td>R$:{totalPago.toFixed(2)}</td><td>R$:{totalReceber.toFixed(2)}</td></tr>
+                                    <tr><th>{coluna6} </th><th>{coluna7}</th></tr>
+                                    <tr><td>R$:{total1.toFixed(2)}</td><td>R$:{total2.toFixed(2)}</td></tr>
                                 </table>
                             </div>
 
