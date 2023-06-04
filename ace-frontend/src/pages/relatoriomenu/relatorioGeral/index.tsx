@@ -45,8 +45,9 @@ const RelatorioPag: React.FC = () => {
     const [formatedTipoData, setFormatedTipoData] = useState('Crédito');
     const [sort, setSort] = useState('a-z');
     const [imageSrc, setImageSrc] = useState(a_z);
-    const [total1, setTotal1] = useState(0)
-    const [total2, setTotal2] = useState(0)
+    const [total1, setTotal1] = useState(0);
+    const [total2, setTotal2] = useState(0);
+    const [quantidade, setQuantidade] = useState(0);
     const [isDescending, setIsDescending] = useState(false);
 
     const navigate = useNavigate();
@@ -54,6 +55,7 @@ const RelatorioPag: React.FC = () => {
 
     let Total1 = 0
     let Total2 = 0
+    let Quantidade = 0
     const ITEMS_PER_PAGE = 5;
     const startIndex = page * ITEMS_PER_PAGE;
     const endIndex = startIndex + ITEMS_PER_PAGE;
@@ -112,6 +114,7 @@ const RelatorioPag: React.FC = () => {
     const [coluna5, setColuna5] = useState<JSX.Element | React.ReactNode>(<>dado4</>)
     const [coluna6, setColuna6] = useState<JSX.Element | React.ReactNode>(<>Total Vencido</>)
     const [coluna7, setColuna7] = useState<JSX.Element | React.ReactNode>(<>Total a Vencer</>)
+    const [coluna8, setColuna8] = useState<JSX.Element | React.ReactNode>(<>Quantidade a Vencer</>)
 
 
     var dataVen=(
@@ -132,6 +135,7 @@ const RelatorioPag: React.FC = () => {
             setColuna5("Status")
             setColuna6("Total Vencido")
             setColuna7("Total a Vencer")
+            setColuna8("Quantidade a Vencer")
         }
         if (selectedOption === "paga") {
             setColuna2("Data de Pagamento")
@@ -140,6 +144,7 @@ const RelatorioPag: React.FC = () => {
             setColuna5("Status")
             setColuna6("Total Recebido")
             setColuna7("Total a Receber")
+            setColuna8("Quantidade Pagas")
         }
         if (selectedOption === "creditada") {
             setColuna2("Data de Pagamento")
@@ -148,6 +153,7 @@ const RelatorioPag: React.FC = () => {
             setColuna5("Status")
             setColuna6("Total Creditado")
             setColuna7("Total a Creditar")
+            setColuna8("Quantidade a Creditar")
         }
         if (selectedOption === "atraso") {
             setColuna2("Data de Vencimento")
@@ -155,7 +161,8 @@ const RelatorioPag: React.FC = () => {
             setColuna4("Valor da Parcela")
             setColuna5("Status")
             setColuna6("Total Pago em Atraso")
-            setColuna7("Total Pago")
+            setColuna7("Total Pago em Dia")
+            setColuna8("Quantidade Pagas em Atraso")
         }
         console.log(`/Parcela/buscarParcelas/${selectedOption}/${dataInicio}/${dataFinal}`)
         if (ConvDataFin < ConvDataIni) {
@@ -177,35 +184,44 @@ const RelatorioPag: React.FC = () => {
                     setListaParcela(resposta)
                     Total1 = 0
                     Total2 = 0
+                    Quantidade = 0
                     resposta.forEach((parcela: Parcela) => {
                         if (selectedOption === "vencer") {
                             if(parcela.statusVencida == "vencida") {
-                                Total1 = Total1 + parcela.valorParcela  - parcela.valorPago
+                                Total1 += parcela.valorParcela  - parcela.valorPago
                             } else if(parcela.statusVencida == "A vencer") {
-                                Total2 = Total2 + parcela.valorParcela  - parcela.valorPago
+                                Total2 += parcela.valorParcela  - parcela.valorPago
+                                Quantidade += 1
                             }
                         }
                         if (selectedOption === "paga") {
-                            Total1 = Total1 + parcela.valorPago
-                            Total2 = Total2 + parcela.valorParcela - parcela.valorPago
+                            if(parcela.statusVencida == "paga") {
+                                Total1 += parcela.valorPago
+                                Quantidade += 1
+                            } else {
+                                Total2 += parcela.valorParcela - parcela.valorPago
+                            }
                         }
                         if (selectedOption === "creditada") {
                             if(parcela.statusVencida == "creditada") {
-                                Total1 = Total1 + parcela.valorPago
+                                Total1 += parcela.valorPago
                             } else if(parcela.statusVencida == "A creditar") {
-                                Total2 = Total2 + parcela.valorPago
+                                Total2 += parcela.valorPago
+                                Quantidade += 1
                             }
                         }
                         if (selectedOption === "atraso") {
                             if(parcela.statusVencida == "Paga em atraso") {
-                                Total1 = Total1 + parcela.valorPago
+                                Total1 += parcela.valorPago
+                                Quantidade += 1
                             } else if(parcela.statusVencida == "paga") {
-                                Total2 = Total2 + parcela.valorPago
+                                Total2 += parcela.valorPago
                             }
                         }
                     })
                     setTotal1(Total1)
                     setTotal2(Total2)
+                    setQuantidade(Quantidade)
                 })
         }
     }
@@ -416,8 +432,8 @@ const RelatorioPag: React.FC = () => {
 
                             <div className="myDiv">
                                 <table>
-                                    <tr><th>{coluna6} </th><th>{coluna7}</th></tr>
-                                    <tr><td>R$:{total1.toFixed(2)}</td><td>R$:{total2.toFixed(2)}</td></tr>
+                                    <tr><th>{coluna6} </th><th>{coluna7}</th><th>{coluna8}</th></tr>
+                                    <tr><td>R$:{total1.toFixed(2)}</td><td>R$:{total2.toFixed(2)}</td><td>{quantidade}</td></tr>
                                 </table>
                             </div>
 
