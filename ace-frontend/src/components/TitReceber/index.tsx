@@ -14,10 +14,11 @@ import card from '../../img/Real sign.svg'
 
 const ITEMS_PER_PAGE = 4;
 
-const userToken =localStorage.getItem("token")
+
 
 const SelectCli: React.FC = () => {
     useEffect(() => {
+        const userToken =localStorage.getItem("token")
         axios.get('http://localhost:8080/Cliente',
         {
             headers: {
