@@ -164,7 +164,7 @@ const RelatorioPag: React.FC = () => {
         if (selectedOption === "atraso") {
             setColuna2("Data de Vencimento")
             setColuna3("Data de Pagamento")
-            setColuna4("Valor da Parcela")
+            setColuna4("Valor Pago")
             setColuna5("Status")
             setColuna6("Total Pago em Atraso")
             setColuna7("Total Pago em Dia")
@@ -199,7 +199,7 @@ const RelatorioPag: React.FC = () => {
                                 Total1 += parcela.valorParcela  - parcela.valorPago
                                 Quantidade2 += 1
                             } else if(parcela.statusVencida == "A vencer") {
-                                Total2 += parcela.valorParcela  - parcela.valorPago
+                                Total2 += parcela.valorParcela
                                 Quantidade1 += 1
                             }
                         }
@@ -208,7 +208,7 @@ const RelatorioPag: React.FC = () => {
                                 Total1 += parcela.valorPago
                                 Quantidade1 += 1
                             } else {
-                                Total2 += parcela.valorParcela - parcela.valorPago
+                                Total2 += parcela.valorParcela
                                 Quantidade2 += 1
                             }
                         }
